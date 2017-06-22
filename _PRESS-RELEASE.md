@@ -1,4 +1,4 @@
-# Project Name #
+# Find A Buddy # 
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-
+  > Find A Buddy
+  
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Find a buddy so you don't have to do your favorite thing alone. 
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Using Find A Buddy will connect you with other people who want to do the same activity. Users can post activities they are interested in or search for activities that other people are doing. 
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Finding another person to do an activity with can be difficult and time consuming. 
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Find A Buddy does the searching for you, finding people from all over. 
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "I searched high and low for an app that would help me find a buddy to golf with. When I couldn't find one, I made one myself. "
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Sign up as a user, type in an activity and a place. You can browse through matching results of buddies to connect with. 
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "With just a few clicks, Find A Buddy helped cut down the time of searching so that I have more time to enjoy my favorite activities and a buddy to do them with!"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Find out more at FindABuddy.com
