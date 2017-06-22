@@ -38,7 +38,7 @@ Once the project moves into development, the press release can be used as a touc
   > Sign up as a user, type in an activity and a place. You can browse through matching results of buddies to connect with. 
 
 ## Customer Quote ##
-  > "With just a few clicks Find A Buddy helped cut down the time of searching and have more time enjoying my favorite activities"
+  > "With just a few clicks, Find A Buddy helped cut down the time of searching so that I have more time to enjoy my favorite activities and a buddy to do them with!"
 
 ## Closing and Call to Action ##
   > Find out more at FindABuddy.com
