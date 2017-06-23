@@ -19,7 +19,7 @@ var User = mongoose.model('User', userSchema);
 // 	age: 30,
 // 	zipCode: 33456,
 // 	interests: [],
-// 	requestHistory: []	
+// 	requestHistory: []
 // }).save();
 
 
