@@ -6,11 +6,21 @@ class App extends React.Component {
     };
   }
 
-  searchHandler()
+  searchHandler() {
+
+  }
+
+  requestFormHander() {
+
+  }
+
+  render() {
+
+  }
 
 }
 
 
 ReactDOM.render()
-  <App {} />, document.getElementById('app')
+  <App/>, document.getElementById('app')
 );
