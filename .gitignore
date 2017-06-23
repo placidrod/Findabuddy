@@ -29,4 +29,8 @@ node_modules/
 bower_components/
 .idea
 .DS_Store
+.floo
+.flooignore
+public/.DS_store
+
 
