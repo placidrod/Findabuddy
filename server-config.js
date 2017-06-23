@@ -11,10 +11,11 @@ var handler = require('./lib/request-handler');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
 app.use(partials());
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', handler.getIndex);
 app.get('/profile', handler.getProfile);
