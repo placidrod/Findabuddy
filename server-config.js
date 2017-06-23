@@ -25,6 +25,9 @@ app.get('/logout', handler.getLogout);
 
 app.get('/signup', handler.getSignup);
 app.post('/signup', handler.postSignup);
+
+app.get('/buddyRequest', handler.getBuddyRequest);
+app.post('/buddyRequest', handler.postBuddyRequest);
 app.get('/*', handler.get404);
 
 module.exports = app;
