@@ -14,13 +14,36 @@ class App extends React.Component {
 
   }
 
-  render() {
+  profileHandler() {
 
+  }
+
+  logoutHandler() {
+
+  }
+
+  render() {
+    return (
+      <div className="mainApp">
+        <Nav />
+        <div className="dynamicContent">
+
+          <DynamicContent
+
+
+          />
+
+        </div>
+        <div className="notificationWindow">
+
+        </div>
+      </div>
+    );
   }
 
 }
 
 
-ReactDOM.render()
-  <App/>, document.getElementById('app')
+ReactDOM.render(
+  <App />, document.getElementById('app')
 );

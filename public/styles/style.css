@@ -1,0 +1,17 @@
+body {
+  background-color:
+}
+
+nav {
+  padding: 0 20px;
+}
+
+.searchRequest {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.btn {
+  float: right;
+}

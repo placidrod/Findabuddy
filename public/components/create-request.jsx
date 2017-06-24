@@ -6,7 +6,7 @@
 
 //POST Request Create Activity
 
-var activityRequest = {
+/*var activityRequest = {
   User: this.requestUser,
   ActivityNoun: this.reauestActivityNoun,
   AcvtivityVerb: this.requestAactivityVerb,
@@ -17,4 +17,4 @@ var activityRequest = {
   PostTime: this.requestPostTime,
   Description:  this.requestDescription
 
-}
+}*/
