@@ -7,7 +7,7 @@ var app = express();
 
 var handler = require('./lib/request-handler');
 
-
+app.mainProjectDirectory = __dirname;
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
