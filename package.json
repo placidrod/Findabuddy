@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js",
+    "test": "mocha --bail --reporter landing test/ServerSpec.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +30,7 @@
     "babel-preset-react": "^6.24.1",
     "chai": "^4.0.2",
     "mocha": "^3.4.2",
-    "sinon": "^2.3.5"
+    "sinon": "^2.3.5",
+    "supertest": "^3.0.0"
   }
 }
