@@ -1,9 +1,24 @@
 var express = require('express');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);
 var app = express();
+
+var store = new MongoDBStore({
+  uri: 'mongodb://localhost:27017/connect-mongodb-session_findabuddy',
+  collection: 'userSessions'
+});
+//A default session time out
+var week = 1000 * 60 * 60 * 24 * 7;
+
+//Catch errors for the MongoDBStore
+store.on('error', function(error) {
+  assert.ifError(error);
+  assert.ok(false);
+  console.log('MongodDBStore Error:', error);
+});
 
 var handler = require('./lib/request-handler');
 
@@ -16,6 +31,16 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/public'));
+
+app.use(session({
+  secret: 'Hey listen!',
+  cookie: {
+    maxAge: week
+  },
+  store: store,
+  resave: true,
+  saveUninitialized: true
+}));
 
 app.get('/', handler.getIndex);
 app.get('/profile', handler.getProfile);
