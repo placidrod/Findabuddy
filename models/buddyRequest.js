@@ -15,12 +15,15 @@ var buddyRequestSchema = mongoose.Schema({
 var BuddyRequest = mongoose.model('BuddyRequest', buddyRequestSchema);
 
 // var newBuddyRequest = new BuddyRequest ({
-// 	owner: "Ari",
+// 	user: "Ari",
 // 	gender: "male",
 // 	age: 18,
 // 	zipCode: 12345,
+// 	activityNoun: 'playing',
+// 	activityVerb: 'tennis',
 // 	postTitle: "seeking bbb (bread breaking buddy)",
-// 	requestDescription: "read the title"
+// 	postDateTime: '7/5/17',
+// 	description: "read the title"
 // }).save();
 
 

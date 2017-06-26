@@ -10,8 +10,7 @@ class App extends React.Component {
 
   }
 
-  requestFormHander() {
-
+  requestFormHandler() {
   }
 
   profileHandler() {
@@ -29,7 +28,7 @@ class App extends React.Component {
         <div className="dynamicContent">
 
           <DynamicContent
-
+            
 
           />
 
