@@ -2,10 +2,9 @@ class DynamicContent extends React.Component {
 
     constructor(props) {
       super(props);
-      this.state = {
+      this.state = {};
+      this.handleSubmitRequest = this.handleSubmitRequest.bind(this)
 
-
-      }
     }
 
     handleSubmitRequest(data) {
@@ -16,7 +15,7 @@ class DynamicContent extends React.Component {
       return (
         <div className="searchRequest">
           <h1>Search Form</h1>
-          <SearchForm onSubmit={this.handleSubmitRequest.bind(this)}/>
+          <SearchForm onSubmit={this.handleSubmitRequest}/>
         </div>
       );
 
