@@ -27,6 +27,26 @@ describe('', function() {
   });
 
   describe('Login endpoint', function() {
+
+    beforeEach(function(done) {
+      // login
+      // add users
+      User.create({
+        username: 'testUser',
+        password: 'testPassword'
+      });
+      User.create({
+        username: 'Bob',
+        password:'password'
+      });
+      User.create({
+        username: 'Shaniqua',
+        password: '12345'
+      });
+
+      done();
+    });
+
     //1.getIndex should return the index route
     it('GET "/" should redirect to "/login"', function(done) {
       request(app)
@@ -46,19 +66,35 @@ describe('', function() {
         .expect(function(res) {
           console.log('\n');
           var templateString = fs.readFileSync(app.mainProjectDirectory + '/views/login.ejs', 'utf-8');
-          console.log(res.text, templateString);
+          //console.log(res.text, templateString);
           expect(res.text).to.equal(templateString);
         })
         .end(done);
     });
+
+    //11. post /login should only allow login if user exists, and password matches
+    it('post "/login" should only allow login if user exists, and password matches', function(done) {
+      request(app)
+        .post('/login')
+        .send({
+          'username': 'testUser',
+          'password': 'testPassword'
+        })
+        .expect(302)
+        .expect(function(res) {
+          expect(res.headers.location).to.equal('/');
+        })
+        .end(done);
+    });
+
+    //12. post /login should generate a new session if one doesnt already exist
+    xit('post /login should generate a new session if one doesnt already exist', function(done) {
+
+    });
     /*
-     11. post /login should only allow login if user exists, and password matches
-
-     12. post /login should generate a new session if one doesnt already exist
-
-     13. get /login should check for an existing session that has a
-     authentication indicator
-     */
+    13. get /login should check for an existing session that has a
+    authentication indicator
+    */
 
   });
 
@@ -88,12 +124,32 @@ describe('', function() {
   });
 
   describe('Logout endpoint', function() {
-    /*
-     *9. get /logout should redidrect to login
 
-     10. get /logout should destroy the current session, and generate a new one
+    beforeEach(function(done) {
+      // login
+      // add users
+      User.create({username: 'testUser'});
+      User.create({username: 'Bob'});
+      User.create({username: 'Shaniqua'});
 
-     */
+      done();
+    });
+
+    //*9. get /logout should redidrect to login
+    it('get "/logout" should redidrect to login', function(done) {
+      request(app)
+      .get('/logout')
+      .expect(302)
+      .expect(function(res) {
+        expect(res.headers.location).to.equal('/login');
+      })
+      .end(done);
+    });
+    //10. get /logout should destroy the current session, and generate a new one
+    xit('get "/logout" should destroy the current session, and generate a new one', function(done) {
+
+    });
+
   });
 
   describe('BuddyRequest endpoint', function() {
