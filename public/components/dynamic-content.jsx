@@ -13,6 +13,9 @@ class DynamicContent extends React.Component {
     handlePostClick() {
     }
 
+    handlePostClick() {
+    }
+
     render() {
       return (
         <div className="searchRequest">
