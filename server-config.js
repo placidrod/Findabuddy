@@ -43,6 +43,7 @@ app.use(session({
 }));
 
 app.get('/', handler.getIndex);
+app.get('/test', handler.getTest);
 app.get('/profile', handler.getProfile);
 
 app.get('/login', handler.getLogin);
