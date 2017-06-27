@@ -19,7 +19,7 @@ class DynamicContent extends React.Component {
         <div className="searchRequest">
 
           <h1>Search Form</h1>
-          <SearchForm onSubmit={this.handleSubmitRequest.bind(this)}/>
+          <SearchForm handleSubmitRequest={this.handleSubmitRequest}/>
           <h1>Buddy Request Form</h1>
           <CreateRequest handlePostClick={this.handlePostClick}/>
 

@@ -12,13 +12,14 @@ class SearchForm extends React.Component {
         $gte: '',
         $lte: ''
       },
-      Gender: 'No Preference',
-      Description: ''
+      gender: 'No Preference',
+      description: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleAgeInput = this.handleAgeInput.bind(this);
+    this.handleSubmitRequest = this.props.handleSubmitRequest;
   }
 
   handleInput(e){
@@ -61,16 +62,15 @@ class SearchForm extends React.Component {
 
     e.preventDefault();
     var self = this;
-
+    // self.handleSubmitRequest(self.state);
     fetch('http://127.0.0.1:3000/buddyRequest', {
         method: 'GET',
         data: self.state
     })
     .then(function(response) {
-      console.log('RESPONSE', response.json())
-      return response.json()
-    }).then(function(body) {
-      console.log('BODY', body);
+      console.log('RESPONSE', response.json());
+      self.handleSubmitRequest(self.state);
+      return response.json();
     }).catch(function(err){
       console.log('ERROR fetching', err)
     });
@@ -130,7 +130,7 @@ class SearchForm extends React.Component {
             value={this.state.age.$lte} />
           <label className="control-label" htmlFor="age">Select Gender</label>
           <select className="form-control"
-              name="Gender"
+              name="gender"
               onChange={this.handleInput}
               >
             <option value="Male">Male</option>
@@ -141,9 +141,9 @@ class SearchForm extends React.Component {
         <div className="form-group">
           <label className="control-label" htmlFor="info">Description</label>
           <input type="text" className="form-control"
-            name="Description"
+            name="description"
             onChange={this.handleInput}
-            value={this.state.Description} />
+            value={this.state.description} />
         </div>
 
         <div className="form-group">
