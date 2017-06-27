@@ -1,0 +1,18 @@
+
+
+//POST Request Create Activity
+
+/*var activityRequest = {
+  User: this.requestUser,
+  ActivityNoun: this.reauestActivityNoun,
+  AcvtivityVerb: this.requestAactivityVerb,
+  Zip: this.zipCode,
+  ActivityDate: this.requestDate,
+  ActivityTime: this.requestTime,
+  PostDate: this.requestPostDate,
+  PostTime: this.requestPostTime,
+  Description:  this.requestDescription
+
+}*/
+"use strict";
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2NyZWF0ZS1yZXF1ZXN0LmpzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQU1BOztBQUVBIiwiZmlsZSI6ImNyZWF0ZS1yZXF1ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG5cblxuXG5cblxuLy9QT1NUIFJlcXVlc3QgQ3JlYXRlIEFjdGl2aXR5XG5cbi8qdmFyIGFjdGl2aXR5UmVxdWVzdCA9IHtcbiAgVXNlcjogdGhpcy5yZXF1ZXN0VXNlcixcbiAgQWN0aXZpdHlOb3VuOiB0aGlzLnJlYXVlc3RBY3Rpdml0eU5vdW4sXG4gIEFjdnRpdml0eVZlcmI6IHRoaXMucmVxdWVzdEFhY3Rpdml0eVZlcmIsXG4gIFppcDogdGhpcy56aXBDb2RlLFxuICBBY3Rpdml0eURhdGU6IHRoaXMucmVxdWVzdERhdGUsXG4gIEFjdGl2aXR5VGltZTogdGhpcy5yZXF1ZXN0VGltZSxcbiAgUG9zdERhdGU6IHRoaXMucmVxdWVzdFBvc3REYXRlLFxuICBQb3N0VGltZTogdGhpcy5yZXF1ZXN0UG9zdFRpbWUsXG4gIERlc2NyaXB0aW9uOiAgdGhpcy5yZXF1ZXN0RGVzY3JpcHRpb25cblxufSovIl19

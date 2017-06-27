@@ -65,8 +65,8 @@ class SearchForm extends React.Component {
     var self = this;
     var age = this.state.Age;
 
-    console.log(age)
-    // fetch('http://127.0.0.1:3000/buddyRequest', {
+    console.log(this.state)
+    // fetch('http://localhost/buddyRequest', {
     //     method: 'POST',
     //     data: {
     //       ActivityVerb: self.ActivityVerb,
@@ -117,7 +117,7 @@ class SearchForm extends React.Component {
         </div>
         <div className="form-group">
           <label className="control-label" htmlFor="time">Time</label>
-          <input type="password" className="form-control"
+          <input type="text" className="form-control"
             name="ActivityTime"
             onChange={this.handleInput}
             value={this.state.ActivityTime}/>
