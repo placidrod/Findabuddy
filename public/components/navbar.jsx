@@ -10,7 +10,7 @@ var Nav = () => (
         <li><a href="#" >Search</a></li>
         <li><a href="#" >New Request</a></li>
         <li><a href="#" >Profile</a></li>
-        <li><a href="#" ><span className="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        <li><a href="http://localhost:3000/logout" ><span className="glyphicon glyphicon-log-out"></span>Logout</a></li>
       </ul>
     </div>
   </nav>
