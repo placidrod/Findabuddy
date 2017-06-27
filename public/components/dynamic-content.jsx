@@ -14,7 +14,7 @@ class DynamicContent extends React.Component {
         <div className="searchRequest">
           <h1>Search Form</h1>
           <SearchForm onSubmit={this.handleSubmitRequest}/>
-          <SearchList onSubmit={this.handleSubmitRequest}/>
+          <SearchList />
         </div>
       );
 
