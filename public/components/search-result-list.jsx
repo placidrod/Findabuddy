@@ -1,43 +1,14 @@
 class SearchList extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
 
     };
   }
 
-  searchHandler() {
-
-  }
-
-  requestFormHander() {
-
-  }
-
-  profileHandler() {
-
-  }
-
-  logoutHandler() {
-
-  }
-
   render() {
     return (
-      <div className="mainApp">
-        <Nav />
-        <div className="dynamicContent">
 
-          <DynamicContent
-
-
-          />
-
-        </div>
-        <div className="notificationWindow">
-
-        </div>
-      </div>
     );
   }
 
