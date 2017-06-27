@@ -4,6 +4,7 @@ class DynamicContent extends React.Component {
     super(props);
     this.state = {};
     this.handleSubmitRequest = this.handleSubmitRequest.bind(this);
+    this.handlePostClick = this.handlePostClick.bind(this);
   }
 
   handleSubmitRequest(data) {
@@ -18,14 +19,14 @@ class DynamicContent extends React.Component {
       return (
         <div className="searchRequest">
           <h1>Search Form</h1>
-          <SearchForm onSubmit={this.handleSubmitRequest.bind(this)}/>
+          <SearchForm handleSubmitRequest={this.handleSubmitRequest}/>
         </div>
       );
     } else {
       return (
         <div className="searchRequest">
           <h1>Buddy Request Form</h1>
-          <CreateRequest handlePostClick={this.handlePostClick.bind(this)}/>
+          <CreateRequest handlePostClick={this.handlePostClick}/>
         </div>
       );
     }

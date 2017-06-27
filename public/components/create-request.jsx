@@ -1,4 +1,3 @@
-// var CreateRequest = (props) => (
 class CreateRequest extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +13,7 @@ class CreateRequest extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handlePostClick = this.props.handlePostClick;
   }
 
   handleInputChange(event) {
@@ -30,7 +30,6 @@ class CreateRequest extends React.Component {
 
   submitBuddyRequest(event) {
     event.preventDefault();
-    console.log(this.state);
     $.ajax({
       url: 'http://localhost:3000/buddyRequest',
       type: 'POST',
