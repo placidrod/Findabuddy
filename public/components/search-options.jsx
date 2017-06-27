@@ -3,89 +3,77 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ActivityVerb: '',
-      ActivityNoun: '',
-      ActivityDate: '',
-      ActivityTime: '',
-      ZipCode: '',
-      Age: {
+      activityVerb: '',
+      activityNoun: '',
+      activityDate: '',
+      activityTime: '',
+      zipCode: '',
+      age: {
         $gte: '',
         $lte: ''
       },
-      Gender: '',
+      Gender: 'No Preference',
       Description: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    // this.handleAgeInput = this.handleInput.bind(this);
+    this.handleAgeInput = this.handleAgeInput.bind(this);
   }
 
   handleInput(e){
     var target = e.target;
     var name = target.name;
-    console.log('name', name, 'value', target.value);
 
-    if (name === '$gte') {
-      this.setState({
-        Age: {'$gte': target.value},
-      });
-      console.log(this.state)
-    } else if (name === '$lte'){
-      this.setState({
-        Age: {'$lte': target.value},
-      });
-      console.log(this.state)
-    } else {
       this.setState({
         [name]: target.value,
       });
-    }
 
   }
 
-  // handleAgeInput(e){
-  //   var target = e.target;
-  //   var name = target.name;
-  //   console.log(this.state)
-  //   if (name === '$gte') {
-  //     this.setState({
-  //       Age: {'$gte': target.value},
-  //     });
-  //   } else if (name === '$lte'){
-  //     this.setState({
-  //       Age: {'$lte': target.value},
-  //     });
-  //   }
-  // }
+  handleAgeInput(e){
+    var target = e.target;
+    var name = target.name;
+    var min = this.state.age.$gte;
+    var max = this.state.age.$lte;
+    // var age = this.state.Age;
+
+    if (name === '$gte') {
+      this.setState({
+        age: {
+          $gte :target.value,
+          $lte :max
+        }
+      });
+
+    } else if (name === '$lte'){
+      this.setState({
+        age: {
+          $gte : min,
+          $lte :target.value
+        }
+      });
+
+    }
+  }
 
   handleSubmit(e) {
-    // this.props.handleSubmitRequest(this);
+
     e.preventDefault();
     var self = this;
-    var age = this.state.Age;
 
-    console.log(this.state)
-    // fetch('http://localhost/buddyRequest', {
-    //     method: 'POST',
-    //     data: {
-    //       ActivityVerb: self.ActivityVerb,
-    //       ActivityNoun: self.ActivityNoun,
-    //       ActivityDate: self.ActivityDate,
-    //       ActivityTime: self.ActivityTime,
-    //       ZipCode: self.ZipCode,
-    //       Age: {
-    //         $gte: age.$gte,
-    //         $lte: age.$lte
-    //       },
-    //       Description: self.Description
-    //     }
-    //   })
-    //   .then(function(response) {
-    //     return response.json()
-    //   }).then(function(body) {
-    //     console.log(body);
-    // });
+    fetch('http://127.0.0.1:3000/buddyRequest', {
+        method: 'GET',
+        data: self.state
+    })
+    .then(function(response) {
+      console.log('RESPONSE', response.json())
+      return response.json()
+    }).then(function(body) {
+      console.log('BODY', body);
+    }).catch(function(err){
+      console.log('ERROR fetching', err)
+    });
   }
 
 
@@ -95,53 +83,56 @@ class SearchForm extends React.Component {
         <div className="form-group">
           <label className="control-label" htmlFor="verb">Activty Verb</label>
           <input type="text" className="form-control"
-            name="ActivityVerb"
+            name="activityVerb"
             onChange={this.handleInput}
-            value={this.state.ActivityVerb}/>
+            value={this.state.activityVerb}/>
         </div>
         <div className="form-group">
-          <label className="control-label" htmlFor="noun">Activity Noun</label>
+          <label className="control-label" htmlFor="noun">activity Noun</label>
           <input type="text" className="form-control"
-            name="ActivityNoun"
+            name="activityNoun"
             onChange={this.handleInput}
-            value={this.state.ActivityNoun}/>
+            value={this.state.activityNoun}/>
         </div>
 
 
         <div className="form-group">
           <label className="control-label" htmlFor="date">Date</label>
           <input type="text" className="form-control"
-            name="ActivityDate"
+            name="activityDate"
             onChange={this.handleInput}
-            value={this.state.ActivityDate}/>
+            value={this.state.activityDate}/>
         </div>
         <div className="form-group">
           <label className="control-label" htmlFor="time">Time</label>
           <input type="text" className="form-control"
-            name="ActivityTime"
+            name="activityTime"
             onChange={this.handleInput}
-            value={this.state.ActivityTime}/>
+            value={this.state.activityTime}/>
         </div>
         <div className="form-group">
           <label className="control-label" htmlFor="zip">Zip</label>
           <input type="text" className="form-control"
-            name="ZipCode"
+            name="zipCode"
             onChange={this.handleInput}
-            value={this.state.ZipCode} />
+            value={this.state.zipCode} />
         </div>
         <div className="form-group">
           <label className="control-label age" htmlFor="age">Age Min</label>
           <input type="text" className="form-control input-medium"
             name="$gte"
-            onChange={this.handleInput}
-            value={this.state.Age.$gte} />
+            onChange={this.handleAgeInput}
+            value={this.state.age.$gte} />
           <label className="control-label age" htmlFor="age">Age Max</label>
           <input type="text" className="form-control input-medium"
             name="$lte"
-            onChange={this.handleInput}
-            value={this.state.Age.$lte} />
+            onChange={this.handleAgeInput}
+            value={this.state.age.$lte} />
           <label className="control-label" htmlFor="age">Select Gender</label>
-          <select className="form-control">
+          <select className="form-control"
+              name="Gender"
+              onChange={this.handleInput}
+              >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="No Preference">No Preference</option>
@@ -166,7 +157,7 @@ class SearchForm extends React.Component {
 
 }
 
-//POST Request Activity Search
+//POST Request activity Search
 
 
 window.SearchForm = SearchForm;
