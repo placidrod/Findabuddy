@@ -7,9 +7,8 @@ class DynamicContent extends React.Component {
 
     }
 
-
-
-    handlePostClick() {
+    handleSubmitRequest(data) {
+      console.log('You submitted a form', data)
     }
 
     handlePostClick() {
