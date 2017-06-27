@@ -2,8 +2,20 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      selectSearch: true
     };
+  }
+
+  handleSelectSearch() {
+    this.setState({
+      selectSearch: true
+    });
+  }
+
+  handleSelectRequest() {
+    this.setState({
+      selectSearch: false
+    });
   }
 
   searchHandler() {
@@ -24,11 +36,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="mainApp">
-        <Nav />
+        <Nav handleSelectSearch={this.handleSelectSearch.bind(this)} 
+            handleSelectRequest={this.handleSelectRequest.bind(this)}
+            />
         <div className="dynamicContent">
 
           <DynamicContent
-            
+            renderSearch={this.state.selectSearch}
 
           />
 
