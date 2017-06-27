@@ -32,5 +32,6 @@ bower_components/
 .floo
 .flooignore
 public/.DS_store
+compiled/
 
 
