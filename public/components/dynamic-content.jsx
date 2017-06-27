@@ -2,13 +2,14 @@ class DynamicContent extends React.Component {
 
     constructor(props) {
       super(props);
-      this.state = {
+      this.state = {};
+      this.handleSubmitRequest = this.handleSubmitRequest.bind(this)
 
-
-      }
     }
 
-
+    handleSubmitRequest(data) {
+      console.log('You submitted a form', data)
+    }
 
     handlePostClick() {
     }
