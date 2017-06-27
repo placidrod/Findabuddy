@@ -1,4 +1,4 @@
-var Nav = () => (
+var Nav = (props) => (
 
   <nav className="navbar navbar-inverse">
     <div className="container-fluid">
@@ -7,8 +7,8 @@ var Nav = () => (
       </div>
 
       <ul className="nav navbar-nav navbar-right">
-        <li><a href="#" >Search</a></li>
-        <li><a href="#" >New Request</a></li>
+        <li><a href="#" onClick={() => { props.handleSelectSearch() }} >Search</a></li>
+        <li><a href="#" onClick={() => { props.handleSelectRequest() }} >New Request</a></li>
         <li><a href="#" >Profile</a></li>
         <li><a href="http://localhost:3000/logout" ><span className="glyphicon glyphicon-log-out"></span>Logout</a></li>
       </ul>
