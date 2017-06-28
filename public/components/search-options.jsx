@@ -12,7 +12,7 @@ class SearchForm extends React.Component {
       $gte: '',
         $lte: ''
     },
-    gender: 'No Preference',
+    gender: '',
       description: ''
   };
 
@@ -70,9 +70,8 @@ handleAgeInput(e){
       data: self.state
     })
     .done(function(response) {
-      console.log('RESPONSE', response.json());
-      self.handleSubmitRequest(self.state);
-      return response.json();
+      console.log('RESPONSE', response);
+      self.handleSubmitRequest(response);
     })
     .fail(function(err){
       console.log('ERROR fetching', err)
