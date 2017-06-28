@@ -72,6 +72,7 @@ handleAgeInput(e){
     .done(function(response) {
       console.log('RESPONSE', response);
       self.handleSubmitRequest(response);
+      self.props.showResults();
     })
     .fail(function(err){
       console.log('ERROR fetching', err)

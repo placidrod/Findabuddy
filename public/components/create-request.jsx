@@ -6,7 +6,8 @@ class CreateRequest extends React.Component {
       description: '',
       postDateTime: '',
       gender: '',
-      age: '',
+      minAge: '',
+      maxAge: '',
       zipCode: '',
       activityVerb: '',
       activityNoun: ''
@@ -43,11 +44,15 @@ class CreateRequest extends React.Component {
           description: '',
           postDateTime: '',
           gender: '',
-          age: '',
+          minAge: '',
+          maxAge: '',
           zipCode: '',
           activityVerb: '',
           activityNoun: ''
         });
+
+        // {() => {this.props.showResults()}};
+        this.props.showResults();
       }.bind(this),
       error: function() {
         console.log('failed to post buddy request');
@@ -97,8 +102,12 @@ class CreateRequest extends React.Component {
           <input type="text" value={this.state.gender} className="form-control" placeholder="Enter Preferred Buddy Gender" name="gender" onChange={this.handleInputChange}/>
         </div>
         <div className="form-group">
-          <label htmlFor="noun">Age</label>
-          <input type="text" value={this.state.age} className="form-control" placeholder="Enter Preferred Buddy Age" name="age" onChange={this.handleInputChange}/>
+          <label htmlFor="noun">Minimum Age</label>
+          <input type="text" value={this.state.minAge} className="form-control" placeholder="Enter Minimum Preferred Buddy Age" name="minAge" onChange={this.handleInputChange}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="noun">Maximum Age</label>
+          <input type="text" value={this.state.maxAge} className="form-control" placeholder="Enter Maximum Preferred Buddy Age" name="maxAge" onChange={this.handleInputChange}/>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Zip Code</label>

@@ -7,14 +7,19 @@ var SearchList = ({searchResult}) => (
           <th>Posted Date</th>
           <th>Posted Time</th>
           <th>Age</th>
+          <th>Gender</th>
+          <th>Zip Code</th>
         </tr>
         </thead>
         <tbody>
-          {/*searchResult.map((item) =>*/
-            <SearchResultItem
-              result={result}
-            />
-          /*)*/}
+          {
+            searchResult.map((item) =>
+                // console.log('EACH ITEM', item)
+              <SearchResultItem
+                result={item}
+                key={item._id}
+              />
+          )}
         </tbody>
   </table>
 );

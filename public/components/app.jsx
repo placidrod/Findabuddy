@@ -8,7 +8,8 @@ class App extends React.Component {
       render: {
         selectSearch: true,
         selectRequest: false,
-        selectProfile: false
+        selectProfile: false,
+        renderResults: false
       }
     };
   }
@@ -21,7 +22,8 @@ class App extends React.Component {
       render: {
         selectSearch: true,
         selectRequest: false,
-        selectProfile: false
+        selectProfile: false,
+        renderResults: false
       }
     });
   }
@@ -34,7 +36,8 @@ class App extends React.Component {
       render: {
         selectSearch: false,
         selectRequest: true,
-        selectProfile: false
+        selectProfile: false,
+        renderResults: false
       }
     });
   }
@@ -44,13 +47,21 @@ class App extends React.Component {
       render: {
         selectSearch: false,
         selectRequest: false,
-        selectProfile: true
+        selectProfile: true,
+        renderResults: false
       }
     });
   }
 
-  searchHandler() {
-
+  handleResults() {
+    this.setState({
+      render: {
+        selectSearch: false,
+        selectRequest: false,
+        selectProfile: false,
+        renderResults: true
+      }
+    });
   }
 
   requestFormHandler() {
@@ -67,7 +78,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="mainApp">
-        <Nav handleSelectSearch={this.handleSelectSearch.bind(this)} 
+        <Nav handleSelectSearch={this.handleSelectSearch.bind(this)}
             handleSelectRequest={this.handleSelectRequest.bind(this)}
             handleSelectProfile={this.handleSelectProfile.bind(this)}
             />
@@ -75,7 +86,7 @@ class App extends React.Component {
 
           <DynamicContent
             render={this.state.render}
-
+            showResults={this.handleResults.bind(this)}
           />
 
         </div>

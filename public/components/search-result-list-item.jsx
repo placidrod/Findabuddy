@@ -1,11 +1,12 @@
 
-var SearchResultItem = ({item}) => (
+var SearchResultItem = ({result}) => (
+
   <tr>
-    <td>{item.postTitle}</td>
-    <td>{item.description}</td>
-    <td>{item.postedTime}</td>
-    <td>{item.postedTime}</td>
-    <td>{item.age}</td>
+    <td>{result.title}</td>
+    <td>{result.description}</td>
+    <td>{result.posteDateTime}</td>
+    <td>{result.posteDateTime}</td>
+    <td>{result.age}</td>
   </tr>
 );
 
