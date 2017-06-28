@@ -10,14 +10,12 @@ var ratingSchema = mongoose.Schema({
 
 var Rating = mongoose.model('Rating', ratingSchema);
 
-// var newUser = new User ({
-// 	username: "john doe1",
-// 	password: "123",
-// 	gender: "male",
-// 	age: 30,
-// 	zipCode: 33456,
-// 	interests: [],
-// 	requestHistory: []
+// var newRating = new Rating ({
+// 	reviewer: "john doe 1",
+// 	reviewee: "odb",
+//   BuddyRequestId: "594d6887db92c43b1d2aee73",
+//   rating: 5,
+//   reviewText: 'dude is awesome and stuff'
 // }).save();
 
 
