@@ -58,6 +58,13 @@ class DynamicContent extends React.Component {
           />
         </div>
       );
+    } else if (this.props.render.selectProfile) {
+      return (
+        <div className="searchRequest">
+          <h1>Profile</h1>
+          <Profile />
+        </div>
+      );
     }
   }
 }
