@@ -8,36 +8,36 @@ class SearchForm extends React.Component {
       activityDate: '',
       activityTime: '',
       zipCode: '',
-      age: {
-        $gte: '',
+    age: {
+      $gte: '',
         $lte: ''
-      },
-      gender: 'No Preference',
+    },
+    gender: '',
       description: ''
-    };
+  };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-    this.handleAgeInput = this.handleAgeInput.bind(this);
-    this.handleSubmitRequest = this.props.handleSubmitRequest;
-  }
+  this.handleSubmit = this.handleSubmit.bind(this);
+  this.handleInput = this.handleInput.bind(this);
+  this.handleAgeInput = this.handleAgeInput.bind(this);
+  this.handleSubmitRequest = this.props.handleSubmitRequest;
+}
 
-  handleInput(e){
-    var target = e.target;
-    var name = target.name;
+handleInput(e){
+  var target = e.target;
+  var name = target.name;
 
-      this.setState({
-        [name]: target.value,
-      });
+  this.setState({
+    [name]: target.value,
+  });
 
-  }
+}
 
-  handleAgeInput(e){
-    var target = e.target;
-    var name = target.name;
-    var min = this.state.age.$gte;
-    var max = this.state.age.$lte;
-    // var age = this.state.Age;
+handleAgeInput(e){
+  var target = e.target;
+  var name = target.name;
+  var min = this.state.age.$gte;
+  var max = this.state.age.$lte;
+  // var age = this.state.Age;
 
     if (name === '$gte') {
       this.setState({
@@ -62,16 +62,19 @@ class SearchForm extends React.Component {
 
     e.preventDefault();
     var self = this;
+    console.log('self state: ',self.state);
     // self.handleSubmitRequest(self.state);
-    fetch('http://127.0.0.1:3000/buddyRequest', {
-        method: 'GET',
-        data: self.state
+    $.ajax({
+      url: 'http://localhost:3000/buddyRequest',
+      type: 'GET',
+      data: self.state
     })
-    .then(function(response) {
-      console.log('RESPONSE', response.json());
-      self.handleSubmitRequest(self.state);
-      return response.json();
-    }).catch(function(err){
+    .done(function(response) {
+      console.log('RESPONSE', response);
+      self.handleSubmitRequest(response);
+      self.props.showResults();
+    })
+    .fail(function(err){
       console.log('ERROR fetching', err)
     });
   }
