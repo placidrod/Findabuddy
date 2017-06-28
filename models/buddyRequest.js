@@ -11,8 +11,7 @@ var buddyRequestSchema = mongoose.Schema({
 	postTitle: String,
   postDateTime: String,
 	description: String,
-	associatedPeople: [],
-	ratings: []
+	associatedPeople: []
 });
 
 var BuddyRequest = mongoose.model('BuddyRequest', buddyRequestSchema);
