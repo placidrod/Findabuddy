@@ -63,15 +63,17 @@ class SearchForm extends React.Component {
     e.preventDefault();
     var self = this;
     // self.handleSubmitRequest(self.state);
-    fetch('http://127.0.0.1:3000/buddyRequest', {
-        method: 'GET',
-        data: self.state
+    $.ajax({
+      url: 'http://localhost:3000/buddyRequest',
+      type: 'GET',
+      data: self.state
     })
-    .then(function(response) {
+    .done(function(response) {
       console.log('RESPONSE', response.json());
       self.handleSubmitRequest(self.state);
       return response.json();
-    }).catch(function(err){
+    })
+    .fail(function(err){
       console.log('ERROR fetching', err)
     });
   }
