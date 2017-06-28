@@ -1,20 +1,51 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   selectSearch: true
+    // };
     this.state = {
-      selectSearch: true
+      render: {
+        selectSearch: true,
+        selectRequest: false,
+        selectProfile: false
+      }
     };
   }
 
   handleSelectSearch() {
+    // this.setState({
+    //   selectSearch: true
+    // });
     this.setState({
-      selectSearch: true
+      render: {
+        selectSearch: true,
+        selectRequest: false,
+        selectProfile: false
+      }
     });
   }
 
   handleSelectRequest() {
+    // this.setState({
+    //   selectSearch: false
+    // });
     this.setState({
-      selectSearch: false
+      render: {
+        selectSearch: false,
+        selectRequest: true,
+        selectProfile: false
+      }
+    });
+  }
+
+  handleSelectProfile() {
+    this.setState({
+      render: {
+        selectSearch: false,
+        selectRequest: false,
+        selectProfile: true
+      }
     });
   }
 
@@ -38,11 +69,12 @@ class App extends React.Component {
       <div className="mainApp">
         <Nav handleSelectSearch={this.handleSelectSearch.bind(this)} 
             handleSelectRequest={this.handleSelectRequest.bind(this)}
+            handleSelectProfile={this.handleSelectProfile.bind(this)}
             />
         <div className="dynamicContent">
 
           <DynamicContent
-            renderSearch={this.state.selectSearch}
+            render={this.state.render}
 
           />
 
