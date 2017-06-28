@@ -57,4 +57,7 @@ app.get('/buddyRequest', handler.getBuddyRequest);
 app.post('/buddyRequest', handler.postBuddyRequest);
 app.get('/*', handler.get404);
 
+app.get('/message', handler.getMessages);
+app.post('/message', handler.postMessage);
+
 module.exports = app;
