@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var buddyRequestSchema = mongoose.Schema({
 	user: String,
 	gender: String,
-	age: Number,
+	minAge: Number,
+	maxAge: Number,
 	zipCode: Number,
   activityNoun: String,
   activityVerb: String,

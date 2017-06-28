@@ -8,7 +8,7 @@ class DynamicContent extends React.Component {
   }
 
   handleSubmitRequest(data) {
-    console.log('You submitted a form', data)
+    console.log('You submitted a BuddyRequest search', data);
   }
 
   handlePostClick() {

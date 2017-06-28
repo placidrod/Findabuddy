@@ -33,5 +33,5 @@ bower_components/
 .flooignore
 public/.DS_store
 compiled/
-
+public/components/compiled/
 
