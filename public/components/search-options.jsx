@@ -88,7 +88,7 @@ class SearchForm extends React.Component {
             value={this.state.activityVerb}/>
         </div>
         <div className="form-group">
-          <label className="control-label" htmlFor="noun">activity Noun</label>
+          <label className="control-label" htmlFor="noun">Activity Noun</label>
           <input type="text" className="form-control"
             name="activityNoun"
             onChange={this.handleInput}
