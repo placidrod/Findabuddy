@@ -8,7 +8,7 @@ class App extends React.Component {
       render: {
         selectSearch: true,
         selectRequest: false,
-        selectProfile: false,
+        selectProfile: false
         renderResults: false
       }
     };
@@ -22,7 +22,7 @@ class App extends React.Component {
       render: {
         selectSearch: true,
         selectRequest: false,
-        selectProfile: false,
+        selectProfile: false
         renderResults: false
       }
     });
@@ -36,7 +36,18 @@ class App extends React.Component {
       render: {
         selectSearch: false,
         selectRequest: true,
-        selectProfile: false,
+        renderResults: false,
+        selectProfile: false
+      }
+    });
+  }
+
+  handleSelectProfile() {
+    this.setState({
+      render: {
+        selectSearch: false,
+        selectRequest: false,
+        selectProfile: true
         renderResults: false
       }
     });

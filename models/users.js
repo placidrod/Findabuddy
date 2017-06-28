@@ -7,7 +7,8 @@ var userSchema = mongoose.Schema({
 	age: Number,
 	zipCode: Number,
 	interests: [],
-	requestHistory: []
+	requestHistory: [],
+	ratings: []
 });
 
 var User = mongoose.model('User', userSchema);
