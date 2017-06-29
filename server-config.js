@@ -61,9 +61,9 @@ app.get('/message/recipient', handler.getMessagesByRecipient);
 app.post('/message', handler.postMessage);
 
 app.get('/rating', handler.getRating);
-app.get('/rating/:_id', handler.getUserRating);
+app.get('/rating/:_id', handler.getUserAverageRating);
 app.post('/rating', handler.postRating);
-app.put('/rating/:_id', handler.updateUserRating);
+app.put('/rating/:_id', handler.postUserRating);
 
 app.get('/*', handler.get404);
 
