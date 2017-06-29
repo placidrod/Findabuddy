@@ -5,17 +5,17 @@ var messageSchema = mongoose.Schema({
   sender: String,
   message: String,
   date: { type: Date, default: Date.now },
-  read: false
+  read: { type: Boolean, default: false }
 });
 
 var Message = mongoose.model('Message', messageSchema);
 
 
-var newMessage = new Message({
-    recipient: 'Luke',
-    sender: 'Darth',
-    messages: 'I am your father!!',
-}).save();
+// var newMessage = new Message({
+//     recipient: 'Luke',
+//     sender: 'Darth',
+//     message: 'I am your father!!',
+// }).save();
 
 
 module.exports = Message;
