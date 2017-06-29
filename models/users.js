@@ -14,13 +14,14 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model('User', userSchema);
 
 // var newUser = new User ({
-// 	username: "john doe1",
+// 	username: "johndoe1",
 // 	password: "123",
 // 	gender: "male",
 // 	age: 30,
 // 	zipCode: 33456,
 // 	interests: [],
-// 	requestHistory: []
+// 	requestHistory: [],
+//  ratings: []
 // }).save();
 
 
