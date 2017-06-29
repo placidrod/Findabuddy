@@ -2,12 +2,12 @@ class SendMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipient: '',
-      sender: this.props.username,
+      recipient: this.props.recipient,
+      sender: this.props.sender,
       message: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-   handleSend = this.handleSend.bind(this);
+    this.handleSend = this.handleSend.bind(this);
   }
 
   handleInputChange(event) {
@@ -18,12 +18,10 @@ class SendMessage extends React.Component {
     });
   }
 
-  handleSend() {
+  handleSend(event) {
     event.preventDefault();
     if (this.state.message === '') {
       console.log('Please type a message');
-    } else if (this.state.recipient === '') {
-      console.log('Please choose a recipient');
     } else {
       $.ajax({
         url: 'http://localhost:3000/message',
@@ -49,16 +47,15 @@ class SendMessage extends React.Component {
   render() {
     return (
       <form className="form-horizon">
-        <h2>Send a Message</h2>
+        <h3>Send a Message</h3>
         <div className="form-group">
-          <input type="text" value={this.state.recipient}
-          className="form-control" placeholder="Enter a recipient" name="recipient" onChange={(e) => handleInputChange(e)}/>
+          <h4>To: {this.props.recipient}</h4>
         </div>
 
         <div className="form-group">
           <textarea type="text" value={this.state.message} className="form-control" rows="3" placeholder="Let the person know you're interested in the activity" name="message" onChange={(e) => this.handleInputChange(e)}></textarea>
         </div>
-        <button type="submit" className="btn btn-default" onClick={() => this.handleSend()}>Send</button>
+        <button type="submit" className="btn btn-default" onClick={(e) => this.handleSend(e)}>Send</button>
       </form>
     );
   }
