@@ -10,9 +10,10 @@ var buddyRequestSchema = mongoose.Schema({
   activityVerb: String,
 	postTitle: String,
   postDateTime: String,
+  description: String,
+  associatedPeople: []
 });
-	description: String,
-	associatedPeople: []
+
 
 var BuddyRequest = mongoose.model('BuddyRequest', buddyRequestSchema);
 
