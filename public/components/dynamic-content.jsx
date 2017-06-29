@@ -4,7 +4,8 @@ class DynamicContent extends React.Component {
     super(props);
     this.state = {
       // renderResults: this.props.render.renderResults,
-      results: []
+      results: [],
+      currentPost: ''
     };
     this.handleSubmitRequest = this.handleSubmitRequest.bind(this);
     this.handlePostClick = this.handlePostClick.bind(this);
@@ -19,7 +20,14 @@ class DynamicContent extends React.Component {
     });
   }
 
-  handlePostClick() {
+  handlePostClick(post) {
+    // var results = this.state.results;
+    // console.log('CURRENT POST', post)
+    this.props.showPost();
+
+    this.setState({
+      currentPost: post
+    })
   }
 
   render() {
@@ -37,8 +45,18 @@ class DynamicContent extends React.Component {
       return (
         <div className="searchRequest">
           <h1>Buddy Request Form</h1>
-          <CreateRequest handlePostClick={this.handlePostClick}
-          showResults={this.props.showResults}
+          <CreateRequest
+            showResults={this.props.showResults}
+            handleSubmitRequest={this.handleSubmitRequest}
+          />
+        </div>
+      );
+    } else if (this.props.render.renderPost) {
+      return (
+        <div className="searchRequest">
+          <h1>Post Info</h1>
+          <PostInfo
+            post={this.state.currentPost}
           />
         </div>
       );
@@ -55,14 +73,8 @@ class DynamicContent extends React.Component {
           <h1>Search Result</h1>
           <SearchList
              searchResult={this.state.results}
+             handlePostClick={this.handlePostClick}
           />
-        </div>
-      );
-    } else if (this.props.render.selectProfile) {
-      return (
-        <div className="searchRequest">
-          <h1>Profile</h1>
-          <Profile />
         </div>
       );
     }

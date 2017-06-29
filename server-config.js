@@ -57,6 +57,7 @@ app.get('/buddyRequest', handler.getBuddyRequest);
 app.post('/buddyRequest', handler.postBuddyRequest);
 
 app.get('/message', handler.getMessages);
+app.get('/message/recipient', handler.getMessagesByRecipient);
 app.post('/message', handler.postMessage);
 
 app.get('/rating', handler.getRating);
