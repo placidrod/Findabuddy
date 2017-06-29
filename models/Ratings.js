@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var ratingSchema = mongoose.Schema({
   reviewer: String,
   reviewee: String,
-  BuddyRequestId: String,
+  buddyRequestId: String,
   rating: Number,
   reviewText: String
 });

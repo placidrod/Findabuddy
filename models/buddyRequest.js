@@ -26,6 +26,7 @@ var BuddyRequest = mongoose.model('BuddyRequest', buddyRequestSchema);
 // 	postTitle: "seeking bbb (bread breaking buddy)",
 // 	postDateTime: '7/5/17',
 // 	description: "read the title"
+//  associatedPeople: ['bob doe']
 // }).save();
 
 

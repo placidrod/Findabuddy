@@ -59,6 +59,11 @@ app.post('/buddyRequest', handler.postBuddyRequest);
 app.get('/message', handler.getMessages);
 app.post('/message', handler.postMessage);
 
+app.get('/rating', handler.getRating);
+app.get('/rating/:_id', handler.getUserRating);
+app.post('/rating', handler.postRating);
+app.put('/rating/:_id', handler.updateUserRating);
+
 app.get('/*', handler.get404);
 
 module.exports = app;
