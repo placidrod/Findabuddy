@@ -1,7 +1,7 @@
 
-var SearchResultItem = ({result}) => (
+var SearchResultItem = ({result, handlePostClick}) => (
 
-  <tr>
+  <tr onClick={() => handlePostClick(result)} className="row-select">
     <td>{result.postTitle}</td>
     <td>{result.description}</td>
     <td>{result.posteDateTime}</td>

@@ -15,3 +15,7 @@ nav {
 .btn {
   float: right;
 }
+
+.row-select:hover {
+  color: red;
+}

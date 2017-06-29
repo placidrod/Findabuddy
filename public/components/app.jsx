@@ -9,7 +9,8 @@ class App extends React.Component {
         selectSearch: true,
         selectRequest: false,
         selectProfile: false,
-        renderResults: false
+        renderResults: false,
+        renderPost: false
       }
     };
   }
@@ -23,7 +24,8 @@ class App extends React.Component {
         selectSearch: true,
         selectRequest: false,
         selectProfile: false,
-        renderResults: false
+        renderResults: false,
+        renderPost: false
       }
     });
   }
@@ -37,7 +39,8 @@ class App extends React.Component {
         selectSearch: false,
         selectRequest: true,
         renderResults: false,
-        selectProfile: false
+        selectProfile: false,
+        renderPost: false
       }
     });
   }
@@ -48,18 +51,20 @@ class App extends React.Component {
         selectSearch: false,
         selectRequest: false,
         selectProfile: true,
-        renderResults: false
+        renderResults: false,
+        renderPost: false
       }
     });
   }
 
-  handleSelectProfile() {
+  handleSelectPost() {
     this.setState({
       render: {
         selectSearch: false,
         selectRequest: false,
-        selectProfile: true,
-        renderResults: false
+        selectProfile: false,
+        renderResults: false,
+        renderPost: true
       }
     });
   }
@@ -70,7 +75,8 @@ class App extends React.Component {
         selectSearch: false,
         selectRequest: false,
         selectProfile: false,
-        renderResults: true
+        renderResults: true,
+        renderPost: false
       }
     });
   }
@@ -98,6 +104,7 @@ class App extends React.Component {
           <DynamicContent
             render={this.state.render}
             showResults={this.handleResults.bind(this)}
+            showPost={this.handleSelectPost.bind(this)}
           />
 
         </div>

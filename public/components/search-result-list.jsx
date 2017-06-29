@@ -1,4 +1,4 @@
-var SearchList = ({searchResult}) => (
+var SearchList = ({searchResult, handlePostClick}) => (
   <table className="table table-striped">
         <thead>
         <tr>
@@ -17,6 +17,7 @@ var SearchList = ({searchResult}) => (
                 // console.log('EACH ITEM', item)
               <SearchResultItem
                 result={item}
+                handlePostClick={handlePostClick}
                 key={item._id}
               />
           )}
