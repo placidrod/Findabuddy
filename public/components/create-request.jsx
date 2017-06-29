@@ -14,7 +14,6 @@ class CreateRequest extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handlePostClick = this.props.handlePostClick;
   }
 
   handleInputChange(event) {
@@ -29,30 +28,39 @@ class CreateRequest extends React.Component {
     //console.log('this.state: ', this.state)
   }
 
-  submitBuddyRequest(event) {
-    event.preventDefault();
+  submitBuddyRequest(e) {
+    e.preventDefault();
     $.ajax({
       url: 'http://localhost:3000/buddyRequest',
       type: 'POST',
       data: this.state,
-      //dataType: dataType,
+      
       success: function() {
         console.log('success');
 
-        this.setState({
-          postTitle: '',
-          description: '',
-          postDateTime: '',
-          gender: '',
-          minAge: '',
-          maxAge: '',
-          zipCode: '',
-          activityVerb: '',
-          activityNoun: ''
-        });
+        // this.setState({
+        //   postTitle: '',
+        //   description: '',
+        //   postDateTime: '',
+        //   gender: '',
+        //   minAge: '',
+        //   maxAge: '',
+        //   zipCode: '',
+        //   activityVerb: '',
+        //   activityNoun: ''
+        // });
 
-        // {() => {this.props.showResults()}};
-        this.props.showResults();
+        $.ajax({
+          url: 'http://localhost:3000/buddyRequest',
+          type: 'GET'
+        })
+        .done(function(response) {
+          this.props.handleSubmitRequest(response);
+          this.props.showResults();
+        }.bind(this))
+        .fail(function(err){
+          console.log('ERROR fetching', err)
+        });
       }.bind(this),
       error: function() {
         console.log('failed to post buddy request');
@@ -96,10 +104,14 @@ class CreateRequest extends React.Component {
         <div className="form-group">
           <label htmlFor="noun">Event Date/Time</label>
           <input type="text" value={this.state.postDateTime} className="form-control" placeholder="Enter the Date/Time of the Event" name="postDateTime" onChange={this.handleInputChange}/>
-        </div>    
+        </div>   
         <div className="form-group">
           <label htmlFor="noun">Gender</label>
-          <input type="text" value={this.state.gender} className="form-control" placeholder="Enter Preferred Buddy Gender" name="gender" onChange={this.handleInputChange}/>
+          <select className="form-control" name="gender" onChange={this.handleInputChange} defaultValue="No Preference">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="No Preference">No Preference</option>
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Minimum Age</label>

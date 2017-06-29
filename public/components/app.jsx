@@ -9,8 +9,7 @@ class App extends React.Component {
         selectSearch: true,
         selectRequest: false,
         selectProfile: false,
-        renderResults: false,
-        renderPost: false
+        renderResults: false
       }
     };
   }
@@ -24,8 +23,7 @@ class App extends React.Component {
         selectSearch: true,
         selectRequest: false,
         selectProfile: false,
-        renderResults: false,
-        renderPost: false
+        renderResults: false
       }
     });
   }
@@ -51,8 +49,7 @@ class App extends React.Component {
         selectSearch: false,
         selectRequest: false,
         selectProfile: true,
-        renderResults: false,
-        renderPost: false
+        renderResults: false
       }
     });
   }
