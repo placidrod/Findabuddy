@@ -40,3 +40,8 @@ aside {
 .notificationSender {
   font-weight: bold;
 }
+
+.nav-logo {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
