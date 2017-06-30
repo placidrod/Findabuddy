@@ -3,8 +3,8 @@ class PostInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-    }
+      ratingsArray: []
+    };
   }
 
   handleBackButton() {
@@ -12,24 +12,22 @@ class PostInfo extends React.Component {
   }
 
   componentDidMount () {
-    window.scrollTo(0, 0)
-  }
-
-  handleReply() {
-
-  }
-
-  render() {
+    //console.log('postInfo loaded: ',this.props.post,this.state.ratingsArray);
     $.ajax({
       url: 'http://localhost:3000/rating/' + this.props.post._id,
       type: 'GET'
     })
       .done(function(data) {
-        console.log('rating data for post ',data);
-      })
+        this.setState({ratingsArray: data});
+        // console.log('rating data for post ',data, this.state.ratingsArray);
+      }.bind(this))
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR, textStatus, errorThrown);
       });
+  }
+
+  render() {
+
 
     return (
       <div className="post">
@@ -41,7 +39,7 @@ class PostInfo extends React.Component {
             }</p>
           </div>
         </div>
-
+        <RatingsTable ratings={this.state.ratingsArray}/>
         <SendMessage recipient={'Alex'} sender={'testSender'}/>
       </div>
     );
