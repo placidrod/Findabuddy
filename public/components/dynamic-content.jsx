@@ -26,7 +26,7 @@ class DynamicContent extends React.Component {
 
     this.setState({
       currentPost: post
-    })
+    });
   }
 
   render() {

@@ -20,6 +20,17 @@ class PostInfo extends React.Component {
   }
 
   render() {
+    $.ajax({
+      url: 'http://localhost:3000/rating/' + this.props.post._id,
+      type: 'GET'
+    })
+      .done(function(data) {
+        console.log('rating data for post ',data);
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR, textStatus, errorThrown);
+      });
+
     return (
       <div className="post">
         <div className="media">

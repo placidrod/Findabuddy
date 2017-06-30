@@ -32,7 +32,7 @@ class RequestViewer extends React.Component {
 
 
 
-  //**************need to change htmlFors****************//
+  //**************need to change html****************//
   render() {
     return (
       <div class="stuff"></div>
