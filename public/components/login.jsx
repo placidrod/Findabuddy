@@ -3,8 +3,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'username': 'john doe1',
-      'password': '123'
+      'username': '',
+      'password': ''
     };
   }
 
@@ -23,16 +23,17 @@ class Login extends React.Component {
       url: 'http://localhost:3000/login',
       type: 'POST',
       data: this.state,
-      dataType: 'application/json',
+      dataType: 'json',
     })
       .done(function(data) {
         console.log('data ',data);
+        if(data.status === '200') {
+          window.location.replace('http://localhost:3000');
+        }
       })
       .fail(function(failInfo) {
         console.log('FAIL',failInfo);
-        if (failInfo.status === 200) {
-          window.location.replace('http://localhost:3000');
-        }
+        window.location.replace('http://localhost:3000/login');
       });
   }
   goSignup() {

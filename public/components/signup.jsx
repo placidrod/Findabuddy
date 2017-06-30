@@ -3,8 +3,8 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'username': 'odb',
-      'password': '123'
+      'username': '',
+      'password': ''
     };
   }
 
@@ -23,20 +23,21 @@ class Signup extends React.Component {
       url: 'http://localhost:3000/signup',
       type: 'POST',
       data: this.state,
-      dataType: 'application/json',
+      dataType: 'json',
     })
       .done(function(data) {
         console.log('signup success ',data);
-        if (data.status === 200) {
+        if (data.status === '200') {
           window.location.replace('http://localhost:3000');
         }
       })
       .fail(function(failInfo) {
         console.log('FAIL',failInfo);
-        if (failInfo.status === 200) {
-          window.location.replace('http://localhost:3000');
-        }
+          window.location.replace('http://localhost:3000/signup');
       });
+  }
+  goLogin() {
+    window.location.replace('http://localhost:3000/login');
   }
   render() {
     return (
@@ -54,6 +55,8 @@ class Signup extends React.Component {
         />
         <button className="button col-md-6"
                 onClick={() => this.submitSignup()}>Signup</button>
+        <button className="button col-md-6"
+                onClick={() => this.goLogin()}>Login</button>
       </div>
     );
   }
