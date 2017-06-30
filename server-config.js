@@ -55,6 +55,7 @@ app.get('/signup', handler.getSignup);
 app.post('/signup', handler.postSignup);
 
 app.get('/buddyRequest', handler.getBuddyRequest);
+app.get('/buddyRequest/:_id', handler.getSingleBuddyRequest);
 app.post('/buddyRequest', handler.postBuddyRequest);
 
 app.get('/message', handler.getMessages);
