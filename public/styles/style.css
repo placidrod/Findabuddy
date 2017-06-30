@@ -11,7 +11,7 @@ aside {
 }
 
 .componentWindow {
-  width: 80%;
+  width: 75%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -19,6 +19,7 @@ aside {
 .notificationWindow {
   margin-right: auto;
   margin-left: auto;
+  width: 25%;
 }
 
 .btn {
@@ -30,10 +31,11 @@ aside {
 }
 
 .notificationMessage {
-  border-radius: 10px;
-  border: 1px solid;
+  border-radius: 5px;
+  border: 1.5px solid #FF9709;
   margin-top: 20px;
   margin-right: 20px;
+  padding: 5px;
 
 }
 
@@ -44,4 +46,13 @@ aside {
 .nav-logo {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+
+@media (max-width: 1000px) {
+  .notificationWindow {
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+  }
 }
