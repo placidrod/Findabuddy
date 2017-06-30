@@ -12,7 +12,7 @@ class Notifications extends React.Component {
 
   handleClick(notification) {
     console.log('clicked, need to render the message in dynamic content');
-    console.log('notification:', notification);
+    //console.log('notification:', notification);
   }
 
   getNotifications() {
@@ -24,7 +24,7 @@ class Notifications extends React.Component {
         this.setState({
           notifications: messages
         });
-        console.log(messages);
+        //console.log(messages);
       }.bind(this),
       error: function(err) {
         console.log('Couldn\'t get notifications:', err)
@@ -39,7 +39,7 @@ class Notifications extends React.Component {
         <h2>Notifications</h2>
         <aside>
           {this.state.notifications.map(notification => {
-            console.log('notification:', notification);
+            //console.log('notification:', notification);
             return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />
           })}
         </aside>

@@ -12,10 +12,9 @@ class DynamicContent extends React.Component {
   }
 
   handleSubmitRequest(data) {
-    console.log('You submitted a BuddyRequest search', data);
-    // console.log(this.props.render.renderResults);
+    data = data.reverse();
+    
     this.setState({
-      // renderResults: true,
       results: data
     });
   }

@@ -16,13 +16,13 @@ class CreateRequest extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleInputChange(event) {
+  handleInputChange(e) {
     //console.log('event.target.value: ', event.target.value);
-    var name = event.target.name;
+    var name = e.target.name;
     //console.log('target.name: ', event.target.name);
 
     this.setState({
-      [name]: event.target.value
+      [name]: e.target.value
     });
 
     //console.log('this.state: ', this.state)
@@ -36,20 +36,6 @@ class CreateRequest extends React.Component {
       data: this.state,
       
       success: function() {
-        console.log('success');
-
-        // this.setState({
-        //   postTitle: '',
-        //   description: '',
-        //   postDateTime: '',
-        //   gender: '',
-        //   minAge: '',
-        //   maxAge: '',
-        //   zipCode: '',
-        //   activityVerb: '',
-        //   activityNoun: ''
-        // });
-
         $.ajax({
           url: 'http://localhost:3000/buddyRequest',
           type: 'GET'
@@ -68,24 +54,6 @@ class CreateRequest extends React.Component {
     });
   }
 
-/*
-    app.startSpinner();
-    $.ajax({
-      url: app.server,
-      type: 'POST',
-      data: message,
-      success: function() {
-        app.$message.val('');
-        app.fetch();
-      },
-      error: function (error) {
-        // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-        console.error('chatterbox: Failed to send message', error);
-      }
-    });
-
-*/
-
 
 
 
@@ -95,15 +63,15 @@ class CreateRequest extends React.Component {
     	<form className="form-horizon"> 
         <div className="form-group">
           <label htmlFor="noun">Post Title</label>
-          <input type="text" value={this.state.postTitle} className="form-control" placeholder="Enter a Post Title" name="postTitle" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.postTitle} className="form-control" placeholder="Enter a title for your post" name="postTitle" onChange={this.handleInputChange}/>
         </div>    
         <div className="form-group">
           <label htmlFor="noun">Event Description</label>
-          <textarea type="text" value={this.state.description} className="form-control" rows="3" placeholder="Enter a Description of the Event" name="description" onChange={this.handleInputChange}></textarea>
+          <textarea type="text" value={this.state.description} className="form-control" rows="3" placeholder="Enter a description of the event" name="description" onChange={this.handleInputChange}></textarea>
         </div>    
         <div className="form-group">
           <label htmlFor="noun">Event Date/Time</label>
-          <input type="text" value={this.state.postDateTime} className="form-control" placeholder="Enter the Date/Time of the Event" name="postDateTime" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.postDateTime} className="form-control" placeholder="Enter the date/time of the event" name="postDateTime" onChange={this.handleInputChange}/>
         </div>   
         <div className="form-group">
           <label htmlFor="noun">Gender</label>
@@ -115,23 +83,23 @@ class CreateRequest extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="noun">Minimum Age</label>
-          <input type="text" value={this.state.minAge} className="form-control" placeholder="Enter Minimum Preferred Buddy Age" name="minAge" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.minAge} className="form-control" placeholder="Enter minimum preferred buddy age" name="minAge" onChange={this.handleInputChange}/>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Maximum Age</label>
-          <input type="text" value={this.state.maxAge} className="form-control" placeholder="Enter Maximum Preferred Buddy Age" name="maxAge" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.maxAge} className="form-control" placeholder="Enter maximum preferred buddy age" name="maxAge" onChange={this.handleInputChange}/>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Zip Code</label>
-          <input type="text" value={this.state.zipCode} className="form-control" placeholder="Enter Preferred Buddy Zip Code" name="zipCode" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.zipCode} className="form-control" placeholder="Enter preferred buddy zip code" name="zipCode" onChange={this.handleInputChange}/>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Activity Verb</label>
-          <input type="text" value={this.state.activityVerb} className="form-control" placeholder="Enter a Verb" name="activityVerb" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.activityVerb} className="form-control" placeholder="Enter a verb" name="activityVerb" onChange={this.handleInputChange}/>
         </div>       
         <div className="form-group">
           <label htmlFor="noun">Activity Noun</label>
-          <input type="text" value={this.state.activityNoun} className="form-control" placeholder="Enter a Noun" name="activityNoun" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.activityNoun} className="form-control" placeholder="Enter a noun" name="activityNoun" onChange={this.handleInputChange}/>
         </div>     
 
         <div className="form-group">

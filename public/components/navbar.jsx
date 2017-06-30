@@ -1,9 +1,9 @@
 var Nav = (props) => (
 
-  <nav className="navbar navbar-inverse">
+  <nav className="navbar navbar-inverse navbar-fixed-top">
     <div className="container-fluid">
       <div className="navbar-header">
-        <a href="#"><img className="nav-logo" src="../img/findabuddy_icon2_orange.png"/></a>
+        <a href="#" onClick={() => { props.handleSelectSearch() }}><img className="nav-logo" src="../img/findabuddy_icon2_orange.png"/></a>
       </div>
 
       <ul className="nav navbar-nav navbar-right">
