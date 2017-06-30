@@ -47,6 +47,7 @@ class DynamicContent extends React.Component {
           <CreateRequest
             showResults={this.props.showResults}
             handleSubmitRequest={this.handleSubmitRequest}
+            user={this.props.user}
           />
         </div>
       );

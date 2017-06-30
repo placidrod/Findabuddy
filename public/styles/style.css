@@ -50,6 +50,16 @@ aside {
 }
 
 
+li.nav-link {
+  padding-top: 10px;
+}
+
+li.nav-name {
+  padding-top: 10px;
+  font-size: 18px;
+}
+
+
 @media (max-width: 1000px) {
   .notificationWindow {
     margin-right: auto;
