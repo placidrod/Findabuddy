@@ -26,7 +26,6 @@ class Notifications extends React.Component {
           notifications: messages,
           user: this.props.user
         });
-
       }.bind(this),
       error: function(err) {
         console.log('Couldn\'t get notifications:', err)
