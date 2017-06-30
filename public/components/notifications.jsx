@@ -2,9 +2,9 @@ class Notifications extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notifications: []
+      notifications: [],
+      user: ''
     };
-    this.username = this.props.username;
     this.handleClick = this.handleClick.bind(this);
     this.getNotifications = this.getNotifications.bind(this);
     setTimeout(this.getNotifications, 3000);
@@ -16,21 +16,23 @@ class Notifications extends React.Component {
   }
 
   getNotifications() {
+    // console.log('after mount and set timeout', this.props)
     $.ajax({
       type: 'GET',
-      url: 'http://localhost:3000/message',
-      data: this.username || 'testName',
+      url: 'http://localhost:3000/message/recipient',
+      data: {user: this.props.user},
       success: function(messages) {
         this.setState({
-          notifications: messages
+          notifications: messages,
+          user: this.props.user
         });
-        //console.log(messages);
+
       }.bind(this),
       error: function(err) {
         console.log('Couldn\'t get notifications:', err)
       }
     });
-    setTimeout(this.getNotifications, 3000);
+    // setTimeout(this.getNotifications, 3000);
   }
 
   render() {
