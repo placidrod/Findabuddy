@@ -33,7 +33,7 @@ class DynamicContent extends React.Component {
   render() {
     if (this.props.render.selectSearch) {
       return (
-        <div className="searchRequest">
+        <div className="componentWindow">
           <h1>Search Form</h1>
           <SearchForm
           handleSubmitRequest={this.handleSubmitRequest}
@@ -43,7 +43,7 @@ class DynamicContent extends React.Component {
       );
     } else if (this.props.render.selectRequest) {
       return (
-        <div className="searchRequest">
+        <div className="componentWindow">
           <h1>Buddy Request Form</h1>
           <CreateRequest
             showResults={this.props.showResults}
@@ -53,7 +53,7 @@ class DynamicContent extends React.Component {
       );
     } else if (this.props.render.renderPost) {
       return (
-        <div className="searchRequest">
+        <div className="componentWindow">
           <h1>Post Info</h1>
           <PostInfo
             post={this.state.currentPost}
@@ -62,14 +62,14 @@ class DynamicContent extends React.Component {
       );
     } else if (this.props.render.selectProfile) {
       return (
-        <div className="searchRequest">
+        <div className="componentWindow">
           <h1>Profile</h1>
           <Profile />
         </div>
       );
     } else if (this.props.render.renderResults) {
       return (
-        <div className="searchRequest">
+        <div className="componentWindow">
           <h1>Search Result</h1>
           <SearchList
              searchResult={this.state.results}

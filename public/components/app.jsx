@@ -96,7 +96,7 @@ class App extends React.Component {
             handleSelectRequest={this.handleSelectRequest.bind(this)}
             handleSelectProfile={this.handleSelectProfile.bind(this)}
             />
-        <div className="dynamicContent col-md-10">
+        <div className="dynamicContent col-md-9">
 
           <DynamicContent
             render={this.state.render}
@@ -105,7 +105,7 @@ class App extends React.Component {
           />
 
         </div>
-        <div className="notificationWindow col-sm-2">
+        <div className="notificationWindow col-md-3">
           <Notifications />
         </div>
       </div>

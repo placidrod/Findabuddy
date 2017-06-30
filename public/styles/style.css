@@ -10,8 +10,13 @@ aside {
   border-top-style: solid;
 }
 
-.searchRequest {
-  width: 70%;
+.componentWindow {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.notificationWindow {
   margin-right: auto;
   margin-left: auto;
 }
@@ -26,10 +31,17 @@ aside {
 
 .notificationMessage {
   border-radius: 10px;
-  border-style: solid;
-  margin-top: 10px;
+  border: 1px solid;
+  margin-top: 20px;
+  margin-right: 20px;
+
 }
 
 .notificationSender {
   font-weight: bold;
+}
+
+.nav-logo {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

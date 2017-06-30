@@ -3,7 +3,7 @@ var Nav = (props) => (
   <nav className="navbar navbar-inverse">
     <div className="container-fluid">
       <div className="navbar-header">
-        <a className="navbar-brand" href="#">FindABuddy</a>
+        <a href="#"><img className="nav-logo" src="../img/findabuddy_icon2_orange.png"/></a>
       </div>
 
       <ul className="nav navbar-nav navbar-right">
