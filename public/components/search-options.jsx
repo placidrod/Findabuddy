@@ -135,10 +135,11 @@ handleAgeInput(e){
           <select className="form-control"
               name="gender"
               onChange={this.handleInput}
+              defaultValue="No Preference"
               >
+            <option value="No Preference">No Preference</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
-            <option value="No Preference">No Preference</option>
           </select>
         </div>
         <div className="form-group">
