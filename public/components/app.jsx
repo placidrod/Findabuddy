@@ -1,9 +1,6 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   selectSearch: true
-    // };
     this.state = {
       userName: '',
       render: {
@@ -29,7 +26,6 @@ class App extends React.Component {
       url: 'http://localhost:3000/user',
       type: 'GET',
       success: function(user) {
-        console.log('user', user);
         self.setState(() => ({userName: user}));
       }
     })
@@ -40,7 +36,6 @@ class App extends React.Component {
   }
 
   getMessages() {
-    console.log('this.state.userName', this.state.userName);
     if (this.state.userName.length) {
       $.ajax({
         type: 'GET',

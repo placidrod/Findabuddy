@@ -28,7 +28,7 @@ class SendMessage extends React.Component {
 
     if (this.state.message === '') {
       console.log('Please type a message');
-    } else if (this.recipient === '') {
+    } else if ((this.recipient === undefined) || (this.recipient === '')) {
       console.log('Please select a recipient')
     } else {
       $.ajax({
