@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha --bail --reporter landing test/ServerSpec.js",
-    "postinstall": "bower install"
+    "babel": "babel public/components/. --out-dir public/components/compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch",
+    "postinstall": "bower install && npm run babel"
   },
   "author": "",
   "license": "ISC",
@@ -34,6 +35,9 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "sinon": "^2.3.5",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
   }
 }
