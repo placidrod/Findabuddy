@@ -14,6 +14,7 @@ class App extends React.Component {
       selectedNotification: {},
       messages: []
     };
+    window.baseUrl = 'http://findabuddy.herokuapp.com/';
     this.getMessages = this.getMessages.bind(this);
     this.handleNotificationSelect = this.handleNotificationSelect.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
