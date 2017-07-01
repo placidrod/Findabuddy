@@ -65,7 +65,7 @@ handleAgeInput(e){
     console.log('self state: ',self.state);
     // self.handleSubmitRequest(self.state);
     $.ajax({
-      url: 'http://localhost:3000/buddyRequest',
+      url: '/buddyRequest',
       type: 'GET',
       data: self.state
     })

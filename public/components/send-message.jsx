@@ -32,7 +32,7 @@ class SendMessage extends React.Component {
       console.log('Please select a recipient')
     } else {
       $.ajax({
-        url: 'http://localhost:3000/message',
+        url: '/message',
         type: 'POST',
         data: data,
         success: function() {

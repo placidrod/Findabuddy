@@ -34,13 +34,13 @@ class CreateRequest extends React.Component {
   submitBuddyRequest(e) {
     e.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/buddyRequest',
+      url: '/buddyRequest',
       type: 'POST',
       data: this.state,
 
       success: function() {
         $.ajax({
-          url: 'http://localhost:3000/buddyRequest',
+          url: '/buddyRequest',
           type: 'GET'
         })
         .done(function(response) {

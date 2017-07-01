@@ -65,7 +65,7 @@ class MessageList extends React.Component {
   updateMessagesAsRead(){
     $.ajax({
       type: 'PUT',
-      url: 'http://localhost:3000/message/recipient',
+      url: '/message/recipient',
       data: {recipient: this.props.user},
       success: function() {
         console.log('PUT request succeeded!')
