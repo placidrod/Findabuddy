@@ -19,6 +19,7 @@ class Login extends React.Component {
     this.setState({'password': newVal});
   }
   submitRequest() {
+    console.log('about to submit login request via jquery ajax');
     $.ajax({
       url: window.baseUrl + '/login',
       type: 'POST',
@@ -28,7 +29,8 @@ class Login extends React.Component {
       .done(function(data) {
         console.log('data ',data);
         if(data.status === '200') {
-          window.location.replace(window.baseUrl + '');
+          console.log('login successful');
+          window.location.replace(window.baseUrl);
         }
       })
       .fail(function(failInfo) {
