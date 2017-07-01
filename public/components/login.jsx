@@ -30,7 +30,7 @@ class Login extends React.Component {
         console.log('data ',data);
         if(data.status === '200') {
           console.log('login successful');
-          window.location.replace(window.baseUrl);
+          window.location.replace('/');
         }
       })
       .fail(function(failInfo) {
