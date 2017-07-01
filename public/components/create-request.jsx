@@ -3,15 +3,15 @@ class CreateRequest extends React.Component {
     super(props);
     this.state = {
       user: this.props.user,
-      postTitle: '',
-      description: '',
+      postTitle: null,
+      description: null,
       postDateTime: '',
       gender: '',
       minAge: '',
       maxAge: '',
       zipCode: '',
-      activityVerb: '',
-      activityNoun: ''
+      activityVerb: null,
+      activityNoun: null
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -66,11 +66,11 @@ class CreateRequest extends React.Component {
     	<form className="form">
         <div className="form-group">
           <label htmlFor="noun">Post Title</label>
-          <input type="text" value={this.state.postTitle} className="form-control" placeholder="Enter a title for your post" name="postTitle" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.postTitle} className="form-control" placeholder="Enter a title for your post" name="postTitle" onChange={this.handleInputChange} required/>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Event Description</label>
-          <textarea type="text" value={this.state.description} className="form-control" rows="3" placeholder="Enter a description of the event" name="description" onChange={this.handleInputChange}></textarea>
+          <textarea type="text" value={this.state.description} className="form-control" rows="3" placeholder="Enter a description of the event" name="description" onChange={this.handleInputChange} required></textarea>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Event Date/Time</label>
@@ -98,11 +98,11 @@ class CreateRequest extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="noun">Activity Verb</label>
-          <input type="text" value={this.state.activityVerb} className="form-control" placeholder="Enter a verb" name="activityVerb" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.activityVerb} className="form-control" placeholder="Enter a verb" name="activityVerb" onChange={this.handleInputChange} required/>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Activity Noun</label>
-          <input type="text" value={this.state.activityNoun} className="form-control" placeholder="Enter a noun" name="activityNoun" onChange={this.handleInputChange}/>
+          <input type="text" value={this.state.activityNoun} className="form-control" placeholder="Enter a noun" name="activityNoun" onChange={this.handleInputChange} required/>
         </div>
         <div className="form-group">
           <div className="col-sm-offset-2 col-sm-10">
