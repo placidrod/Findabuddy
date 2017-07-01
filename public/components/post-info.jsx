@@ -30,17 +30,23 @@ class PostInfo extends React.Component {
 
 
     return (
-      <div className="post">
-        <div className="media">
-          <div className="media-body">
-            <h4 className="media-heading">{this.props.post.postTitle
-            }</h4>
-            <p>{this.props.post.description
-            }</p>
+      <div>
+        <div className="post">
+          <div className="media">
+            <div className="media-body">
+              <h4 className="media-heading">{this.props.post.postTitle
+              }</h4>
+              <p>{this.props.post.description
+              }</p>
+            </div>
           </div>
         </div>
-        <RatingsTable ratings={this.state.ratingsArray}/>
-        <SendMessage recipient={this.props.post.user} sender={this.props.user}/>
+        <div className="ratings">
+          <RatingsTable ratings={this.state.ratingsArray}/>
+        </div>
+        <div className="sendMessage">
+          <SendMessage recipient={this.props.post.user} sender={this.props.user}/>
+        </div>
       </div>
     );
   }

@@ -64,8 +64,10 @@ class DynamicContent extends React.Component {
     } else if (this.props.render.selectProfile) {
       return (
         <div className="componentWindow">
-          <h1>Profile</h1>
-          <Profile />
+          <h1>About Me</h1>
+          <Profile
+            user={this.props.user}
+          />
         </div>
       );
     } else if (this.props.render.renderResults) {

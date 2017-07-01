@@ -51,7 +51,7 @@ class SendMessage extends React.Component {
   render() {
     this.recipient = this.props.recipient;
     return (
-      <form className="form-horizontal">
+      <form className="form">
         <h3>Send a Message</h3>
         <div className="form-group">
           <h4>To: {this.recipient}</h4>
