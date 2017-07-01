@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
@@ -7,7 +8,8 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 var app = express();
 
 var store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/connect-mongodb-session_findabuddy',
+  //uri: 'mongodb://localhost:27017/connect-mongodb-session_findabuddy',
+  uri: process.env.MONGODB_URI,
   collection: 'userSessions'
 });
 //A default session time out
