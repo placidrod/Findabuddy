@@ -14,6 +14,7 @@ class App extends React.Component {
       selectedNotification: {},
       messages: []
     };
+    window.baseUrl = 'http://findabuddy.herokuapp.com/';
     this.getMessages = this.getMessages.bind(this);
     this.handleNotificationSelect = this.handleNotificationSelect.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
@@ -23,7 +24,7 @@ class App extends React.Component {
     var self = this;
 
     $.ajax({
-      url: 'http://localhost:3000/user',
+      url: window.baseUrl + '/user',
       type: 'GET',
       success: function(user) {
         self.setState(() => ({userName: user}));
@@ -39,7 +40,7 @@ class App extends React.Component {
     if (this.state.userName.length) {
       $.ajax({
         type: 'GET',
-        url: 'http://localhost:3000/message/recipient',
+        url: window.baseUrl + '/message/recipient',
         data: {recipient: this.state.userName},
         success: function(messages) {
           this.setState({
