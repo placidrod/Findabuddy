@@ -78,26 +78,30 @@ class MessageList extends React.Component {
 
   render(){
     return (
-      <div className="messageList">
-        <table className="table table-striped">
-              <thead>
-              <tr>
-                <th>Sender</th>
-                <th>Message</th>
-              </tr>
-              </thead>
-              <tbody>
-                {
-                  this.props.messages.map((message) =>
-                    <Message
-                      message={message}
-                      handleMessageClick={this.handleMessageClick}
-                      key={message._id}
-                    />
-                )}
-              </tbody>
-        </table>
-        <SendMessage recipient={this.state.recipient} sender={this.props.user}/>
+      <div>
+        <div className="messageList">
+          <table className="table table-striped">
+                <thead>
+                <tr>
+                  <th>Sender</th>
+                  <th>Message</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {
+                    this.state.messages.map((message) =>
+                      <Message
+                        message={message}
+                        handleMessageClick={this.handleMessageClick}
+                        key={message._id}
+                      />
+                  )}
+                </tbody>
+          </table>
+        </div>
+        <div className="sendMessage">
+          <SendMessage recipient={this.state.recipient} sender={this.props.user}/>
+        </div>
       </div>
     );
   }

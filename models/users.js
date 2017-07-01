@@ -8,7 +8,9 @@ var userSchema = mongoose.Schema({
 	zipCode: Number,
 	interests: [],
 	requestHistory: [],
-	ratings: []
+	ratings: [],
+  bio: String,
+  bioTitle: String
 });
 
 var User = mongoose.model('User', userSchema);

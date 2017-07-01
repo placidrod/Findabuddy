@@ -6,7 +6,7 @@ var Nav = (props) => (
         <a href="#" name="selectSearch" onClick={(e) => { props.handleSelect(e, true) }}><img name="selectSearch" className="nav-logo" src="../img/findabuddy_icon2_orange.png"/></a>
       </div>
       <ul className="nav navbar-nav navbar-left">
-        <li className="nav-name" ><a href="#" name="selectProfile" onClick={(e) => { props.handleSelect(e, true) }}>How ya doin, {props.user}!</a></li>
+        <li className="nav-name" ><a href="#" name="selectProfile" onClick={(e) => { props.handleSelect(e, true) }}>How ya doin, {props.user}?!</a></li>
       </ul>
       <ul className="nav navbar-nav navbar-right">
         <li className="nav-link"><a href="#" name="selectSearch" onClick={(e) => { props.handleSelect(e, true) }} >Search</a></li>
