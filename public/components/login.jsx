@@ -20,7 +20,7 @@ class Login extends React.Component {
   }
   submitRequest() {
     $.ajax({
-      url: 'http://localhost:3000/login',
+      url: window.baseUrl + '/login',
       type: 'POST',
       data: this.state,
       dataType: 'json',
@@ -28,16 +28,16 @@ class Login extends React.Component {
       .done(function(data) {
         console.log('data ',data);
         if(data.status === '200') {
-          window.location.replace('http://localhost:3000');
+          window.location.replace(window.baseUrl + '');
         }
       })
       .fail(function(failInfo) {
         console.log('FAIL',failInfo);
-        window.location.replace('http://localhost:3000/login');
+        window.location.replace(window.baseUrl + '/login');
       });
   }
   goSignup() {
-    window.location.replace('http://localhost:3000/signup');
+    window.location.replace(window.baseUrl + '/signup');
 
   }
   render() {

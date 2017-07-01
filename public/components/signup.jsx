@@ -20,7 +20,7 @@ class Signup extends React.Component {
   }
   submitSignup() {
     $.ajax({
-      url: 'http://localhost:3000/signup',
+      url: window.baseUrl + '/signup',
       type: 'POST',
       data: this.state,
       dataType: 'json',
@@ -28,16 +28,16 @@ class Signup extends React.Component {
       .done(function(data) {
         console.log('signup success ',data);
         if (data.status === '200') {
-          window.location.replace('http://localhost:3000');
+          window.location.replace(window.baseUrl + '');
         }
       })
       .fail(function(failInfo) {
         console.log('FAIL',failInfo);
-          window.location.replace('http://localhost:3000/signup');
+          window.location.replace(window.baseUrl + '/signup');
       });
   }
   goLogin() {
-    window.location.replace('http://localhost:3000/login');
+    window.location.replace(window.baseUrl + '/login');
   }
   render() {
     return (
