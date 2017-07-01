@@ -24,7 +24,7 @@ class Profile extends React.Component {
   getProfileInfo() {
 
     $.ajax({
-      url: '/buddyRequest',
+      url: '/profile',
       type: 'GET',
       data: {username: this.props.user},
       success: function(profile) {
