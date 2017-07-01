@@ -21,7 +21,7 @@ class Login extends React.Component {
   submitRequest() {
     console.log('about to submit login request via jquery ajax');
     $.ajax({
-      url: window.baseUrl + '/login',
+      url: '/login',
       type: 'POST',
       data: this.state,
       dataType: 'json',
@@ -35,11 +35,11 @@ class Login extends React.Component {
       })
       .fail(function(failInfo) {
         console.log('FAIL',failInfo);
-        window.location.replace(window.baseUrl + '/login');
+        window.location.replace('/login');
       });
   }
   goSignup() {
-    window.location.replace(window.baseUrl + '/signup');
+    window.location.replace('/signup');
 
   }
   render() {
