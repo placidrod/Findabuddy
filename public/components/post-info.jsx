@@ -14,7 +14,7 @@ class PostInfo extends React.Component {
   componentDidMount () {
     //console.log('postInfo loaded: ',this.props.post,this.state.ratingsArray);
     $.ajax({
-      url: 'http://localhost:3000/rating/' + this.props.post._id,
+      url: '/rating/' + this.props.post._id,
       type: 'GET'
     })
       .done(function(data) {

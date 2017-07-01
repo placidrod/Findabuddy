@@ -13,7 +13,7 @@ var Nav = (props) => (
         <li className="nav-link"><a href="#" name="selectRequest" onClick={(e) => { props.handleSelect(e, true) }} >New Request</a></li>
         <li className="nav-link"><a href="#" name="selectProfile" onClick={(e) => { props.handleSelect(e, true) }}>Profile</a></li>
         <li className="nav-link"><a href="#" name="selectMessages" onClick={(e) => { props.handleSelect(e, true) }}>Messages</a></li>
-        <li className="nav-link"><a href="http://localhost:3000/logout" ><span className="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        <li className="nav-link"><a href="/logout" ><span className="glyphicon glyphicon-log-out"></span>Logout</a></li>
       </ul>
     </div>
   </nav>

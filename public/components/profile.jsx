@@ -13,7 +13,7 @@ class Profile extends React.Component {
   submitBuddyRequest(event) {
     event.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/buddyRequest',
+      url: '/buddyRequest',
       type: 'GET',
       data: this.state,
       //dataType: dataType,
