@@ -35,3 +35,4 @@ public/.DS_store
 compiled/
 public/components/compiled/
 
+.env
