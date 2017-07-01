@@ -23,7 +23,7 @@ class App extends React.Component {
     var self = this;
 
     $.ajax({
-      url: window.baseUrl + '/user',
+      url: '/user',
       type: 'GET',
       success: function(user) {
         self.setState(() => ({userName: user}));
@@ -39,7 +39,7 @@ class App extends React.Component {
     if (this.state.userName.length) {
       $.ajax({
         type: 'GET',
-        url: window.baseUrl + '/message/recipient',
+        url: '/message/recipient',
         data: {recipient: this.state.userName},
         success: function(messages) {
           this.setState({

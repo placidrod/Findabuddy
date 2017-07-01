@@ -89,7 +89,7 @@ class MessageList extends React.Component {
                 </thead>
                 <tbody>
                   {
-                    this.state.messages.map((message) =>
+                    this.props.messages.map((message) =>
                       <Message
                         message={message}
                         handleMessageClick={this.handleMessageClick}
