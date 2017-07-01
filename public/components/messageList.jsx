@@ -2,8 +2,7 @@ class MessageList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      recipient: '',
-      messages: []
+      recipient: ''
     };
     this.handleMessageClick = this.handleMessageClick.bind(this);
     this.updateMessagesAsRead = this.updateMessagesAsRead.bind(this);
