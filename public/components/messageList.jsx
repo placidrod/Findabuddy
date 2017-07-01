@@ -2,7 +2,6 @@ class MessageList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      messages: this.props.messages,
       recipient: ''
     };
     this.handleMessageClick = this.handleMessageClick.bind(this);
@@ -17,10 +16,21 @@ class MessageList extends React.Component {
     //Perform ajax put request
   }
 
-  handleMessageClick(recipient){
+  //This allows the recipient of the users message to be changed when a notification is clicked
+    //while the user is viewing messages
+  //https://stackoverflow.com/questions/32414308/updating-state-on-props-change-in-react-form
+  componentWillReceiveProps(nextProps) {
+    // You don't have to do this check first, but it can help prevent an unneeded render
+    if (nextProps.selectedNotification.sender !== this.state.recipient) {
+      this.setState({ recipient: nextProps.selectedNotification.sender });
+    }
+  }
+
+  handleMessageClick(message){
     this.setState({
-      recipient: recipient
+      recipient: message.sender
     });
+    this.props.handleNotificationSelect(message);
   };
 
   render(){
@@ -35,7 +45,7 @@ class MessageList extends React.Component {
               </thead>
               <tbody>
                 {
-                  this.state.messages.map((message) =>
+                  this.props.messages.map((message) =>
                     <Message
                       message={message}
                       handleMessageClick={this.handleMessageClick}

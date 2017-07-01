@@ -7,16 +7,8 @@ class DynamicContent extends React.Component {
       results: [],
       currentPost: ''
     };
-    this.messages = [];
     this.handleSubmitRequest = this.handleSubmitRequest.bind(this);
     this.handlePostClick = this.handlePostClick.bind(this);
-    this.getMessages = this.getMessages.bind(this);
-  }
-
-  //This runs every time set state runs, so messages should not be part of state
-    //or else this will spam the server
-  componentDidUpdate(){
-    this.getMessages();
   }
 
   handleSubmitRequest(data) {
@@ -35,22 +27,6 @@ class DynamicContent extends React.Component {
     this.setState({
       currentPost: post,
     });
-  }
-
-  getMessages() {
-    if (this.props.user !== '') {
-      $.ajax({
-        type: 'GET',
-        url: 'http://localhost:3000/message/recipient',
-        data: {recipient: this.props.user},
-        success: function(messages) {
-          this.messages = messages;
-        }.bind(this),
-        error: function(err) {
-          console.log('Couldn\'t get messages:', err)
-        }
-      });
-    }
   }
 
   render() {
@@ -107,9 +83,10 @@ class DynamicContent extends React.Component {
         <div className="componentWindow">
           <h1>Messages</h1>
           <MessageList
+            handleNotificationSelect={this.props.handleNotificationSelect}
             selectedNotification={this.props.selectedNotification}
             user={this.props.user}
-            messages={this.messages}
+            messages={this.props.messages}
           />
         </div>
       );

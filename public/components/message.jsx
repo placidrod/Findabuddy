@@ -1,5 +1,5 @@
 var Message = ({message, handleMessageClick}) => (
- <tr onClick={() => handleMessageClick(message.sender)} className="row-select">
+ <tr onClick={() => handleMessageClick(message)} className="row-select">
   <td>{message.sender}</td>
   <td>{message.message}</td>
  </tr>
