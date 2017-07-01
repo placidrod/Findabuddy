@@ -40,7 +40,7 @@ class PostInfo extends React.Component {
           </div>
         </div>
         <RatingsTable ratings={this.state.ratingsArray}/>
-        <SendMessage recipient={'Alex'} sender={'testSender'}/>
+        <SendMessage recipient={this.props.post.user} sender={this.props.user}/>
       </div>
     );
   }

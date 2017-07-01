@@ -3,35 +3,36 @@ class Notifications extends React.Component {
     super(props);
     this.state = {
       notifications: [],
-      user: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.getNotifications = this.getNotifications.bind(this);
-    setTimeout(this.getNotifications, 3000);
+  }
+
+  componentDidMount() {
+    this.getNotifications();
   }
 
   handleClick(notification) {
-    console.log('clicked, need to render the message in dynamic content');
-    //console.log('notification:', notification);
+    this.props.handleNotificationSelect(notification);
+    this.props.handleSelect('selectMessages');
+    //Perform ajax put request
   }
 
   getNotifications() {
-    // console.log('after mount and set timeout', this.props)
     $.ajax({
       type: 'GET',
       url: 'http://localhost:3000/message/recipient',
-      data: {user: this.props.user},
+      data: {recipient: this.props.user},
       success: function(messages) {
         this.setState({
           notifications: messages,
-          user: this.props.user
         });
       }.bind(this),
       error: function(err) {
         console.log('Couldn\'t get notifications:', err)
       }
     });
-    // setTimeout(this.getNotifications, 3000);
+    setTimeout(this.getNotifications, 3000);
   }
 
   render() {
@@ -40,8 +41,9 @@ class Notifications extends React.Component {
         <h2>Notifications</h2>
         <aside>
           {this.state.notifications.map(notification => {
-            //console.log('notification:', notification);
-            return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />
+            if (notification.read === false) {
+              return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />
+            }
           })}
         </aside>
       </div>

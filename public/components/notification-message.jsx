@@ -1,5 +1,5 @@
 var NotificationMessage = ({notification, handleClick}) => (
-  <div className="notificationMessage" onClick={(notification) => handleClick(notification)}>
+  <div className="notificationMessage" onClick={() => handleClick(notification)}>
     <div className="notificationSender">{notification.sender}</div>
     <p>
       {

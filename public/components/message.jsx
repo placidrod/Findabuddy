@@ -1,9 +1,8 @@
-
-var message = ({message, handleMessageClick}) => (
+var Message = ({message, handleMessageClick}) => (
  <tr onClick={() => handleMessageClick(message.sender)} className="row-select">
   <td>{message.sender}</td>
   <td>{message.message}</td>
  </tr>
 );
 
-window.message = message;
+window.Message = Message;

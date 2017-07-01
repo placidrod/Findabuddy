@@ -45,7 +45,7 @@ class CreateRequest extends React.Component {
         })
         .done(function(response) {
           this.props.handleSubmitRequest(response);
-          this.props.showResults();
+          this.props.handleSelect('renderResults');
         }.bind(this))
         .fail(function(err){
           console.log('ERROR fetching', err)

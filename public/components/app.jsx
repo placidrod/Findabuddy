@@ -10,10 +10,14 @@ class App extends React.Component {
         selectSearch: true,
         selectRequest: false,
         selectProfile: false,
+        selectMessages: false,
         renderResults: false,
         renderPost: false
-      }
+      },
+      selectedNotification: {}
     };
+    this.handleNotificationSelect = this.handleNotificationSelect.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentWillMount(){
@@ -34,107 +38,81 @@ class App extends React.Component {
     })
   }
 
-  handleSelectSearch() {
-    // this.setState({
-    //   selectSearch: true
-    // });
+  handleNotificationSelect(notification){
     this.setState({
-      render: {
-        selectSearch: true,
-        selectRequest: false,
-        selectProfile: false,
-        renderResults: false,
-        renderPost: false
-      }
+      selectedNotification: notification
     });
   }
 
-  handleSelectRequest() {
-    // this.setState({
-    //   selectSearch: false
-    // });
-    this.setState({
-      render: {
-        selectSearch: false,
-        selectRequest: true,
-        renderResults: false,
-        selectProfile: false,
-        renderPost: false
+  //When a link in the navbar is clicked its render state is set to true
+    //and all other render states are to false
+  //If the event flag is set then the link is being pulled from an on click event
+  handleSelect(e, eventFlag) {
+    var link;
+    var errorFlag = false;
+
+    if (eventFlag) {
+      if (e.target.name) {
+        link = e.target.name;
+      } else {
+        errorFlag = true;
+      }
+    } else {
+      if (e) {
+        link = e;
+      } else {
+        errorFlag = true;
+      }
+    }
+    //Error handling
+    if ((errorFlag === true) && (eventFlag === true)) {
+      console.error(`Received `, e,` with eventFlag set to true. The on click event that called handleSelect does not have a name property.`);
+    } else if ((errorFlag === true) && (!eventFlag)) {
+      console.error(`Received`, e,`with eventFlag not set. The invocation of handleSelect did not provide a render link.`);
+    } else if (this.state.render.hasOwnProperty(link) === false) {
+      console.error(`Received`, e,`; this is not a valid key. Check the render object in App's state. The key is either not there or it has been spelled incorrectly.`);
+      errorFlag = true;
+    }
+    if (errorFlag === true) {
+      console.error(`An error has a occurred, the function will return to prevent undefined behavior/cryptic react error message.`);
+      console.error(`React's default error message is:\nUncaught Error: DynamicContent.render(): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.`);
+      return 1;
+    }
+    this.setState((prevState) => {
+      var newRenderState = Object.assign(prevState.render);
+
+      for (var renderLink in newRenderState) {
+        if (renderLink === link) {
+          newRenderState[renderLink] = true;
+        } else {
+          newRenderState[renderLink] = false;
+        }
+      }
+      return {
+        render: newRenderState
       }
     });
-  }
-
-  handleSelectProfile() {
-    this.setState({
-      render: {
-        selectSearch: false,
-        selectRequest: false,
-        selectProfile: true,
-        renderResults: false,
-        renderPost: false
-      }
-    });
-  }
-
-  handleSelectPost() {
-    this.setState({
-      render: {
-        selectSearch: false,
-        selectRequest: false,
-        selectProfile: false,
-        renderResults: false,
-        renderPost: true
-      }
-    });
-  }
-
-  handleResults() {
-    this.setState({
-      render: {
-        selectSearch: false,
-        selectRequest: false,
-        selectProfile: false,
-        renderResults: true,
-        renderPost: false
-      }
-    });
-  }
-
-  handleViewRequest() {
-
-  }
-
-  requestFormHandler() {
-  }
-
-  profileHandler() {
-
-  }
-
-  logoutHandler() {
-
   }
 
   render() {
     return (
       <div className="mainApp">
-        <Nav handleSelectSearch={this.handleSelectSearch.bind(this)}
-            handleSelectRequest={this.handleSelectRequest.bind(this)}
-            handleSelectProfile={this.handleSelectProfile.bind(this)}
-            user={this.state.userName}
-            />
+        <Nav
+          handleSelect={this.handleSelect}
+          user={this.state.userName}
+        />
         <div className="dynamicContent col-md-9">
-
           <DynamicContent
-            user={this.state.userName}
             render={this.state.render}
-            showResults={this.handleResults.bind(this)}
-            showPost={this.handleSelectPost.bind(this)}
+            handleSelect={this.handleSelect}
+            user={this.state.userName}
+            selectedNotification={this.state.selectedNotification}
           />
-
         </div>
         <div className="notificationWindow col-md-3">
           <Notifications
+            handleNotificationSelect={this.handleNotificationSelect}
+            handleSelect={this.handleSelect}
             user={this.state.userName}
           />
         </div>

@@ -61,6 +61,8 @@ app.post('/buddyRequest', handler.postBuddyRequest);
 app.get('/message', handler.getMessages);
 app.get('/message/recipient', handler.getMessagesByRecipient);
 app.post('/message', handler.postMessage);
+//need put routes ie.:
+//app.put('/message', hanlder.putMessage);
 
 // app.get('/rating', handler.getRating);
 app.get('/rating/:request_id', handler.getRequestRatings);

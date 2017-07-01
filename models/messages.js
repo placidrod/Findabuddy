@@ -17,5 +17,4 @@ var Message = mongoose.model('Message', messageSchema);
 //     message: 'I am your father!!',
 // }).save();
 
-
 module.exports = Message;
