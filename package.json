@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "mocha --bail --reporter landing test/ServerSpec.js"
   },
   "author": "",
@@ -23,6 +23,7 @@
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "mongoose": "^4.10.8",
+    "nodemon": "^1.11.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
