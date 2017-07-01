@@ -1,6 +1,5 @@
 body {
-  padding-top: 4em;
-  background-color:
+  padding-top: 70px;
 }
 
 nav {
@@ -9,39 +8,6 @@ nav {
 
 aside {
   border-top-style: solid;
-}
-
-.componentWindow {
-  width: 75%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.notificationWindow {
-  margin-right: auto;
-  margin-left: auto;
-  width: 25%;
-}
-
-.btn {
-  float: right;
-}
-
-.row-select:hover {
-  color: red;
-}
-
-.notificationMessage {
-  border-radius: 5px;
-  border: 1.5px solid #FF9709;
-  margin-top: 20px;
-  margin-right: 20px;
-  padding: 5px;
-
-}
-
-.notificationSender {
-  font-weight: bold;
 }
 
 .nav-logo {
@@ -59,11 +25,98 @@ li.nav-name {
   font-size: 18px;
 }
 
+.componentWindow {
+  width: 75%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 30px;
+}
+
+.notificationWindow {
+  margin-right: auto;
+  margin-left: auto;
+  width: 25%;
+  margin-bottom: 50px;
+}
+
+.notificationMessage {
+  border-radius: 5px;
+  border: 1.5px solid #FF9709;
+  margin-top: 20px;
+  margin-right: 20px;
+  padding: 5px;
+
+}
+
+.notificationSender {
+  font-weight: bold;
+}
+
+.btn {
+  float: right;
+}
+
+.row-select:hover {
+  color: #FF9709;
+}
+
+
+.sendMessage {
+  padding-top: 20px;
+}
+
+.ratings {
+  padding-top: 20px;
+}
 
 @media (max-width: 1000px) {
   .notificationWindow {
     margin-right: auto;
     margin-left: auto;
+    width: 70%;
+  }
+
+
+  .componentWindow {
     width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+}
+
+.glyphicon {
+  padding-right: 5px;
+}
+
+@media (min-width: 600px) and (max-width: 975px) {
+
+  body {
+    padding-top: 120px;
+  }
+
+
+}
+
+@media (max-width: 767px){
+
+  body {
+    padding-top: 350px;
+  }
+
+  .nav-logo {
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+
+  li.nav-link {
+    padding-top: 0px;
+    line-height: 10px;
+  }
+
+  li.nav-name {
+    padding-top: 0px;
+    font-size: 15px;
+    line-height: 10px;
   }
 }

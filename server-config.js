@@ -45,6 +45,7 @@ app.use(session({
 app.get('/', handler.getIndex);
 app.get('/test', handler.getTest);
 app.get('/profile', handler.getProfile);
+app.post('/profile', handler.postProfile);
 app.get('/user', handler.getUser);
 
 app.get('/login', handler.getLogin);

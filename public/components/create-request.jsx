@@ -63,7 +63,7 @@ class CreateRequest extends React.Component {
   //**************need to change htmlFors****************//
   render() {
     return (
-    	<form className="form-horizontal">
+    	<form className="form">
         <div className="form-group">
           <label htmlFor="noun">Post Title</label>
           <input type="text" value={this.state.postTitle} className="form-control" placeholder="Enter a title for your post" name="postTitle" onChange={this.handleInputChange}/>
