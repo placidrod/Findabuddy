@@ -1,12 +1,12 @@
-# Project Name
+# Findabuddy
 
-> Pithy project description
+> Find a buddy so you don't have to do your favorite thing alone. 
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: David Berry
+  - __Scrum Master__: Mark Suyat
+  - __Development Team Members__: Alex Jungroth, John Roxborough
 
 ## Table of Contents
 
@@ -20,15 +20,18 @@
 
 ## Usage
 
-> Some usage instructions
+> clone repo, npm install in root directory.  Acquire URI to MongoDB from dev team, place in .env that you manually create
+> this will install all dependencies, and transpile jsx to js
+> from here, run the app via "npm run start", and direct your browser to localhost:8080.
+> in a separate terminal type "npm start babel-watch" to continuously transpile changes to the jsx files on the ReactJS frontend
+> Follow normal signup/login workflow from here, and you're ready to find a buddy
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 6.10.2
+- NPM 5.0.4
+- Bower 1.8.0
+- everything else installed by NPM & Bower
 
 ## Development
 
@@ -39,12 +42,18 @@ From within the root directory:
 ```sh
 sudo npm install -g bower
 npm install
-bower install
 ```
+at this point all dependencies will be downloaded. Bower dependencies will be downloaded and jsx will be transpiled as a post-install after running 
+the command npm install
+
+### Continuous Deployment
+>Acquire access to findabuddy Heroku project from development team.
+>from the root directory of findabuddy: "heroku git:remote -a findabuddy" will give you a remote repository called heroku
+>to deploy, first commit to your local repo, then type "git push heroku master"
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/hrr24-melmac/Findabuddy/issues)
 
 
 ## Contributing

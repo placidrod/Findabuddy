@@ -1,3 +1,7 @@
+/*
+ Component for displaying messages
+ */
+
 var Message = ({message, handleMessageClick}) => (
  <tr onClick={() => handleMessageClick(message)} className="row-select">
   <td>{message.sender}</td>

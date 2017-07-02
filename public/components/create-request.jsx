@@ -1,3 +1,7 @@
+/*
+ Component to handle creating of BuddyRequests on the frontend
+ */
+
 class CreateRequest extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +20,7 @@ class CreateRequest extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-
+  //keeps state updated with value of a HTML form element associated with its variable
   handleInputChange(e) {
     //console.log('event.target.value: ', event.target.value);
     var name = e.target.name;
@@ -58,9 +62,6 @@ class CreateRequest extends React.Component {
   }
 
 
-
-
-  //**************need to change htmlFors****************//
   render() {
     return (
     	<form className="form">

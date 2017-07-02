@@ -1,3 +1,7 @@
+/*
+ Table for displaying ratings associated with a request or user
+ */
+
 class RatingsTable extends React.Component {
 
   constructor(props) {

@@ -1,3 +1,6 @@
+/*
+ Component for viewing user profile
+ */
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,7 @@ class Profile extends React.Component {
     var name = e.target.name;
     this.setState({
       [name]: e.target.value
-    })
+    });
   }
 
   getProfileInfo() {

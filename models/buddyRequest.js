@@ -1,3 +1,7 @@
+/*
+  Mongoose model for Buddy Requests
+ */
+
 var mongoose = require('mongoose');
 
 var buddyRequestSchema = mongoose.Schema({

@@ -1,3 +1,8 @@
+/*
+ Frontend component for login
+ TODO: implement password encryption
+ */
+
 class Login extends React.Component {
 
   constructor(props) {

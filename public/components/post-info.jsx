@@ -1,3 +1,7 @@
+/*
+ Component for viewing previously created buddy request posts
+ */
+
 class PostInfo extends React.Component {
 
   constructor(props) {
@@ -10,7 +14,7 @@ class PostInfo extends React.Component {
   handleBackButton() {
 
   }
-
+  //loads in ratings for post once component is mounted
   componentDidMount () {
     //console.log('postInfo loaded: ',this.props.post,this.state.ratingsArray);
     $.ajax({

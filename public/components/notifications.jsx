@@ -1,3 +1,7 @@
+/*
+ Component for notifcations area of application, mainly for visibility of new messages.
+ */
+
 class Notifications extends React.Component {
   constructor(props) {
     super(props);

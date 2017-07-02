@@ -2,13 +2,12 @@ require('dotenv').config();
 var express = require('express');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
-//var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 var app = express();
 
+//initialization for mongodb collection to store session information
 var store = new MongoDBStore({
-  //uri: 'mongodb://localhost:27017/connect-mongodb-session_findabuddy',
   uri: process.env.MONGODB_URI,
   collection: 'userSessions'
 });
@@ -26,6 +25,7 @@ var handler = require('./lib/request-handler');
 
 app.mainProjectDirectory = __dirname;
 
+//view rendering and middleware
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(partials());
@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/public'));
 
+//initializaiton for session middleware
 app.use(session({
   secret: 'Hey listen!',
   cookie: {
@@ -44,6 +45,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
+//routes for application
 app.get('/', handler.getIndex);
 app.get('/test', handler.getTest);
 app.get('/profile', handler.getProfile);

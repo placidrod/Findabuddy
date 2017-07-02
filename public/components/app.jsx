@@ -1,3 +1,6 @@
+/*
+  Top level component for application
+ */
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +22,7 @@ class App extends React.Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
 
+  //grab logged in user after session is authenticated
   componentDidMount(){
     var self = this;
 
@@ -34,7 +38,7 @@ class App extends React.Component {
       console.log('ERROR', err)
     });
   }
-
+  //helper function
   getMessages() {
     if (this.state.userName.length) {
       $.ajax({

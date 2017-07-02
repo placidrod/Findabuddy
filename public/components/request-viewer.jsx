@@ -1,3 +1,7 @@
+/*
+ Deprecated request viewer component
+ */
+
 class RequestViewer extends React.Component {
   constructor(props) {
     super(props);

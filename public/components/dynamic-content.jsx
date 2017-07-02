@@ -1,3 +1,8 @@
+/*
+ Main dynamic container for bulk of application content.  The state, and visibility of components, changes based on
+ how the user interacts with the frontend UI
+ */
+
 class DynamicContent extends React.Component {
 
   constructor(props) {
@@ -10,7 +15,7 @@ class DynamicContent extends React.Component {
     this.handleSubmitRequest = this.handleSubmitRequest.bind(this);
     this.handlePostClick = this.handlePostClick.bind(this);
   }
-
+  //click event handler for search submit & new buddy request submit
   handleSubmitRequest(data) {
     data = data.reverse();
 
@@ -18,7 +23,7 @@ class DynamicContent extends React.Component {
       results: data
     });
   }
-
+  //renders a specific request when it is clicked on in the search results list
   handlePostClick(post) {
     // var results = this.state.results;
     //console.log('CURRENT POST', post)

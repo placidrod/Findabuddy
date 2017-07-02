@@ -1,3 +1,7 @@
+/*
+ Top level component for new user signup
+ TODO: also implement password encryption here
+ */
 class Signup extends React.Component {
 
   constructor(props) {

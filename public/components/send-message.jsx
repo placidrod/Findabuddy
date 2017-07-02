@@ -1,3 +1,6 @@
+/*
+ Component for sending in-application messages to another user
+ */
 class SendMessage extends React.Component {
   constructor(props) {
     super(props);

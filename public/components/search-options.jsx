@@ -1,3 +1,8 @@
+/*
+ Component for searching existing requests
+ TODO: check edge cases of blank inputs returning expected search results from backend
+ */
+
 class SearchForm extends React.Component {
 
   constructor(props) {
