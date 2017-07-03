@@ -7,15 +7,15 @@ class CreateRequest extends React.Component {
     super(props);
     this.state = {
       user: this.props.user,
-      postTitle: null,
-      description: null,
+      postTitle: '',
+      description: '',
       postDateTime: '',
       gender: '',
       minAge: '',
       maxAge: '',
       zipCode: '',
-      activityVerb: null,
-      activityNoun: null
+      activityVerb: '',
+      activityNoun: ''
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
