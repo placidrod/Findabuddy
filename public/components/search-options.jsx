@@ -89,7 +89,7 @@ handleAgeInput(e){
     return (
       <form className="form" onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label className="control-label" htmlFor="verb">Activty Verb</label>
+          <label className="control-label" htmlFor="verb">Activity Verb</label>
           <input type="text" className="form-control"
             name="activityVerb"
             onChange={this.handleInput}
