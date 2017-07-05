@@ -15,11 +15,11 @@ var store = new MongoDBStore({
 var week = 1000 * 60 * 60 * 24 * 7;
 
 //Catch errors for the MongoDBStore
-store.on('error', function(error) {
-  assert.ifError(error);
-  assert.ok(false);
-  console.log('MongodDBStore Error:', error);
-});
+// store.on('error', function(error) {
+//   assert.ifError(error);
+//   assert.ok(false);
+//   console.log('MongodDBStore Error:', error);
+// });
 
 var handler = require('./lib/request-handler');
 
