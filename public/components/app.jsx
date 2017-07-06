@@ -17,7 +17,9 @@ class App extends React.Component {
       },
       selectedNotification: {},
       messages: [],
-      requests: []
+      requests: [],
+      users: [],
+      friends: []
     };
     this.getMessages = this.getMessages.bind(this);
     this.handleNotificationSelect = this.handleNotificationSelect.bind(this);
@@ -25,7 +27,7 @@ class App extends React.Component {
   }
 
   //grab logged in user after session is authenticated
-  componentDidMount(){
+  componentDidMount() {
     var self = this;
 
     $.ajax({
@@ -34,14 +36,16 @@ class App extends React.Component {
       success: function(user) {
         self.setState(() => ({userName: user}));
       }
-    })
-    .done(() => (this.getMessages()))
+    }) /*eslint-disable indent*/
+    .then(() => this.getRequests())
+    .then(() => this.getMessages())
+    .then(() => this.getFriends())
+    .then(() => this.getUsers())
     .fail(function(err) {
-      console.log('ERROR', err)
+      console.log('ERROR', err);
     });
+  } /* eslint-enable indent*/
 
-    this.getRequests();
-  }
   //helper function
   getMessages() {
     if (this.state.userName.length) {
@@ -55,7 +59,7 @@ class App extends React.Component {
           });
         }.bind(this),
         error: function(err) {
-          console.log('Couldn\'t get messages:', err)
+          console.log('Couldn\'t get messages:', err);
         }
       });
     }
@@ -75,14 +79,48 @@ class App extends React.Component {
     });
   }
 
-  handleNotificationSelect(notification){
+  getUsers() {
+    if (this.state.userName.length) {
+      $.ajax({
+        type: 'GET',
+        url: '/users',
+        success: function(res) {
+          this.setState({
+            users: res.users
+          });
+        }.bind(this),
+        error: function(err) {
+          console.log('Couldn\'t get users:', err);
+        }
+      });
+    }
+  }
+
+  getFriends() {
+    if (this.state.userName.length) {
+      $.ajax({
+        type: 'GET',
+        url: '/friends',
+        success: function(res) {
+          this.setState({
+            friends: res.friends
+          });
+        }.bind(this),
+        error: function(err) {
+          console.log('Couldn\'t get friends:', err);
+        }
+      });
+    }
+  }
+
+  handleNotificationSelect(notification) {
     this.setState({
       selectedNotification: notification
     });
   }
 
   //When a link in the navbar is clicked its render state is set to true
-    //and all other render states are to false
+  //and all other render states are to false
   //If the event flag is set then the link is being pulled from an on click event
   handleSelect(e, eventFlag) {
     var link;
@@ -127,7 +165,7 @@ class App extends React.Component {
       }
       return {
         render: newRenderState
-      }
+      };
     });
   }
 
