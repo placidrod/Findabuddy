@@ -1,6 +1,6 @@
 # Findabuddy
 
-> Find a buddy so you don't have to do your favorite thing alone. 
+> Find a buddy so you don't have to do your favorite thing alone.
 
 ## Team
 
@@ -43,7 +43,7 @@ From within the root directory:
 sudo npm install -g bower
 npm install
 ```
-at this point all dependencies will be downloaded. Bower dependencies will be downloaded and jsx will be transpiled as a post-install after running 
+at this point all dependencies will be downloaded. Bower dependencies will be downloaded and jsx will be transpiled as a post-install after running
 the command npm install
 
 ### Continuous Deployment
