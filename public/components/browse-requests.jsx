@@ -1,4 +1,4 @@
-var BrowseRequests = ({requests}) => (
+var BrowseRequests = ({requests, handlePostClick}) => (
 
   <table className="table table-striped">
         <thead>
@@ -14,11 +14,11 @@ var BrowseRequests = ({requests}) => (
         </thead>
         <tbody>
           {
-            this.props.searchResult.map((item) =>
+            requests.map((item) =>
                 // console.log('EACH ITEM', item)
               <SearchResultItem
                 result={item}
-                handlePostClick={this.props.handlePostClick}
+                handlePostClick={handlePostClick}
                 key={item._id}
               />
           )}
