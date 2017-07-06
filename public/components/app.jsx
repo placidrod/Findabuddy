@@ -7,7 +7,8 @@ class App extends React.Component {
     this.state = {
       userName: '',
       render: {
-        selectSearch: true,
+        browseRequests: true,
+        selectSearch: false,
         selectRequest: false,
         selectProfile: false,
         selectMessages: false,
@@ -15,7 +16,8 @@ class App extends React.Component {
         renderPost: false
       },
       selectedNotification: {},
-      messages: []
+      messages: [],
+      requests: []
     };
     this.getMessages = this.getMessages.bind(this);
     this.handleNotificationSelect = this.handleNotificationSelect.bind(this);
@@ -37,6 +39,8 @@ class App extends React.Component {
     .fail(function(err) {
       console.log('ERROR', err)
     });
+
+    this.getRequests();
   }
   //helper function
   getMessages() {
@@ -56,6 +60,19 @@ class App extends React.Component {
       });
     }
     setTimeout(this.getMessages, 3000);
+  }
+
+  getRequests() {
+    $.ajax({
+      type:'GET',
+      url:'/buddyRequest',
+      success: (requests) => {
+        console.log(requests);
+        this.setState({
+          requests: requests
+        });
+      }
+    });
   }
 
   handleNotificationSelect(notification){
@@ -129,6 +146,7 @@ class App extends React.Component {
             user={this.state.userName}
             selectedNotification={this.state.selectedNotification}
             messages={this.state.messages}
+            requests={this.state.requests}
           />
         </div>
         <div className="notificationWindow col-md-3">
