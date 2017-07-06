@@ -97,6 +97,15 @@ class DynamicContent extends React.Component {
           />
         </div>
       );
+    } else if (this.props.render.browseRequests){
+        <div className="componentWindow">
+          <h1>Open Request</h1>
+          <BrowseRequests
+            requests={this.state.requests}
+            handlePostClick={this.handlePostClick}
+          />
+        </div>
+      );
     }
   }
 }
