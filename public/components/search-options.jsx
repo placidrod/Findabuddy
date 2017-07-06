@@ -13,50 +13,50 @@ class SearchForm extends React.Component {
       activityDate: '',
       activityTime: '',
       zipCode: '',
-    age: {
-      $gte: '',
+      age: {
+        $gte: '',
         $lte: ''
-    },
-    gender: '',
+      },
+      gender: '',
       description: ''
-  };
+    };
 
-  this.handleSubmit = this.handleSubmit.bind(this);
-  this.handleInput = this.handleInput.bind(this);
-  this.handleAgeInput = this.handleAgeInput.bind(this);
-  this.handleSubmitRequest = this.props.handleSubmitRequest;
-}
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleAgeInput = this.handleAgeInput.bind(this);
+    this.handleSubmitRequest = this.props.handleSubmitRequest;
+  }
 
-handleInput(e){
-  var target = e.target;
-  var name = target.name;
+  handleInput(e) {
+    var target = e.target;
+    var name = target.name;
 
-  this.setState({
-    [name]: target.value,
-  });
+    this.setState({
+      [name]: target.value,
+    });
 
-}
+  }
 
-handleAgeInput(e){
-  var target = e.target;
-  var name = target.name;
-  var min = this.state.age.$gte;
-  var max = this.state.age.$lte;
-  // var age = this.state.Age;
+  handleAgeInput(e) {
+    var target = e.target;
+    var name = target.name;
+    var min = this.state.age.$gte;
+    var max = this.state.age.$lte;
+    // var age = this.state.Age;
 
     if (name === '$gte') {
       this.setState({
         age: {
-          $gte :target.value,
-          $lte :max
+          $gte: target.value,
+          $lte: max
         }
       });
 
-    } else if (name === '$lte'){
+    } else if (name === '$lte') {
       this.setState({
         age: {
-          $gte : min,
-          $lte :target.value
+          $gte: min,
+          $lte: target.value
         }
       });
 
@@ -67,21 +67,21 @@ handleAgeInput(e){
 
     e.preventDefault();
     var self = this;
-    console.log('self state: ',self.state);
+    console.log('self state: ', self.state);
     // self.handleSubmitRequest(self.state);
     $.ajax({
       url: '/buddyRequest',
       type: 'GET',
       data: self.state
     })
-    .done(function(response) {
-      console.log('RESPONSE', response);
-      self.handleSubmitRequest(response);
-      self.props.handleSelect('renderResults');
-    })
-    .fail(function(err){
-      console.log('ERROR fetching', err)
-    });
+      .done(function(response) {
+        console.log('RESPONSE', response);
+        self.handleSubmitRequest(response);
+        self.props.handleSelect('renderResults');
+      })
+      .fail(function(err) {
+        console.log('ERROR fetching', err);
+      });
   }
 
 
@@ -138,10 +138,10 @@ handleAgeInput(e){
             value={this.state.age.$lte} />
           <label className="control-label" htmlFor="age">Select Gender</label>
           <select className="form-control"
-              name="gender"
-              onChange={this.handleInput}
-              defaultValue="No Preference"
-              >
+            name="gender"
+            onChange={this.handleInput}
+            defaultValue="No Preference"
+          >
             <option value="No Preference">No Preference</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>

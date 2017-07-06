@@ -46,14 +46,14 @@ class CreateRequest extends React.Component {
         $.ajax({
           url: '/buddyRequest',
           type: 'GET'
-        })
+        }) /*eslint-disable indent*/
         .done(function(response) {
           this.props.handleSubmitRequest(response);
           this.props.handleSelect('renderResults');
         }.bind(this))
-        .fail(function(err){
-          console.log('ERROR fetching', err)
-        });
+        .fail(function(err) {
+          console.log('ERROR fetching', err);
+        }); /*eslint-enable indent*/
       }.bind(this),
       error: function() {
         console.log('failed to post buddy request');
@@ -64,7 +64,7 @@ class CreateRequest extends React.Component {
 
   render() {
     return (
-    	<form className="form">
+      <form className="form">
         <div className="form-group">
           <label htmlFor="noun">Post Title</label>
           <input type="text" value={this.state.postTitle} className="form-control" placeholder="Enter a title for your post" name="postTitle" onChange={this.handleInputChange} required/>

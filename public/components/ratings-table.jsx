@@ -12,7 +12,7 @@ class RatingsTable extends React.Component {
   }
 
   componentDidMount () {
-    console.log('RatingsTable loaded: ',this.props.ratings);
+    console.log('RatingsTable loaded: ', this.props.ratings);
   }
 
   render() {
@@ -26,19 +26,20 @@ class RatingsTable extends React.Component {
         </div>
         <table className="table">
           <thead>
-          <tr>
-            <th>Reviewer</th>
-            <th>Reviewee</th>
-            <th>Buddy Request Link</th>
-            <th>Rating</th>
-            <th>Comment</th>
-          </tr>
+            <tr>
+              <th>Reviewer</th>
+              <th>Reviewee</th>
+              <th>Buddy Request Link</th>
+              <th>Rating</th>
+              <th>Comment</th>
+            </tr>
           </thead>
           <tbody>
-          {
-            this.props.ratings.map((curElement) => {
-              return <RatingsTableItem rating={curElement} />
-          })}
+            {
+              this.props.ratings.map((curElement) => {
+                return <RatingsTableItem rating={curElement} />;
+              })
+            }
           </tbody>
         </table>
       </div>

@@ -30,14 +30,14 @@ class Signup extends React.Component {
       dataType: 'json',
     })
       .done(function(data) {
-        console.log('signup success ',data);
+        console.log('signup success ', data);
         if (data.status === '200') {
           window.location.replace('/');
         }
       })
       .fail(function(failInfo) {
-        console.log('FAIL',failInfo);
-          window.location.replace('/signup');
+        console.log('FAIL', failInfo);
+        window.location.replace('/signup');
       });
   }
   goLogin() {
@@ -58,9 +58,9 @@ class Signup extends React.Component {
           className="form-control col-md-2"
         />
         <button className="button col-md-6"
-                onClick={() => this.submitSignup()}>Signup</button>
+          onClick={() => this.submitSignup()}>Signup</button>
         <button className="button col-md-6"
-                onClick={() => this.goLogin()}>Login</button>
+          onClick={() => this.goLogin()}>Login</button>
       </div>
     );
   }

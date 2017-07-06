@@ -16,13 +16,13 @@ class Notifications extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div className="noitifications">
         <h2>Notifications</h2>
         <aside>
           {this.props.messages.map(notification => {
             if (notification.read === false) {
-              return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />
+              return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />;
             }
           })}
         </aside>

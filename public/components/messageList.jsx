@@ -2,7 +2,7 @@
  Component for listing messages
  */
 class MessageList extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       recipient: ''
@@ -26,14 +26,14 @@ class MessageList extends React.Component {
       }
     }
     //Prevents the put request from being called if the messages have
-      //already been updated as read
+    //already been updated as read
     if (isRead === false) {
       this.updateMessagesAsRead();
     }
   }
 
   //This allows the recipient of the users message to be changed when a notification is clicked
-    //while the user is viewing messages
+  //while the user is viewing messages
   //https://stackoverflow.com/questions/32414308/updating-state-on-props-change-in-react-form
   componentWillReceiveProps(nextProps) {
     var isRead = true;
@@ -51,55 +51,56 @@ class MessageList extends React.Component {
         }
       }
       //Prevents the put request from being called twice, once because the messages
-        //changed and once because the messages read property changed from true to false
+      //changed and once because the messages read property changed from true to false
       if (isRead === false) {
         this.updateMessagesAsRead();
       }
     }
   }
 
-  handleMessageClick(message){
+  handleMessageClick(message) {
     this.setState({
       recipient: message.sender
     });
     this.props.handleNotificationSelect(message);
   }
 
-  updateMessagesAsRead(){
+  updateMessagesAsRead() {
     $.ajax({
       type: 'PUT',
       url: '/message/recipient',
       data: {recipient: this.props.user},
       success: function() {
-        console.log('PUT request succeeded!')
+        console.log('PUT request succeeded!');
       }.bind(this),
       error: function(err) {
-        console.log('PUT request failed!')
+        console.log('PUT request failed!');
       }
     });
   }
 
-  render(){
+  render() {
     return (
       <div>
         <div className="messageList">
           <table className="table table-striped">
-                <thead>
-                <tr>
-                  <th>Sender</th>
-                  <th>Message</th>
-                </tr>
-                </thead>
-                <tbody>
-                  {
-                    this.props.messages.map((message) =>
-                      <Message
-                        message={message}
-                        handleMessageClick={this.handleMessageClick}
-                        key={message._id}
-                      />
-                  )}
-                </tbody>
+            <thead>
+              <tr>
+                <th>Sender</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.props.messages.map((message) =>
+                  <Message
+                    message={message}
+                    handleMessageClick={this.handleMessageClick}
+                    key={message._id}
+                  />
+                )
+              }
+            </tbody>
           </table>
         </div>
         <div className="sendMessage">

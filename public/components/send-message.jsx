@@ -27,12 +27,12 @@ class SendMessage extends React.Component {
       recipient: this.recipient,
       sender: this.state.sender,
       message: this.state.message
-    }
+    };
 
     if (this.state.message === '') {
       console.log('Please type a message');
     } else if ((this.recipient === undefined) || (this.recipient === '')) {
-      console.log('Please select a recipient')
+      console.log('Please select a recipient');
     } else {
       $.ajax({
         url: '/message',
