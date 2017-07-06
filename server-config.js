@@ -51,6 +51,10 @@ app.get('/test', handler.getTest);
 app.get('/profile', handler.getProfile);
 app.post('/profile', handler.postProfile);
 app.get('/user', handler.getUser);
+app.get('/users', handler.getAllUsers);
+
+app.get('/friends', handler.getFriends);
+app.post('/friends', handler.addFriend);
 
 app.get('/login', handler.getLogin);
 app.post('/login', handler.postLogin);
