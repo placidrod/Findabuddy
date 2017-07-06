@@ -88,7 +88,7 @@ class App extends React.Component {
           this.setState({
             users: res.users
           });
-        }.bind(this),
+        },
         error: function(err) {
           console.log('Couldn\'t get users:', err);
         }
@@ -105,7 +105,7 @@ class App extends React.Component {
           this.setState({
             friends: res.friends
           });
-        }.bind(this),
+        },
         error: function(err) {
           console.log('Couldn\'t get friends:', err);
         }
