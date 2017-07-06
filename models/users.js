@@ -14,7 +14,8 @@ var userSchema = mongoose.Schema({
 	requestHistory: [],
 	ratings: [],
   bio: String,
-  bioTitle: String
+  bioTitle: String,
+  friends: []
 });
 
 var User = mongoose.model('User', userSchema);
