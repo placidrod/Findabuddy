@@ -66,13 +66,18 @@ class Profile extends React.Component {
         this.setState({
           bio: profile.bio,
           bioTitle: profile.bioTitle,
-          bioExist: true
+          bioExist: true,
+          editing: false
         });
       }.bind(this),
       error: function() {
         console.log('failed to show profile');
       }
     });
+  }
+
+  toggleEdit() {
+    this.setState({editing: !this.state.editing});
   }
 
   showProfileEdit() {
@@ -102,7 +107,12 @@ class Profile extends React.Component {
           </div>
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
-              <button type="submit" className="btn btn-default" onClick={this.postProfileInfo}>Submit</button>
+              <button type="submit" className="btn btn-default"
+                onClick={e => {
+                  e.preventDefault();
+                  this.postProfileInfo();
+                }}
+              >Submit</button>
             </div>
           </div>
         </form>
@@ -113,6 +123,11 @@ class Profile extends React.Component {
   showProfileView() {
     return (
       <div className="profile">
+        <button
+          id="profile-edit-btn"
+          className="btn btn-default"
+          onClick={() => this.toggleEdit()}
+        >Edit</button>
         <div className="panel panel-warning">
           <div className="panel-heading"><h4>{this.state.bioTitle}</h4></div>
           <div className="panel-body">
