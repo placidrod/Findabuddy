@@ -25,6 +25,11 @@ li.nav-name {
   font-size: 18px;
 }
 
+li.dropdown {
+  padding-top: 10px;
+  font-size: 18px;
+}
+
 .componentWindow {
   width: 75%;
   margin-right: auto;
