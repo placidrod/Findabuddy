@@ -113,6 +113,10 @@ class App extends React.Component {
     }
   }
 
+  addFriend() {
+    //todo
+  }
+
   handleNotificationSelect(notification) {
     this.setState({
       selectedNotification: notification
