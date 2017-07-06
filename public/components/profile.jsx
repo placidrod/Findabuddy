@@ -104,18 +104,18 @@ class Profile extends React.Component {
             </div>
           </form>
         </div>
-      )
-    } else  {
-        return (
-          <div className="profile">
-            <div className="panel panel-warning">
-              <div className="panel-heading"><h4>{this.state.bioTitle}</h4></div>
-              <div className="panel-body">
-                <p>{this.state.bio}</p>
-              </div>
+      );
+    } else {
+      return (
+        <div className="profile">
+          <div className="panel panel-warning">
+            <div className="panel-heading"><h4>{this.state.bioTitle}</h4></div>
+            <div className="panel-body">
+              <p>{this.state.bio}</p>
             </div>
           </div>
-        )
+        </div>
+      );
     }
   }
 }

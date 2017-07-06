@@ -5,17 +5,17 @@
 var mongoose = require('mongoose');
 
 var buddyRequestSchema = mongoose.Schema({
-	user: String,
-	gender: String,
-	minAge: Number,
-	maxAge: Number,
-	zipCode: Number,
+  user: String,
+  gender: String,
+  minAge: Number,
+  maxAge: Number,
+  zipCode: Number,
   activityNoun: String,
   activityVerb: String,
-	postTitle: String,
+  postTitle: String,
   postDateTime: String,
-	description: String,
-	associatedPeople: []
+  description: String,
+  associatedPeople: []
 });
 
 var BuddyRequest = mongoose.model('BuddyRequest', buddyRequestSchema);

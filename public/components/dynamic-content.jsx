@@ -40,8 +40,8 @@ class DynamicContent extends React.Component {
         <div className="componentWindow">
           <h1>Search Form</h1>
           <SearchForm
-          handleSubmitRequest={this.handleSubmitRequest}
-          handleSelect={this.props.handleSelect}
+            handleSubmitRequest={this.handleSubmitRequest}
+            handleSelect={this.props.handleSelect}
           />
         </div>
       );
@@ -97,7 +97,7 @@ class DynamicContent extends React.Component {
           />
         </div>
       );
-    } else if (this.props.render.browseRequests){
+    } else if (this.props.render.browseRequests) {
       return (
         <div className="componentWindow">
           <h1>Open Requests</h1>

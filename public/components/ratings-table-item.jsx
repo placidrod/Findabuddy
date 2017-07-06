@@ -9,7 +9,7 @@ class RatingsTableItem extends React.Component {
 
 
   render() {
-    console.log('ratings table item: ',this.props.rating);
+    console.log('ratings table item: ', this.props.rating);
     return (
       <tr>
         <td>{this.props.rating.reviewer}</td>

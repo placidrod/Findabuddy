@@ -50,7 +50,7 @@ describe('', function() {
       });
       User.create({
         username: 'bob',
-        password:'password'
+        password: 'password'
       });
       User.create({
         username: 'shaniqua',
@@ -63,65 +63,65 @@ describe('', function() {
     //1.getIndex should return the index route
     it('GET "/" should redirect to "/login"', function(done) {
       request(app)
-      .get('/')
-      .expect(302)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/login');
-      })
-      .end(done);
+        .get('/')
+        .expect(302)
+        .expect(function(res) {
+          expect(res.headers.location).to.equal('/login');
+        })
+        .end(done);
     });
 
     //3. get /login should render the login page
     it('get "/login" should render the login page', function(done) {
       request(app)
-      .get('/login')
-      .expect(200)
-      .expect(function(res) {
-        //console.log('\n');
-        var templateString = fs.readFileSync(app.mainProjectDirectory + '/views/login.ejs', 'utf-8');
-        //console.log(res.text, templateString);
-        expect(res.text).to.equal(templateString);
-      })
-      .end(done);
+        .get('/login')
+        .expect(200)
+        .expect(function(res) {
+          //console.log('\n');
+          var templateString = fs.readFileSync(app.mainProjectDirectory + '/views/login.ejs', 'utf-8');
+          //console.log(res.text, templateString);
+          expect(res.text).to.equal(templateString);
+        })
+        .end(done);
     });
 
     //Does not pass all of the time
     //11. post /login should only allow login if user exists, and password matches
     xit('post "/login" should only allow login if user exists, and password matches', function(done) {
       request(app)
-      .post('/login')
-      .send({
-        'username': 'testuser',
-        'password': 'testPassword'
-      })
-      .expect(function(res) {
-        expect(res.body.status).to.equal('200');
-      })
-      .end(done);
+        .post('/login')
+        .send({
+          'username': 'testuser',
+          'password': 'testPassword'
+        })
+        .expect(function(res) {
+          expect(res.body.status).to.equal('200');
+        })
+        .end(done);
     });
 
     //Did not finish implementing
     //12. post /login should generate a new session if one doesnt already exist
     xit('post /login should generate a new session if one doesnt already exist', function(done) {
       request(app)
-      .post('/login')
-      .send({
-        username: 'testuser',
-        password: 'testPassword'
-      })
-      .expect(302)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/');
-      })
-      .end(function() {
-        request(app)
-        .get('/')
+        .post('/login')
+        .send({
+          username: 'testuser',
+          password: 'testPassword'
+        })
         .expect(302)
         .expect(function(res) {
           expect(res.headers.location).to.equal('/');
         })
-        .end(done);
-      });
+        .end(function() {
+          request(app)
+            .get('/')
+            .expect(302)
+            .expect(function(res) {
+              expect(res.headers.location).to.equal('/');
+            })
+            .end(done);
+        });
     });
     /*
     13. get /login should check for an existing session that has a
@@ -131,7 +131,7 @@ describe('', function() {
   });
 
   describe('Signup endpoint', function() {
-   this.timeout(4000);
+    this.timeout(4000);
     beforeEach(function(done) {
       // login
       // add users
@@ -141,7 +141,7 @@ describe('', function() {
       });
       User.create({
         username: 'bob',
-        password:'password'
+        password: 'password'
       });
 
       done();
@@ -150,57 +150,57 @@ describe('', function() {
     //4. get /signup should render the signup page
     it('get "/signup" should render the signup page', function(done) {
       request(app)
-      .get('/signup')
-      .expect(200)
-      .expect(function(res) {
-        var templateString = fs.readFileSync(app.mainProjectDirectory + '/views/signup.ejs', 'utf-8');
-        //console.log(res.text, templateString);
-        expect(res.text).to.equal(templateString);
-      })
-      .end(done);
+        .get('/signup')
+        .expect(200)
+        .expect(function(res) {
+          var templateString = fs.readFileSync(app.mainProjectDirectory + '/views/signup.ejs', 'utf-8');
+          //console.log(res.text, templateString);
+          expect(res.text).to.equal(templateString);
+        })
+        .end(done);
     });
 
     //Does not work all the time
     //5. post /signup should not work if the username already exists
     xit('post "/signup" should not work if the username already exists', function(done) {
       request(app)
-      .post('/signup')
-      .send({
-        username: 'testuser',
-        password: 'testPassword'
-      })
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/signup');
-      })
-      .end(done);
+        .post('/signup')
+        .send({
+          username: 'testuser',
+          password: 'testPassword'
+        })
+        .expect(function(res) {
+          expect(res.headers.location).to.equal('/signup');
+        })
+        .end(done);
     });
 
     //6. post /signup should be case insensitive to previously created users
     it('post "/signup" should be case insensitive to previously created users', function(done) {
       request(app)
-      .post('/signup')
-      .send({
-        username: 'TESTuSER',
-        password: 'testPassword'
-      })
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/signup');
-      });
+        .post('/signup')
+        .send({
+          username: 'TESTuSER',
+          password: 'testPassword'
+        })
+        .expect(function(res) {
+          expect(res.headers.location).to.equal('/signup');
+        });
       done();
     });
 
     //7. post /signup should error if password is blank
     it('post "/signup" should error if password is blank', function(done) {
       request(app)
-      .post('/signup')
-      .send({
-        username: 'testuser',
-        password: ''
-      })
-      .expect(302)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/signup');
-      });
+        .post('/signup')
+        .send({
+          username: 'testuser',
+          password: ''
+        })
+        .expect(302)
+        .expect(function(res) {
+          expect(res.headers.location).to.equal('/signup');
+        });
       done();
     });
 
@@ -209,16 +209,16 @@ describe('', function() {
     //21. post /signup should redirect to index on valid new username and password
     it('post "/signup" should redirect to index on valid new username and password', function(done) {
       request(app)
-      .post('/signup')
-      .send({
-        username: 'shaniqua',
-        password: '12345'
-      })
-      .expect(200)
-      .expect(function(res) {
-        //console.log('res', res);
-        expect(res.body.status).to.equal('200');
-      });
+        .post('/signup')
+        .send({
+          username: 'shaniqua',
+          password: '12345'
+        })
+        .expect(200)
+        .expect(function(res) {
+          //console.log('res', res);
+          expect(res.body.status).to.equal('200');
+        });
       done();
     });
   });
@@ -238,42 +238,42 @@ describe('', function() {
     //9. get /logout should redidrect to login
     it('get "/logout" should redidrect to login', function(done) {
       request(app)
-      .get('/logout')
-      .expect(302)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/login');
-      })
-      .end(done);
-    });
-
-    //10. get /logout should destroy the current session
-    it('get "/logout" should destroy the current session', function(done) {
-      request(app)
-      .post('/login')
-      .send({
-        username: 'testuser',
-        password: 'testPassword'
-      })
-      .expect(302)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/');
-      })
-      .end(function() {
-        request(app)
         .get('/logout')
         .expect(302)
         .expect(function(res) {
           expect(res.headers.location).to.equal('/login');
         })
-        .end(function(){
+        .end(done);
+    });
+
+    //10. get /logout should destroy the current session
+    it('get "/logout" should destroy the current session', function(done) {
+      request(app)
+        .post('/login')
+        .send({
+          username: 'testuser',
+          password: 'testPassword'
+        })
+        .expect(302)
+        .expect(function(res) {
+          expect(res.headers.location).to.equal('/');
+        })
+        .end(function() {
           request(app)
-          .get('/')
-          .expect(302)
-          .expect(function(res) {
-            expect(res.headers.location).to.equal('/login');
-          });
+            .get('/logout')
+            .expect(302)
+            .expect(function(res) {
+              expect(res.headers.location).to.equal('/login');
+            })
+            .end(function() {
+              request(app)
+                .get('/')
+                .expect(302)
+                .expect(function(res) {
+                  expect(res.headers.location).to.equal('/login');
+                });
+            });
         });
-      });
       done();
     });
 
@@ -305,9 +305,9 @@ describe('', function() {
     //20. invalid urls should return status code 404
     it('invalid urls should return status code 404', function(done) {
       request(app)
-      .get('/invalid')
-      .expect(404)
-      .end(done);
+        .get('/invalid')
+        .expect(404)
+        .end(done);
     });
   });
 });

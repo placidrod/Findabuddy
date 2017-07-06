@@ -32,14 +32,14 @@ class Login extends React.Component {
       dataType: 'json',
     })
       .done(function(data) {
-        console.log('data ',data);
-        if(data.status === '200') {
+        console.log('data ', data);
+        if (data.status === '200') {
           console.log('login successful');
           window.location.replace('/');
         }
       })
       .fail(function(failInfo) {
-        console.log('FAIL',failInfo);
+        console.log('FAIL', failInfo);
         window.location.replace('/login');
       });
   }
@@ -64,7 +64,7 @@ class Login extends React.Component {
         <button className="button col-md-6"
           onClick={() => this.submitRequest()}>Login</button>
         <button className="button col-md-6"
-                onClick={() => this.goSignup()}>Signup</button>
+          onClick={() => this.goSignup()}>Signup</button>
       </div>
     );
   }
