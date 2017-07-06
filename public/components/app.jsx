@@ -113,6 +113,10 @@ class App extends React.Component {
     }
   }
 
+  addFriend() {
+    //todo
+  }
+
   handleNotificationSelect(notification) {
     this.setState({
       selectedNotification: notification
@@ -175,6 +179,8 @@ class App extends React.Component {
         <Nav
           handleSelect={this.handleSelect}
           user={this.state.userName}
+          messages={this.state.messages}
+          handleNotificationSelect={this.handleNotificationSelect}
         />
         <div className="dynamicContent col-md-9">
           <DynamicContent
