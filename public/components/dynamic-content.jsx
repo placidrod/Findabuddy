@@ -10,10 +10,20 @@ class DynamicContent extends React.Component {
     this.state = {
       // renderResults: this.props.render.renderResults,
       results: [],
+      convo: {},
       currentPost: ''
     };
     this.handleSubmitRequest = this.handleSubmitRequest.bind(this);
     this.handlePostClick = this.handlePostClick.bind(this);
+    this.handleConvoClick = this.handleConvoClick.bind(this);
+
+    this.props.socket.on('message', function(convo){
+      console.log(convo);
+      this.props.getMessages();
+      this.setState({
+        convo: convo
+      });
+    }.bind(this));
   }
   //click event handler for search submit & new buddy request submit
   handleSubmitRequest(data) {
@@ -22,6 +32,20 @@ class DynamicContent extends React.Component {
     this.setState({
       results: data
     });
+  }
+
+  handleConvoClick(convo) {
+
+    this.setState({
+      convo: convo
+    });
+
+
+    this.props.handleSelect('chat');
+  }
+
+  handleBackToConversations(){
+    this.props.handleSelect('conversations');
   }
 
 
@@ -95,7 +119,7 @@ class DynamicContent extends React.Component {
           <Conversations
             user={this.props.user}
             conversations={this.props.conversations}
-            handleMessageClick={this.props.handleMessageClick}
+            handleConvoClick={this.handleConvoClick}
           />
         </div>
       );
@@ -106,6 +130,17 @@ class DynamicContent extends React.Component {
           <BrowseRequests
             requests={this.props.requests}
             handlePostClick={this.handlePostClick}
+
+          />
+        </div>
+      );
+    } else if (this.props.render.chat) {
+      return (
+        <div className="componentWindow">
+          <h1>{this.state.convo.participants[1]}</h1>
+          <MessageList
+            convo={this.state.convo}
+            user={this.props.user}
           />
         </div>
       );

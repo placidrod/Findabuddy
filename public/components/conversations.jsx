@@ -1,4 +1,7 @@
-var Conversations = ({user, conversations, handleMessageClick}) => (
+
+
+
+var Conversations = ({user, conversations, handleConvoClick}) => (
 
   <div>
     <div className="messageList">
@@ -15,7 +18,7 @@ var Conversations = ({user, conversations, handleMessageClick}) => (
               <Message
                 convo={convo}
                 user={user}
-                handleMessageClick={handleMessageClick}
+                handleConvoClick={handleConvoClick}
                 key={convo._id}
               />
             )

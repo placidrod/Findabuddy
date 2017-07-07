@@ -4,6 +4,8 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.socket = io();
     this.state = {
       userName: '',
       render: {
@@ -13,7 +15,8 @@ class App extends React.Component {
         selectProfile: false,
         selectMessages: false,
         renderResults: false,
-        renderPost: false
+        renderPost: false,
+        chat:false
       },
       selectedNotification: {},
       conversations: [],
@@ -24,6 +27,9 @@ class App extends React.Component {
     this.getMessages = this.getMessages.bind(this);
     this.handleNotificationSelect = this.handleNotificationSelect.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+
+
+
   }
 
   //grab logged in user after session is authenticated
@@ -34,6 +40,7 @@ class App extends React.Component {
       url: '/user',
       type: 'GET',
       success: function(user) {
+        self.socket.emit('user', user);
         self.setState(() => ({userName: user}));
       }
     }) /*eslint-disable indent*/
@@ -212,6 +219,8 @@ class App extends React.Component {
             conversations={this.state.conversations}
             requests={this.state.requests}
             friends={this.state.friends}
+            getMessages={this.getMessages}
+            socket={this.socket}
           />
         </div>
         <div className="notificationWindow col-md-3">
