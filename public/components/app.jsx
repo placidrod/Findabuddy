@@ -16,7 +16,7 @@ class App extends React.Component {
         renderPost: false
       },
       selectedNotification: {},
-      messages: [],
+      conversations: [],
       requests: [],
       users: [],
       friends: []
@@ -49,22 +49,19 @@ class App extends React.Component {
 
   //helper function
   getMessages() {
-    if (this.state.userName.length) {
-      $.ajax({
-        type: 'GET',
-        url: '/message/recipient',
-        data: {recipient: this.state.userName},
-        success: function(messages) {
-          this.setState({
-            messages: messages
-          });
-        }.bind(this),
-        error: function(err) {
-          console.log('Couldn\'t get messages:', err);
-        }
-      });
-    }
-    setTimeout(this.getMessages, 3000);
+    $.ajax({
+      type: 'GET',
+      url: '/message',
+      success: function(convos) {
+        this.setState({
+          conversations: convos
+        });
+      }.bind(this),
+      error: function(err) {
+        console.log('Couldn\'t get messages:', err);
+      }
+    });
+
   }
 
   // getInterests() {
@@ -141,6 +138,10 @@ class App extends React.Component {
     });
   }
 
+  handleMessagClick() {
+
+  }
+
   //When a link in the navbar is clicked its render state is set to true
   //and all other render states are to false
   //If the event flag is set then the link is being pulled from an on click event
@@ -197,7 +198,7 @@ class App extends React.Component {
         <Nav
           handleSelect={this.handleSelect}
           user={this.state.userName}
-          messages={this.state.messages}
+          messages={this.state.conversations}
           handleNotificationSelect={this.handleNotificationSelect}
         />
         <div className="dynamicContent col-md-9">
@@ -205,9 +206,10 @@ class App extends React.Component {
             handleNotificationSelect={this.handleNotificationSelect}
             render={this.state.render}
             handleSelect={this.handleSelect}
+            handleMessagClick={this.handleMessagClick}
             user={this.state.userName}
             selectedNotification={this.state.selectedNotification}
-            messages={this.state.messages}
+            conversations={this.state.conversations}
             requests={this.state.requests}
             friends={this.state.friends}
           />
@@ -217,7 +219,7 @@ class App extends React.Component {
             handleNotificationSelect={this.handleNotificationSelect}
             handleSelect={this.handleSelect}
             user={this.state.userName}
-            messages={this.state.messages}
+            messages={this.state.conversations}
           />
         </div>
       </div>

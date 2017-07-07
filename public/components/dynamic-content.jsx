@@ -23,6 +23,8 @@ class DynamicContent extends React.Component {
       results: data
     });
   }
+
+
   //renders a specific request when it is clicked on in the search results list
   handlePostClick(post) {
     // var results = this.state.results;
@@ -90,11 +92,10 @@ class DynamicContent extends React.Component {
       return (
         <div className="componentWindow">
           <h1>Messages</h1>
-          <MessageList
-            handleNotificationSelect={this.props.handleNotificationSelect}
-            selectedNotification={this.props.selectedNotification}
+          <Conversations
             user={this.props.user}
-            messages={this.props.messages}
+            conversations={this.props.conversations}
+            handleMessageClick={this.props.handleMessageClick}
           />
         </div>
       );

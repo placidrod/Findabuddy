@@ -71,7 +71,7 @@ app.get('/buddyRequest/:_id', handler.getSingleBuddyRequest);
 app.post('/buddyRequest', handler.postBuddyRequest);
 
 app.get('/message', handler.getMessages);
-app.get('/message/recipient', handler.getMessagesByRecipient);
+app.get('/message/:recipient', handler.getMessagesByRecipient);
 app.post('/message', handler.postMessage);
 app.put('/message/recipient', handler.putMessageByRecipient);
 
