@@ -89,7 +89,8 @@ class Profile extends React.Component {
       success: function(updatedInterests) {
         console.log('recieved updated interests', updatedInterests);
         this.setState({
-          interests: updatedInterests
+          interests: updatedInterests,
+          newInterest: ''
         });
       }.bind(this),
       error: function() {
@@ -174,8 +175,16 @@ class Profile extends React.Component {
 
     return (
       <div>
-        {interestsList}
-        <form className="add-interest-form form-inline">
+        <p>
+          {interestsList}
+        </p>
+        <form
+          className="add-interest-form form-inline"
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.postInterest();
+          }}
+        >
           <div className="form-group">
             <input
               type="text"
@@ -183,15 +192,13 @@ class Profile extends React.Component {
               id="newInterest"
               name="newInterest"
               placeholder="Add New Interest"
+              value={this.state.newInterest}
               onChange={this.handleInputChange}
             />
           </div>
           <button
+            type="submit"
             className="btn btn-default"
-            onClick={(e) => {
-              e.preventDefault();
-              this.postInterest();
-            }}
           >Add</button>
         </form>
       </div>
