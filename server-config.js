@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 
 //initialization for mongodb collection to store session information
 var store = new MongoDBStore({
@@ -45,6 +48,11 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(function(req, res, next){
+  req.io = io;
+  next();
+});
+
 //routes for application
 app.get('/', handler.getIndex);
 app.get('/test', handler.getTest);
@@ -71,7 +79,7 @@ app.get('/buddyRequest/:_id', handler.getSingleBuddyRequest);
 app.post('/buddyRequest', handler.postBuddyRequest);
 
 app.get('/message', handler.getMessages);
-app.get('/message/recipient', handler.getMessagesByRecipient);
+app.get('/message/:recipient', handler.getMessagesByRecipient);
 app.post('/message', handler.postMessage);
 app.put('/message/recipient', handler.putMessageByRecipient);
 
@@ -82,4 +90,12 @@ app.put('/rating/:_id', handler.updateRating);
 
 app.get('/*', handler.get404);
 
-module.exports = app;
+
+io.sockets.on('connection', function (socket) {
+  socket.on('user', function (username) {
+    console.log('user joined', username);
+    socket.join(username); // We are using room of socket io
+  });
+});
+
+module.exports = server;

@@ -25,8 +25,7 @@ class SendMessage extends React.Component {
     event.preventDefault();
     var data = {
       recipient: this.recipient,
-      sender: this.state.sender,
-      message: this.state.message
+      text: this.state.message
     };
 
     if (this.state.message === '') {

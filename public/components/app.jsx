@@ -4,6 +4,8 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.socket = io();
     this.state = {
       userName: '',
       render: {
@@ -13,10 +15,11 @@ class App extends React.Component {
         selectProfile: false,
         selectMessages: false,
         renderResults: false,
-        renderPost: false
+        renderPost: false,
+        chat:false
       },
       selectedNotification: {},
-      messages: [],
+      conversations: [],
       requests: [],
       users: [],
       friends: []
@@ -24,6 +27,9 @@ class App extends React.Component {
     this.getMessages = this.getMessages.bind(this);
     this.handleNotificationSelect = this.handleNotificationSelect.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+
+
+
   }
 
   //grab logged in user after session is authenticated
@@ -34,6 +40,7 @@ class App extends React.Component {
       url: '/user',
       type: 'GET',
       success: function(user) {
+        self.socket.emit('user', user);
         self.setState(() => ({userName: user}));
       }
     }) /*eslint-disable indent*/
@@ -49,22 +56,19 @@ class App extends React.Component {
 
   //helper function
   getMessages() {
-    if (this.state.userName.length) {
-      $.ajax({
-        type: 'GET',
-        url: '/message/recipient',
-        data: {recipient: this.state.userName},
-        success: function(messages) {
-          this.setState({
-            messages: messages
-          });
-        }.bind(this),
-        error: function(err) {
-          console.log('Couldn\'t get messages:', err);
-        }
-      });
-    }
-    setTimeout(this.getMessages, 3000);
+    $.ajax({
+      type: 'GET',
+      url: '/message',
+      success: function(convos) {
+        this.setState({
+          conversations: convos
+        });
+      }.bind(this),
+      error: function(err) {
+        console.log('Couldn\'t get messages:', err);
+      }
+    });
+
   }
 
   // getInterests() {
@@ -141,6 +145,10 @@ class App extends React.Component {
     });
   }
 
+  handleMessagClick() {
+
+  }
+
   //When a link in the navbar is clicked its render state is set to true
   //and all other render states are to false
   //If the event flag is set then the link is being pulled from an on click event
@@ -197,7 +205,7 @@ class App extends React.Component {
         <Nav
           handleSelect={this.handleSelect}
           user={this.state.userName}
-          messages={this.state.messages}
+          messages={this.state.conversations}
           handleNotificationSelect={this.handleNotificationSelect}
         />
         <div className="dynamicContent col-md-9">
@@ -205,11 +213,14 @@ class App extends React.Component {
             handleNotificationSelect={this.handleNotificationSelect}
             render={this.state.render}
             handleSelect={this.handleSelect}
+            handleMessagClick={this.handleMessagClick}
             user={this.state.userName}
             selectedNotification={this.state.selectedNotification}
-            messages={this.state.messages}
+            conversations={this.state.conversations}
             requests={this.state.requests}
             friends={this.state.friends}
+            getMessages={this.getMessages}
+            socket={this.socket}
           />
         </div>
         <div className="notificationWindow col-md-3">
@@ -217,7 +228,7 @@ class App extends React.Component {
             handleNotificationSelect={this.handleNotificationSelect}
             handleSelect={this.handleSelect}
             user={this.state.userName}
-            messages={this.state.messages}
+            messages={this.state.conversations}
           />
         </div>
       </div>

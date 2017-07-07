@@ -12,50 +12,50 @@ class MessageList extends React.Component {
   }
 
   componentDidMount () {
-    var isRead = true;
+    // var isRead = true;
 
-    if (this.props.selectedNotification.sender) {
-      this.setState({
-        recipient: this.props.selectedNotification.sender
-      });
-    }
-    for (var i = 0; i < this.props.messages.length; i++) {
-      if (this.props.messages[i].read === false) {
-        isRead = false;
-        break;
-      }
-    }
-    //Prevents the put request from being called if the messages have
-    //already been updated as read
-    if (isRead === false) {
-      this.updateMessagesAsRead();
-    }
+    // if (this.props.selectedNotification.sender) {
+    //   this.setState({
+    //     recipient: this.props.selectedNotification.sender
+    //   });
+    // }
+    // for (var i = 0; i < this.props.messages.length; i++) {
+    //   if (this.props.messages[i].read === false) {
+    //     isRead = false;
+    //     break;
+    //   }
+    // }
+    // //Prevents the put request from being called if the messages have
+    // //already been updated as read
+    // if (isRead === false) {
+    //   this.updateMessagesAsRead();
+    // }
   }
 
   //This allows the recipient of the users message to be changed when a notification is clicked
   //while the user is viewing messages
   //https://stackoverflow.com/questions/32414308/updating-state-on-props-change-in-react-form
   componentWillReceiveProps(nextProps) {
-    var isRead = true;
+    // var isRead = true;
 
-    // You don't have to do this check first, but it can help prevent an unneeded render
-    if (nextProps.selectedNotification.sender !== this.state.recipient) {
-      this.setState({ recipient: nextProps.selectedNotification.sender });
-    }
-    if ((nextProps.messages.length !== this.props.messages.length) ||
-      (JSON.stringify(nextProps.messages) !== JSON.stringify(this.props.messages))) {
-      for (var i = 0; i < nextProps.messages.length; i++) {
-        if (nextProps.messages[i].read === false) {
-          isRead = false;
-          break;
-        }
-      }
-      //Prevents the put request from being called twice, once because the messages
-      //changed and once because the messages read property changed from true to false
-      if (isRead === false) {
-        this.updateMessagesAsRead();
-      }
-    }
+    // // You don't have to do this check first, but it can help prevent an unneeded render
+    // if (nextProps.selectedNotification.sender !== this.state.recipient) {
+    //   this.setState({ recipient: nextProps.selectedNotification.sender });
+    // }
+    // if ((nextProps.messages.length !== this.props.messages.length) ||
+    //   (JSON.stringify(nextProps.messages) !== JSON.stringify(this.props.messages))) {
+    //   for (var i = 0; i < nextProps.messages.length; i++) {
+    //     if (nextProps.messages[i].read === false) {
+    //       isRead = false;
+    //       break;
+    //     }
+    //   }
+    //   //Prevents the put request from being called twice, once because the messages
+    //   //changed and once because the messages read property changed from true to false
+    //   if (isRead === false) {
+    //     this.updateMessagesAsRead();
+    //   }
+    // }
   }
 
   handleMessageClick(message) {
@@ -92,10 +92,9 @@ class MessageList extends React.Component {
             </thead>
             <tbody>
               {
-                this.props.messages.map((message) =>
-                  <Message
+                this.props.convo.messages.map((message) =>
+                  <Chat
                     message={message}
-                    handleMessageClick={this.handleMessageClick}
                     key={message._id}
                   />
                 )
@@ -104,7 +103,7 @@ class MessageList extends React.Component {
           </table>
         </div>
         <div className="sendMessage">
-          <SendMessage recipient={this.state.recipient} sender={this.props.user}/>
+          <SendMessage recipient={this.props.convo.participants[0] === this.props.user ? this.props.convo.participants[1] : this.props.convo.participants[0]} sender={this.props.user}/>
         </div>
       </div>
     );
