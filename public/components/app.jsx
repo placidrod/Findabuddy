@@ -140,19 +140,21 @@ class App extends React.Component {
   }
 
   addFriend(friend) {
-    if (this.state.userName.length) {
+    //if (this.state.userName.length) {
       $.ajax({
         type: 'POST',
         url: '/friends',
-        data: friend,
+        data: {username: friend},
         success: (res) => {
-          this.getFriends()
+          this.setState({
+            friends: res
+          });
         },
         error: (err) => {
           console.log('Couldn\'t add Friend:', err)
         }
       })
-    }
+    //}
   }
 
   handleNotificationSelect(notification) {
@@ -225,6 +227,7 @@ class App extends React.Component {
           handleNotificationSelect={this.handleNotificationSelect}
           users={this.state.users}
           friends={this.state.friends}
+          addFriend={this.addFriend.bind(this)}
         />
         <div className="dynamicContent col-md-9">
           <DynamicContent

@@ -67,6 +67,7 @@ var Nav = (props) => {
 
                   console.log(e)
                   console.log(newFriend.value)
+                  props.addFriend(newFriend.value)
                 }}>
                 <input type="text" className="typeahead tt-query form-control" autoComplete="off" spellCheck="false"  ref={node => {
                   newFriend = node;
