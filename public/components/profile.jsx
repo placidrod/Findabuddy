@@ -9,8 +9,8 @@ class Profile extends React.Component {
       bioTitle: '',
       bioExist: false,
       profilePic: '',
-      // interests: interests,
-      // friends: friends,
+      interests: [],
+      friends: [],
       // interactions: interactions,
       editing: false
     };

@@ -72,6 +72,7 @@ class DynamicContent extends React.Component {
           <h1>About Me</h1>
           <Profile
             user={this.props.user}
+            friends={this.props.friends}
           />
         </div>
       );

@@ -41,6 +41,7 @@ class App extends React.Component {
     .then(() => this.getMessages())
     .then(() => this.getFriends())
     .then(() => this.getUsers())
+    // .then(() => this.getInterests())
     .fail(function(err) {
       console.log('ERROR', err);
     });
@@ -65,6 +66,23 @@ class App extends React.Component {
     }
     setTimeout(this.getMessages, 3000);
   }
+
+  // getInterests() {
+  //   if (this.state.userName.length) {
+  //     $.ajax({
+  //       type: 'GET',
+  //       url: '/interests',
+  //       success: (res) => {
+  //         this.setState({
+  //           interests: res.interests
+  //         });
+  //       },
+  //       error: (err) => {
+  //         console.log('Couldn\'t get interests:', err);
+  //       }
+  //     });
+  //   }
+  // }
 
   getRequests() {
     $.ajax({
@@ -191,6 +209,7 @@ class App extends React.Component {
             selectedNotification={this.state.selectedNotification}
             messages={this.state.messages}
             requests={this.state.requests}
+            friends={this.state.friends}
           />
         </div>
         <div className="notificationWindow col-md-3">
