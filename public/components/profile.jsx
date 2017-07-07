@@ -9,6 +9,7 @@ class Profile extends React.Component {
       bioTitle: '',
       bioExist: false,
       profilePic: '',
+      newInterest: '',
       interests: [],
       friends: [],
       // interactions: interactions,
@@ -30,7 +31,6 @@ class Profile extends React.Component {
   }
 
   getProfileInfo() {
-
     $.ajax({
       url: '/profile',
       type: 'GET',
@@ -41,7 +41,8 @@ class Profile extends React.Component {
           this.setState({
             bio: profile.bio,
             bioTitle: profile.bioTitle,
-            bioExist: true
+            interests: profile.interests,
+            bioExist: true,
           });
         }
       }.bind(this),
@@ -72,6 +73,27 @@ class Profile extends React.Component {
       }.bind(this),
       error: function() {
         console.log('failed to show profile');
+      }
+    });
+  }
+
+  postInterest() {
+    // console.log('interest before sending', this.state.newInterest);
+    $.ajax({
+      url: '/interests',
+      type: 'POST',
+      data: {
+        interest: this.state.newInterest
+      },
+      //dataType: dataType,
+      success: function(updatedInterests) {
+        console.log('recieved updated interests', updatedInterests);
+        this.setState({
+          interests: updatedInterests
+        });
+      }.bind(this),
+      error: function() {
+        console.log('failed to retrieve interests');
       }
     });
   }
@@ -138,6 +160,55 @@ class Profile extends React.Component {
     );
   }
 
+  renderInterestsPane() {
+    let interests = this.state.interests;
+    let interestsList;
+
+    if(interests.length) {
+      interestsList = interests.map((interest) => {
+        return <li>{interest}</li>;
+      });
+    } else {
+      interestsList = <p>No interests added yet</p>
+    }
+
+    return (
+      <div>
+        {interestsList}
+        <form className="add-interest-form form-inline">
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              id="newInterest"
+              name="newInterest"
+              placeholder="Add New Interest"
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <button
+            className="btn btn-default"
+            onClick={(e) => {
+              e.preventDefault();
+              this.postInterest();
+            }}
+          >Add</button>
+        </form>
+      </div>
+    );
+    // if(interests.length === 0) {
+    //   return (
+    //     <div>No interests added yet</div>
+    //   );
+    // } else {
+    //    interests.map((interest) => {
+    //     return (
+    //       <div>Add interests form</div>
+    //     );
+    //    });
+    // }
+  }
+
   render() {
     let profile;
     if (!this.state.bioExist || this.state.editing) {
@@ -156,7 +227,9 @@ class Profile extends React.Component {
           <div role="tabpanel" className="tab-pane active" id="profile">
             {profile}
           </div>
-          <div role="tabpanel" className="tab-pane" id="interests">...</div>
+          <div role="tabpanel" className="tab-pane" id="interests">
+            {this.renderInterestsPane()}
+          </div>
         </div>
       </div>
     );
