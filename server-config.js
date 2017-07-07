@@ -56,6 +56,9 @@ app.get('/users', handler.getAllUsers);
 app.get('/friends', handler.getFriends);
 app.post('/friends', handler.addFriend);
 
+app.get('/interests', handler.getInterests);
+app.post('/interests', handler.addInterest);
+
 app.get('/login', handler.getLogin);
 app.post('/login', handler.postLogin);
 app.get('/logout', handler.getLogout);
