@@ -68,7 +68,6 @@ class App extends React.Component {
         console.log('Couldn\'t get messages:', err);
       }
     });
-
   }
 
   // getInterests() {
@@ -107,9 +106,14 @@ class App extends React.Component {
         type: 'GET',
         url: '/users',
         success: (res) => {
+          var users = [];
+          for (var i = 0; i < res.length; i++) {
+            users.push(res[i].username)
+          }
           this.setState({
-            users: res.users
+            users: users
           });
+          console.log(this.state)
         },
         error: (err) => {
           console.log('Couldn\'t get users:', err);
@@ -135,8 +139,20 @@ class App extends React.Component {
     }
   }
 
-  addFriend() {
-    //todo
+  addFriend(friend) {
+    if (this.state.userName.length) {
+      $.ajax({
+        type: 'POST',
+        url: '/friends',
+        data: friend,
+        success: (res) => {
+          this.getFriends()
+        },
+        error: (err) => {
+          console.log('Couldn\'t add Friend:', err)
+        }
+      })
+    }
   }
 
   handleNotificationSelect(notification) {
@@ -207,6 +223,8 @@ class App extends React.Component {
           user={this.state.userName}
           messages={this.state.conversations}
           handleNotificationSelect={this.handleNotificationSelect}
+          users={this.state.users}
+          friends={this.state.friends}
         />
         <div className="dynamicContent col-md-9">
           <DynamicContent
@@ -223,13 +241,8 @@ class App extends React.Component {
             socket={this.socket}
           />
         </div>
-        <div className="notificationWindow col-md-3">
-          <Notifications
-            handleNotificationSelect={this.handleNotificationSelect}
-            handleSelect={this.handleSelect}
-            user={this.state.userName}
-            messages={this.state.conversations}
-          />
+        <div className="col-md-3">
+
         </div>
       </div>
     );
@@ -241,3 +254,12 @@ class App extends React.Component {
 ReactDOM.render(
   <App />, document.getElementById('app')
 );
+
+/*<div className="notificationWindow col-md-3">
+          <Notifications
+            handleNotificationSelect={this.handleNotificationSelect}
+            handleSelect={this.handleSelect}
+            user={this.state.userName}
+            messages={this.state.messages}
+          />
+        </div>*/

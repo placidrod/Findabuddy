@@ -18,14 +18,14 @@ class Notifications extends React.Component {
   render() {
     return (
       <div className="noitifications">
-        <h2>Notifications</h2>
-        <aside>
+        <div>Notifications</div>
+        <div className="divider"></div>
           {this.props.messages.map(notification => {
             if (notification.read === false) {
               return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />;
             }
           })}
-        </aside>
+
       </div>
     );
   }

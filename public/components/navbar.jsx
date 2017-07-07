@@ -1,5 +1,25 @@
 var Nav = (props) => {
-  var friendList;
+  //console.log(props.users)
+  var friendList
+  var users = props.users;
+  var newFriend
+     // Constructing the suggestion engine
+     var users = new Bloodhound({
+         datumTokenizer: Bloodhound.tokenizers.whitespace,
+         queryTokenizer: Bloodhound.tokenizers.whitespace,
+         local: users
+     });
+
+     // Initializing the typeahead
+     $('.typeahead').typeahead({
+         hint: false,
+         highlight: true, /* Enable substring highlighting */
+         minLength: 1 /* Specify minimum characters required for showing result */
+     },
+     {
+         name: 'users',
+         source: users
+     });
   if (!props.friends) {
     friendList = <option value="browse">Why not browse Requests?</option>
   } else {
@@ -7,6 +27,21 @@ var Nav = (props) => {
       return <option value={friend}>{friend}</option>
     })
   }
+
+  var notificationBell = () => {
+    for (var i = 0; i < props.messages.length; i++) {
+      var counter = 0;
+      if (props.messages[i].read === false) {
+        counter++
+      }
+      if (counter > 0) {
+        return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell unread">{counter}</span></a>)
+      } else {
+        return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>)
+      }
+    }
+  }
+
   return (
   <nav className="navbar navbar-inverse navbar-fixed-top">
     <div className="container-fluid">
@@ -27,12 +62,22 @@ var Nav = (props) => {
                {friendList}
                <li className="divider"></li>
                <li>
-                <input type="text" className="typehead tt-query" autoComplete="off" spellCheck="false"/>
+                <form method="post" onSubmit={(e) => {
+                  e.preventDefault();
+
+                  console.log(e)
+                  console.log(newFriend.value)
+                }}>
+                <input type="text" className="typeahead tt-query form-control" autoComplete="off" spellCheck="false"  ref={node => {
+                  newFriend = node;
+
+                }}/>
+                </form>
                </li>
            </ul>
         </li>
         <li className="dropdown">
-            <a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>
+            {notificationBell()}
             <ul className="dropdown-menu">
                 <Notifications
                   handleNotificationSelect={props.handleNotificationSelect}
