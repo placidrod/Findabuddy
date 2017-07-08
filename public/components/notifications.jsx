@@ -26,6 +26,7 @@ class Notifications extends React.Component {
         <div>Notifications</div>
         <div className="divider"></div>
           {this.props.messages.map(notification => {
+            console.log(this.props.messages)
             if (notification.read === false) {
               return <NotificationMessage key={notification._id} notification={this.props.messages} handleClick={this.handleClick} />;
             }
