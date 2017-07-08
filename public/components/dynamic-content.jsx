@@ -18,7 +18,7 @@ class DynamicContent extends React.Component {
     this.handlePostClick = this.handlePostClick.bind(this);
     this.handleConvoClick = this.handleConvoClick.bind(this);
 
-    this.props.socket.on('message', function(convo){
+    this.props.socket.on('message', function(convo) {
       console.log(convo);
       this.props.getMessages();
       this.setState({
@@ -50,10 +50,32 @@ class DynamicContent extends React.Component {
     this.props.handleSelect('chat');
   }
 
-  handleBackToConversations(){
+  handleBackToConversations() {
     this.props.handleSelect('conversations');
   }
 
+  handleCreateEmptyConvo(convo) { this.setState({convo: convo}).bind(this); }
+
+  // For case of when user adds a friend but hasn't sent any messages yet
+  createEmptyConvo(recipient) {
+    event.preventDefault();
+    var data = {
+      recipient: recipient,
+      justAdded: true,
+      // text: `FYI, ${currUsername} added you as a buddy. Feel free to add them back so it's easier to chat.`
+    };
+    $.ajax({
+      url: '/message',
+      type: 'POST',
+      data: data,
+      success: function() {
+        console.log('posted new convo');
+      },
+      error: function(err) {
+        console.log('failed to post empty convo', err);
+      }
+    });
+  }
 
 
 
@@ -107,6 +129,13 @@ class DynamicContent extends React.Component {
           <Profile
             user={this.props.user}
             friends={this.props.friends}
+            users={this.state.users}
+            getUsers={this.props.getUsers}
+            addFriend={this.props.addFriend}
+            conversations={this.props.conversations}
+            handleConvoClick={this.handleConvoClick}
+            createEmptyConvo={Promise.promisify(this.createEmptyConvo)}
+            handleCreateEmptyConvo={this.handleCreateEmptyConvo}
           />
         </div>
       );
@@ -145,7 +174,9 @@ class DynamicContent extends React.Component {
     } else if (this.props.render.chat) {
       return (
         <div className="componentWindow">
-          <h1>{this.state.convo.participants[1]}</h1>
+          <h1>
+            {this.state.convo.participants.find(username => username !== this.props.user)}
+          </h1>
           <MessageList
             convo={this.state.convo}
             user={this.props.user}

@@ -5,7 +5,6 @@ class Nav extends React.Component {
     this.newFriend
     //this.friendList
     //this.notificationBell
-
   }
 
   friendList() {
@@ -58,7 +57,6 @@ class Nav extends React.Component {
     }
   }
 
-
   render() {
     return (
     <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -95,9 +93,6 @@ class Nav extends React.Component {
           </li>
           <li className="dropdown">
               {this.notificationBell}
-
-
-
               <ul className="dropdown-menu">
                 <Notifications
                   handleNotificationSelect={this.props.handleNotificationSelect}
@@ -116,7 +111,7 @@ class Nav extends React.Component {
   }
 
 
-};
+}
 
 
 

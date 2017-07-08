@@ -274,7 +274,10 @@ class App extends React.Component {
             selectedNotification={this.state.selectedNotification}
             conversations={this.state.conversations}
             requests={this.state.requests}
+            users={this.state.users}
+            getUsers={this.getUsers.bind(this)}
             friends={this.state.friends}
+            addFriend={this.addFriend.bind(this)}
             getMessages={this.getMessages}
             socket={this.socket}
           />
