@@ -168,7 +168,7 @@ class Profile extends React.Component {
       });
 
     } else {
-      interestsList = <li>No interests added yet</li>
+      interestsList = <li>No interests added yet</li>;
     }
     return (
       <div>
@@ -200,13 +200,13 @@ class Profile extends React.Component {
         </form>
       </div>
     );
-  };
+  }
 
   renderPreviousRequestsPane() {
     let requests = this.state.requests;
     let requestsList;
 
-    if(requests.length) {
+    if (requests.length) {
       requestsList = requests.map((request) => {
         return (
           <tr>
@@ -220,7 +220,7 @@ class Profile extends React.Component {
         );
       });
     } else {
-      requestsList = <tr><td colSpan="6">No requests added yet</td></tr>
+      requestsList = <tr><td colSpan="6">No requests added yet</td></tr>;
     }
 
     return (
@@ -347,7 +347,6 @@ class Profile extends React.Component {
       </div>
     );
   }
->>>>>>> (feats & fix) See below:
 
   render() {
     let profile;
@@ -383,6 +382,7 @@ class Profile extends React.Component {
           </div>
           <div role="tabpanel" className="tab-pane" id="requests">
             {this.renderPreviousRequestsPane()}
+          </div>
           <div role="tabpanel" className="tab-pane" id="friends">
             {buddyView}
           </div>
