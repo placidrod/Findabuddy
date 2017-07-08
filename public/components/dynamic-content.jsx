@@ -40,6 +40,12 @@ class DynamicContent extends React.Component {
     this.setState({
       convo: convo
     });
+    $.ajax({
+      url: "/message/read/" + convo._id,
+      method: 'PUT',
+      success: () => {
+      }
+    })
 
     this.props.handleSelect('chat');
   }

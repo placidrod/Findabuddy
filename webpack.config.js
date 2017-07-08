@@ -2,9 +2,10 @@ var path = require('path');
 
 module.exports = {
   entry: './map-view.jsx',
+  context: path.resolve(__dirname, 'public'),
   output: {
     filename: 'map-view.js',
-    path: path.resolve(__dirname, 'components/compiled')
+    path: path.resolve(__dirname, 'public/components/compiled')
   },
   devtool: 'source-map',
   module: {

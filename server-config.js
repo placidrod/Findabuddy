@@ -85,6 +85,7 @@ app.get('/message', handler.getMessages);
 app.get('/message/:recipient', handler.getMessagesByRecipient);
 app.post('/message', handler.postMessage);
 app.put('/message/recipient', handler.putMessageByRecipient);
+app.put('/message/read/:id', handler.toggleRead);
 
 // app.get('/rating', handler.getRating);
 app.get('/rating/:request_id', handler.getRequestRatings);
