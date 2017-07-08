@@ -77,6 +77,12 @@ class Profile extends React.Component {
     });
   }
 
+  clearBuddyProfile() {
+    this.setState({
+      buddyProfile: {}
+    });
+  }
+
   getRequestHistory() {
     $.ajax({
       url: '/requests',
@@ -396,6 +402,7 @@ class Profile extends React.Component {
 
     return (
       <div>
+        <button className="btn btn-primary" onClick={() => this.clearBuddyProfile()}>Back to my Profile</button>
         <a href="kenneth" onClick={(e) => {e.preventDefault(); this.getBuddyProfileInfo(e);}}>View kenneth's profile</a>
         <ul className="nav nav-tabs" role="tablist">
           <li role="presentation" className="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
