@@ -160,15 +160,11 @@ class DynamicContent extends React.Component {
           />
         </div>
       );
-    } else if (this.props.render.browseRequests) {
+    } else if (this.props.render.home) {
       return (
         <div className="componentWindow">
-          <h1>Open Requests</h1>
-          <BrowseRequests
-            requests={this.props.requests}
-            handlePostClick={this.handlePostClick}
-
-          />
+         <Home requests={this.props.requests} handleMarkerClick={this.props.handleMarkerClick}  handleInfoClose={this.props.handleInfoClose} handlePostClick={this.handlePostClick}
+         />
         </div>
       );
     } else if (this.props.render.chat) {
@@ -182,10 +178,6 @@ class DynamicContent extends React.Component {
             user={this.props.user}
           />
         </div>
-      );
-    } else if (this.props.render.map) {
-      return (
-        <MapView requests={this.props.requests} handleMarkerClick={this.props.handleMarkerClick}  handleInfoClose={this.props.handleInfoClose} handlePostClick={this.handlePostClick} />
       );
     }
   }

@@ -62,7 +62,7 @@ class Nav extends React.Component {
     <nav className="navbar navbar-inverse navbar-fixed-top">
       <div className="container-fluid">
         <div className="navbar-header">
-          <a href="#" name="selectSearch" onClick={(e) => { this.props.handleSelect(e, true); }}><img name="selectSearch" className="nav-logo" src="../img/findabuddy_icon2_orange.png"/></a>
+          <a href="#" name="home" onClick={(e) => { this.props.handleSelect(e, true); }}><img name="home" className="nav-logo" src="../img/findabuddy_icon2_orange.png"/></a>
         </div>
         <ul className="nav navbar-nav navbar-left">
           <li className="nav-name" ><a href="#" name="selectProfile" onClick={(e) => { this.props.handleSelect(e, true); }}>How ya doin, {this.props.user}?!</a></li>
@@ -81,7 +81,7 @@ class Nav extends React.Component {
                   <form method="post" onSubmit={(e) => {
                     e.preventDefault();
                     console.log(e)
-                    console.log(newFriend.value)
+                    // console.log(newFriend.value)
                     this.props.addFriend(this.newFriend.value)
                   }}>
                   <input type="text" className="typeahead tt-query form-control" autoComplete="off" spellCheck="false"  ref={node => {
