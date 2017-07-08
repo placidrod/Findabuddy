@@ -187,14 +187,14 @@ class Profile extends React.Component {
         return <li>{interest}</li>;
       });
     } else {
-      interestsList = <p>No interests added yet</p>
+      interestsList = <li>No interests added yet</li>
     }
 
     return (
       <div>
-        <p>
+        <ul>
           {interestsList}
-        </p>
+        </ul>
         <form
           className="add-interest-form form-inline"
           onSubmit={(e) => {
