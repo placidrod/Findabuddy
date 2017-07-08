@@ -14,6 +14,8 @@ class CreateRequest extends React.Component {
       minAge: '',
       maxAge: '',
       zipCode: '',
+      city:'',
+      country:'',
       activityVerb: '',
       activityNoun: ''
     };
@@ -96,6 +98,14 @@ class CreateRequest extends React.Component {
         <div className="form-group">
           <label htmlFor="noun">Zip Code</label>
           <input type="text" value={this.state.zipCode} className="form-control" placeholder="Enter preferred buddy zip code" name="zipCode" onChange={this.handleInputChange}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="noun">City</label>
+          <input type="text" value={this.state.city} className="form-control" placeholder="Enter a city" name="city" onChange={this.handleInputChange}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="noun">Country</label>
+          <input type="text" value={this.state.country} className="form-control" placeholder="Enter the country" name="country" onChange={this.handleInputChange}/>
         </div>
         <div className="form-group">
           <label htmlFor="noun">Activity Verb</label>
