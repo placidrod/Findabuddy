@@ -9,25 +9,28 @@ class App extends React.Component {
     this.state = {
       userName: '',
       render: {
-        browseRequests: true,
+        browseRequests: false,
         selectSearch: false,
         selectRequest: false,
         selectProfile: false,
         selectMessages: false,
         renderResults: false,
         renderPost: false,
-        chat:false
+        chat:false,
+        map: true
       },
       selectedNotification: {},
       conversations: [],
       requests: [],
       users: [],
-      friends: []
+      friends: [],
+      prevIdx: -1
     };
     this.getMessages = this.getMessages.bind(this);
     this.handleNotificationSelect = this.handleNotificationSelect.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-
+    this.handleMarkerClick = this.handleMarkerClick.bind(this);
+    this.handleInfoClose = this.handleInfoClose.bind(this);
 
 
   }
@@ -163,6 +166,36 @@ class App extends React.Component {
     });
   }
 
+  handleMarkerClick(idx) {
+    console.log('marker click');
+
+    var requests = this.state.requests;
+    var prevIdx = this.state.prevIdx;
+    if (prevIdx > -1) {
+      requests[prevIdx].showInfo = false;
+    }
+
+    requests[idx].showInfo = true;
+
+    this.setState({
+      requests: requests,
+      prevIdx: idx
+
+    })
+  }
+
+  handleInfoClose(idx) {
+    console.log('this ===',this);
+    var requests = this.state.requests;
+    requests[idx].showInfo = false;
+
+    this.setState({
+      requests: requests,
+      prevIdx: -1
+    });
+
+  }
+
   handleMessagClick() {
 
   }
@@ -235,6 +268,8 @@ class App extends React.Component {
             render={this.state.render}
             handleSelect={this.handleSelect}
             handleMessagClick={this.handleMessagClick}
+            handleMarkerClick={this.handleMarkerClick}
+            handleInfoClose={this.handleInfoClose}
             user={this.state.userName}
             selectedNotification={this.state.selectedNotification}
             conversations={this.state.conversations}

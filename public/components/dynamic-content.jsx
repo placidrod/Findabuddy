@@ -11,7 +11,8 @@ class DynamicContent extends React.Component {
       // renderResults: this.props.render.renderResults,
       results: [],
       convo: {},
-      currentPost: ''
+      currentPost: '',
+
     };
     this.handleSubmitRequest = this.handleSubmitRequest.bind(this);
     this.handlePostClick = this.handlePostClick.bind(this);
@@ -40,13 +41,14 @@ class DynamicContent extends React.Component {
       convo: convo
     });
 
-
     this.props.handleSelect('chat');
   }
 
   handleBackToConversations(){
     this.props.handleSelect('conversations');
   }
+
+
 
 
   //renders a specific request when it is clicked on in the search results list
@@ -143,6 +145,10 @@ class DynamicContent extends React.Component {
             user={this.props.user}
           />
         </div>
+      );
+    } else if (this.props.render.map) {
+      return (
+        <MapView requests={this.props.requests} handleMarkerClick={this.props.handleMarkerClick}  handleInfoClose={this.props.handleInfoClose} handlePostClick={this.handlePostClick} />
       );
     }
   }
