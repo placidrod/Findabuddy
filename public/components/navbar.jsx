@@ -37,8 +37,8 @@ class Nav extends React.Component {
     if (!this.props.friends) {
       this.friendList = <option value="browse">Why not browse Requests?</option>
     } else {
-      this.friendList = this.props.friends.map((friend) => {
-        return <option value={friend}>{friend}</option>
+      this.friendList = this.props.friends.map((friend, i) => {
+        return <option value={friend} key={i}>{friend}</option>
       })
     }
 
