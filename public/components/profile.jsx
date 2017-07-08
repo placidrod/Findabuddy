@@ -15,7 +15,8 @@ class Profile extends React.Component {
       requests: [],
       // friends: props.friends,
       // interactions: interactions,
-      editing: false
+      editing: false,
+      buddyProfile: {}
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.postProfileInfo = this.postProfileInfo.bind(this);
@@ -53,6 +54,24 @@ class Profile extends React.Component {
         console.log('failed to show profile');
       }
     }).then(() => this.getRequestHistory());
+  }
+
+  getBuddyProfileInfo(buddyName) {
+    $.ajax({
+      url: '/profile/' + buddyName,
+      type: 'GET',
+      success: function(buddyProfile) {
+        console.log('recieved profile info', buddyProfile);
+        // if (buddyProfile.bio && buddyProfile.bioTitle) {
+        this.setState({
+          buddyProfile: buddyProfile
+        });
+        // }
+      }.bind(this),
+      error: function() {
+        console.log('failed to show buddy profile');
+      }
+    });
   }
 
   getRequestHistory() {
