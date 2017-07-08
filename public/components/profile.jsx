@@ -163,17 +163,31 @@ class Profile extends React.Component {
   }
 
   showProfileView() {
+    let buddyProfile = this.state.buddyProfile;
+    let profileEditButton = null;
+    let bioTitle = null;
+    let bio = null;
+
+    if(_.isEmpty(buddyProfile)) {
+      profileEditButton = <button
+                            id="profile-edit-btn"
+                            className="btn btn-default"
+                            onClick={() => this.toggleEdit()}
+                          >Edit</button>;
+      bioTitle = this.state.bioTitle;
+      bio = this.state.bio;
+    } else {
+      bioTitle = buddyProfile.bioTitle || 'No Bio Title';
+      bio = buddyProfile.bio || 'No Bio Added';
+    }
+
     return (
       <div className="profile">
-        <button
-          id="profile-edit-btn"
-          className="btn btn-default"
-          onClick={() => this.toggleEdit()}
-        >Edit</button>
+        {profileEditButton}
         <div className="panel panel-warning">
-          <div className="panel-heading"><h4>{this.state.bioTitle}</h4></div>
+          <div className="panel-heading"><h4>{bioTitle}</h4></div>
           <div className="panel-body">
-            <p>{this.state.bio}</p>
+            <p>{bio}</p>
           </div>
         </div>
       </div>
