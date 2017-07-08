@@ -56,12 +56,15 @@ class Profile extends React.Component {
     }).then(() => this.getRequestHistory());
   }
 
-  getBuddyProfileInfo(buddyName) {
+  getBuddyProfileInfo(event) {
+    // event.preventDefault();
+    // console.log('event target', event.target.getAttribute('href'));
+    let buddyName = event.target.getAttribute('href');
     $.ajax({
       url: '/profile/' + buddyName,
       type: 'GET',
       success: function(buddyProfile) {
-        console.log('recieved profile info', buddyProfile);
+        console.log('recieved buddy profile info', buddyProfile);
         // if (buddyProfile.bio && buddyProfile.bioTitle) {
         this.setState({
           buddyProfile: buddyProfile
@@ -379,6 +382,7 @@ class Profile extends React.Component {
 
     return (
       <div>
+        <a href="kenneth" onClick={(e) => {e.preventDefault(); this.getBuddyProfileInfo(e);}}>View kenneth's profile</a>
         <ul className="nav nav-tabs" role="tablist">
           <li role="presentation" className="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
           <li role="presentation">
