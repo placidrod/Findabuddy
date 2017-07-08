@@ -12,6 +12,7 @@ class Profile extends React.Component {
       newInterest: '',
       interests: [],
       friends: [],
+      requests: [],
       // interactions: interactions,
       editing: false
     };
@@ -48,6 +49,22 @@ class Profile extends React.Component {
       }.bind(this),
       error: function() {
         console.log('failed to show profile');
+      }
+    }).then(() => this.getRequestHistory());
+  }
+
+  getRequestHistory() {
+    $.ajax({
+      url: '/requests',
+      type: 'GET',
+      success: function(requests) {
+        // console.log('recieved requests info', requests);
+        this.setState({
+          requests: requests
+        });
+      }.bind(this),
+      error: function() {
+        console.log('failed to retrieve requests');
       }
     });
   }
@@ -170,14 +187,14 @@ class Profile extends React.Component {
         return <li>{interest}</li>;
       });
     } else {
-      interestsList = <p>No interests added yet</p>
+      interestsList = <li>No interests added yet</li>
     }
 
     return (
       <div>
-        <p>
+        <ul>
           {interestsList}
-        </p>
+        </ul>
         <form
           className="add-interest-form form-inline"
           onSubmit={(e) => {
@@ -214,7 +231,47 @@ class Profile extends React.Component {
     //     );
     //    });
     // }
-  }
+  };
+
+  renderPreviousRequestsPane() {
+    let requests = this.state.requests;
+    let requestsList;
+
+    if(requests.length) {
+      requestsList = requests.map((request) => {
+        return (
+          <tr>
+            <td>{request.postTitle}</td>
+            <td>{request.postDateTime}</td>
+            <td>{request.gender}</td>
+            <td>{request.zipCode}</td>
+            <td>{request.activityVerb}</td>
+            <td>{request.activityNoun}</td>
+          </tr>
+        );
+      });
+    } else {
+      requestsList = <tr><td colSpan="6">No requests added yet</td></tr>
+    }
+
+    return (
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Gender</th>
+            <th>ZipCode</th>
+            <th>Min Age</th>
+            <th>Max Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          {requestsList}
+        </tbody>
+      </table>
+    );
+  };
 
   render() {
     let profile;
@@ -228,7 +285,15 @@ class Profile extends React.Component {
       <div>
         <ul className="nav nav-tabs" role="tablist">
           <li role="presentation" className="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-          <li role="presentation"><a href="#interests" aria-controls="interests" role="tab" data-toggle="tab">Interests</a></li>
+          <li role="presentation">
+            <a href="#interests" aria-controls="interests" role="tab" data-toggle="tab">Interests</a>
+          </li>
+          <li role="presentation">
+            <a href="#requests" aria-controls="requests"
+              role="tab"
+              data-toggle="tab"
+            >Activity History</a>
+          </li>
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="profile">
@@ -236,6 +301,9 @@ class Profile extends React.Component {
           </div>
           <div role="tabpanel" className="tab-pane" id="interests">
             {this.renderInterestsPane()}
+          </div>
+          <div role="tabpanel" className="tab-pane" id="requests">
+            {this.renderPreviousRequestsPane()}
           </div>
         </div>
       </div>

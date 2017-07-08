@@ -78,6 +78,9 @@ app.get('/buddyRequest', handler.getBuddyRequest);
 app.get('/buddyRequest/:_id', handler.getSingleBuddyRequest);
 app.post('/buddyRequest', handler.postBuddyRequest);
 
+// get all previous requests of current user
+app.get('/requests', handler.getCurrentUserAllBuddyRequests);
+
 app.get('/message', handler.getMessages);
 app.get('/message/:recipient', handler.getMessagesByRecipient);
 app.post('/message', handler.postMessage);
