@@ -3,8 +3,8 @@ class Nav extends React.Component {
   constructor(props) {
     super(props)
     this.newFriend
-    this.friendList
-    this.notificationBell
+    //this.friendList
+    //this.notificationBell
 
   }
 
@@ -19,18 +19,16 @@ class Nav extends React.Component {
   componentDidUpdate() {
       this.counter = 0
       var users = this.props.users;
-       // Constructing the suggestion engine
        var users = new Bloodhound({
            datumTokenizer: Bloodhound.tokenizers.whitespace,
            queryTokenizer: Bloodhound.tokenizers.whitespace,
            local: users
        });
 
-       // Initializing the typeahead
        $('.typeahead').typeahead({
            hint: false,
-           highlight: true, /* Enable substring highlighting */
-           minLength: 1 /* Specify minimum characters required for showing result */
+           highlight: true,
+           minLength: 1
        },
        {
            name: 'users',
@@ -42,18 +40,6 @@ class Nav extends React.Component {
       this.friendList = this.props.friends.map((friend) => {
         return <option value={friend}>{friend}</option>
       })
-    }
-    var notificationDisplay = () => {
-      if (this.props.messages[0]) {
-        <Notifications
-          handleNotificationSelect={this.props.handleNotificationSelect}
-          handleSelect={this.props.handleSelect}
-          user={this.props.userName}
-          messages={this.props.messages[0].messages}
-        />
-      } else {
-        return <li>Test</li>
-      }
     }
 
     if (this.props.messages[0]) {
@@ -70,37 +56,7 @@ class Nav extends React.Component {
     } else {
       this.notificationBell = <a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell unread">{this.counter}</span></a>
     }
-
-
-    //var notificationBell = () => {
-    /*var counter = 0;
-    if (this.props.messages[0]) {
-      console.log(this.props.messages[0].messages)
-      for (var i = 0; i < this.props.messages[0].messages.length; i++) {
-        if (this.props.messages[0].messages[i].read === false) {
-          counter++
-          console.log(counter)
-        }
-        if (counter > 0) {
-
-        } else {
-          return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>)
-        }
-      }
-    } else {
-      return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>)
-    }*/
-    //}
-
   }
-
-
-
-
-
-  /*this.props.convo.messages.map((message) =>
-    console.log(message)
-  )*/
 
 
   render() {
@@ -126,7 +82,6 @@ class Nav extends React.Component {
                  <li>
                   <form method="post" onSubmit={(e) => {
                     e.preventDefault();
-
                     console.log(e)
                     console.log(newFriend.value)
                     this.props.addFriend(this.newFriend.value)

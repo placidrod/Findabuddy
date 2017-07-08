@@ -290,7 +290,7 @@ class App extends React.Component {
 
 
 ReactDOM.render(
-  <App />, document.getElementById('app')
+  <h1>hello world</h1>, document.getElementById('app')
 );
 
 /*<div className="notificationWindow col-md-3">

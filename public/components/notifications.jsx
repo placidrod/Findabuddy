@@ -8,7 +8,7 @@ class Notifications extends React.Component {
     this.state = {
     };
     this.handleClick = this.handleClick.bind(this);
-
+    this.notificationList = this.notificationList.bind(this)
   }
 
   handleClick(notification) {
@@ -16,8 +16,26 @@ class Notifications extends React.Component {
     this.props.handleSelect('selectMessages');
   }
 
-  compoentDidUpdate() {
-    console.log("test")
+  notificationList() {
+    //console.log(this.props.messages)
+    this.props.messages.map(notification => {
+      if (notification.read === false) {
+        return <NotificationMessage key={notification._id} notification={this.props.messages} handleClick={this.handleClick} />;
+      }
+    })
+  }
+
+  componentDidUpdate() {
+    //console.log(this.props.messages)
+    if (this.props.messages.length > 0) {
+      this.notificationList = this.props.messages[0].messages.map(notification => {
+        console.log(notification)
+        if (notification.read === false) {
+          return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />;
+        }
+      })
+      //console.log(this.notificationList)
+    }
   }
 
   render() {
@@ -25,16 +43,19 @@ class Notifications extends React.Component {
       <div className="noitifications">
         <div>Notifications</div>
         <div className="divider"></div>
-          {this.props.messages.map(notification => {
-            console.log(this.props.messages)
-            if (notification.read === false) {
-              return <NotificationMessage key={notification._id} notification={this.props.messages} handleClick={this.handleClick} />;
-            }
-          })}
-
+          {this.notificationList}
       </div>
     );
   }
 }
 
 window.Notifications = Notifications;
+
+/*
+{this.props.messages.map(notification => {
+  console.log(this.props.messages)
+  if (notification.read === false) {
+    return <NotificationMessage key={notification._id} notification={this.props.messages} handleClick={this.handleClick} />;
+  }
+})}
+*/
