@@ -20,7 +20,7 @@ const RequestInfo = ({request, handlePostClick, handleInfoClose, idx}) => {
 
 
 const MapWrapper = withGoogleMap(({requests, handlePostClick, handleMarkerClick, handleInfoClose}) => (
-  <GoogleMap defaultZoom={4} defaultCenter={{ lat: 18.0178743, lng: -76.8099041 }}>
+  <GoogleMap defaultZoom={3} defaultCenter={{ lat: 18.0178743, lng: -76.8099041 }}>
     {requests.map(function(request, idx) {
       if (request.lat && request.lng){
         return (
