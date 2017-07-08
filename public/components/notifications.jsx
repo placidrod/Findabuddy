@@ -8,11 +8,16 @@ class Notifications extends React.Component {
     this.state = {
     };
     this.handleClick = this.handleClick.bind(this);
+
   }
 
   handleClick(notification) {
     this.props.handleNotificationSelect(notification);
     this.props.handleSelect('selectMessages');
+  }
+
+  compoentDidUpdate() {
+    console.log("test")
   }
 
   render() {
@@ -22,7 +27,7 @@ class Notifications extends React.Component {
         <div className="divider"></div>
           {this.props.messages.map(notification => {
             if (notification.read === false) {
-              return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />;
+              return <NotificationMessage key={notification._id} notification={this.props.messages} handleClick={this.handleClick} />;
             }
           })}
 

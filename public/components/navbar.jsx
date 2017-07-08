@@ -27,18 +27,42 @@ var Nav = (props) => {
       return <option value={friend}>{friend}</option>
     })
   }
+  var notificationDisplay = () => {
+    if (props.messages[0]) {
+      <Notifications
+        handleNotificationSelect={props.handleNotificationSelect}
+        handleSelect={props.handleSelect}
+        user={props.userName}
+        messages={props.messages[0].messages}
+      />
+    } else {
+      return <li>Test</li>
+    }
+  }
+
+
+
+  /*props.convo.messages.map((message) =>
+    console.log(message)
+  )*/
 
   var notificationBell = () => {
-    for (var i = 0; i < props.messages.length; i++) {
-      var counter = 0;
-      if (props.messages[i].read === false) {
-        counter++
+    var counter = 0;
+    if (props.messages[0]) {
+      console.log(props.messages[0].messages)
+      for (var i = 0; i < props.messages[0].messages.length; i++) {
+        if (props.messages[0].messages[i].read === false) {
+          counter++
+          console.log(counter)
+        }
+        if (counter > 0) {
+          return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell unread">{counter}</span></a>)
+        } else {
+          return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>)
+        }
       }
-      if (counter > 0) {
-        return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell unread">{counter}</span></a>)
-      } else {
-        return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>)
-      }
+    } else {
+      return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>)
     }
   }
 
@@ -71,7 +95,6 @@ var Nav = (props) => {
                 }}>
                 <input type="text" className="typeahead tt-query form-control" autoComplete="off" spellCheck="false"  ref={node => {
                   newFriend = node;
-
                 }}/>
                 </form>
                </li>
@@ -80,12 +103,12 @@ var Nav = (props) => {
         <li className="dropdown">
             {notificationBell()}
             <ul className="dropdown-menu">
-                <Notifications
-                  handleNotificationSelect={props.handleNotificationSelect}
-                  handleSelect={props.handleSelect}
-                  user={props.userName}
-                  messages={props.messages}
-                />
+              <Notifications
+                handleNotificationSelect={props.handleNotificationSelect}
+                handleSelect={props.handleSelect}
+                user={props.userName}
+                messages={props.messages}
+              />
             </ul>
         </li>
         <li className="nav-link"><a href="/logout" ><span className="glyphicon glyphicon-log-out"></span>Logout</a></li>
