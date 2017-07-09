@@ -173,3 +173,7 @@ li.dropdown {
 .unread {
   color: red;
 }
+
+a:hover {
+  cursor: pointer;
+}

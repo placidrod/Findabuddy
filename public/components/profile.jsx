@@ -56,12 +56,12 @@ class Profile extends React.Component {
     }).then(() => this.getRequestHistory());
   }
 
-  getBuddyProfileInfo(event) {
+  getBuddyProfileInfo(friend) {
     // event.preventDefault();
     // console.log('event target', event.target.getAttribute('href'));
-    let buddyName = event.target.getAttribute('href');
+    // let buddyName = event.target.getAttribute('href');
     $.ajax({
-      url: '/profile/' + buddyName,
+      url: '/profile/' + friend,
       type: 'GET',
       success: function(buddyProfile) {
         console.log('recieved buddy profile info', buddyProfile);
@@ -379,17 +379,35 @@ class Profile extends React.Component {
     if (friends.length) {
       friendList = (() => friends.map((friend, i) => {
         return (
-          <div key={i} className="row" name="buddy-row"
-            onClick={() => this.handleBuddyClick(friend)}
-          >
+          <div key={i} className="row" name="buddy-row">
             <div className="col-xs-3"><img className="friendListPic" src="#" />
               Pic
             </div>
             <div className="col-xs-3 friend-name">{friend}</div>
-            <div className="col-xs-6"></div>
+            <div className="col-xs-3">
+              <a onClick={() => this.handleBuddyClick(friend)}>Chat</a>
+            </div>
+            <div className="col-xs-3">
+              <a onClick={() => this.getBuddyProfileInfo(friend)}>View Profile</a>
+            </div>
           </div>
         );
       }))();
+
+
+      // friendList = (() => friends.map((friend, i) => {
+      //   return (
+      //     <div key={i} className="row" name="buddy-row"
+      //       onClick={() => this.handleBuddyClick(friend)}
+      //     >
+      //       <div className="col-xs-3"><img className="friendListPic" src="#" />
+      //         Pic
+      //       </div>
+      //       <div className="col-xs-3 friend-name">{friend}</div>
+      //       <div className="col-xs-6"></div>
+      //     </div>
+      //   );
+      // }))();
     } else {
       friendList = (() => <h6>Add a buddy to start chatting!</h6>)();
     }
@@ -419,7 +437,6 @@ class Profile extends React.Component {
     return (
       <div>
         <button className="btn btn-primary" onClick={() => this.clearBuddyProfile()}>Back to my Profile</button>
-        <a href="kenneth" onClick={(e) => {e.preventDefault(); this.getBuddyProfileInfo(e);}}>View kenneth's profile</a>
         <ul className="nav nav-tabs" role="tablist">
           <li role="presentation" className="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
           <li role="presentation">
@@ -459,3 +476,8 @@ const editInterests = ({}) => {
 
 
 window.Profile = Profile;
+
+/*
+<a href="kenneth" onClick={(e) => {e.preventDefault(); this.getBuddyProfileInfo(e);}}>View kenneth's profile</a>
+
+*/
