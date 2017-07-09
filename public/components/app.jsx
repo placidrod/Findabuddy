@@ -9,15 +9,14 @@ class App extends React.Component {
     this.state = {
       userName: '',
       render: {
-        browseRequests: false,
+        home: true,
         selectSearch: false,
         selectRequest: false,
         selectProfile: false,
         selectMessages: false,
         renderResults: false,
         renderPost: false,
-        chat:false,
-        map: true
+        chat: false
       },
       selectedNotification: {},
       conversations: [],
@@ -144,19 +143,19 @@ class App extends React.Component {
 
   addFriend(friend) {
     //if (this.state.userName.length) {
-      $.ajax({
-        type: 'POST',
-        url: '/friends',
-        data: {username: friend},
-        success: (res) => {
-          this.setState({
-            friends: res
-          });
-        },
-        error: (err) => {
-          console.log('Couldn\'t add Friend:', err)
-        }
-      })
+    $.ajax({
+      type: 'POST',
+      url: '/friends',
+      data: {username: friend},
+      success: (res) => {
+        this.setState({
+          friends: res
+        });
+      },
+      error: (err) => {
+        console.log('Couldn\'t add Friend:', err);
+      }
+    });
     //}
   }
 
@@ -181,7 +180,7 @@ class App extends React.Component {
       requests: requests,
       prevIdx: idx
 
-    })
+    });
   }
 
   handleInfoClose(idx) {
@@ -206,6 +205,7 @@ class App extends React.Component {
   handleSelect(e, eventFlag) {
     var link;
     var errorFlag = false;
+
 
     if (eventFlag) {
       if (e.target.name) {
@@ -274,7 +274,10 @@ class App extends React.Component {
             selectedNotification={this.state.selectedNotification}
             conversations={this.state.conversations}
             requests={this.state.requests}
+            users={this.state.users}
+            getUsers={this.getUsers.bind(this)}
             friends={this.state.friends}
+            addFriend={this.addFriend.bind(this)}
             getMessages={this.getMessages}
             socket={this.socket}
           />

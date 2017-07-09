@@ -13,6 +13,7 @@ class Profile extends React.Component {
       interests: [],
       friends: [],
       requests: [],
+      // friends: props.friends,
       // interactions: interactions,
       editing: false
     };
@@ -22,6 +23,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.getProfileInfo();
+    this.props.getUsers();
   }
 
   handleInputChange(e) {
@@ -43,7 +45,7 @@ class Profile extends React.Component {
             bio: profile.bio,
             bioTitle: profile.bioTitle,
             interests: profile.interests,
-            bioExist: true,
+            bioExist: true
           });
         }
       }.bind(this),
@@ -90,28 +92,6 @@ class Profile extends React.Component {
       }.bind(this),
       error: function() {
         console.log('failed to show profile');
-      }
-    });
-  }
-
-  postInterest() {
-    // console.log('interest before sending', this.state.newInterest);
-    $.ajax({
-      url: '/interests',
-      type: 'POST',
-      data: {
-        interest: this.state.newInterest
-      },
-      //dataType: dataType,
-      success: function(updatedInterests) {
-        console.log('recieved updated interests', updatedInterests);
-        this.setState({
-          interests: updatedInterests,
-          newInterest: ''
-        });
-      }.bind(this),
-      error: function() {
-        console.log('failed to retrieve interests');
       }
     });
   }
@@ -182,14 +162,14 @@ class Profile extends React.Component {
     let interests = this.state.interests;
     let interestsList;
 
-    if(interests.length) {
+    if (interests.length) {
       interestsList = interests.map((interest) => {
         return <li>{interest}</li>;
       });
-    } else {
-      interestsList = <li>No interests added yet</li>
-    }
 
+    } else {
+      interestsList = <li>No interests added yet</li>;
+    }
     return (
       <div>
         <ul>
@@ -220,24 +200,13 @@ class Profile extends React.Component {
         </form>
       </div>
     );
-    // if(interests.length === 0) {
-    //   return (
-    //     <div>No interests added yet</div>
-    //   );
-    // } else {
-    //    interests.map((interest) => {
-    //     return (
-    //       <div>Add interests form</div>
-    //     );
-    //    });
-    // }
-  };
+  }
 
   renderPreviousRequestsPane() {
     let requests = this.state.requests;
     let requestsList;
 
-    if(requests.length) {
+    if (requests.length) {
       requestsList = requests.map((request) => {
         return (
           <tr>
@@ -251,7 +220,7 @@ class Profile extends React.Component {
         );
       });
     } else {
-      requestsList = <tr><td colSpan="6">No requests added yet</td></tr>
+      requestsList = <tr><td colSpan="6">No requests added yet</td></tr>;
     }
 
     return (
@@ -271,7 +240,113 @@ class Profile extends React.Component {
         </tbody>
       </table>
     );
-  };
+  }
+
+  postInterest() {
+    // console.log('interest before sending', this.state.newInterest);
+    $.ajax({
+      url: '/interests',
+      type: 'POST',
+      data: {
+        interest: this.state.newInterest
+      },
+      //dataType: dataType,
+      success: function(updatedInterests) {
+        console.log('recieved updated interests', updatedInterests);
+        this.setState({
+          interests: updatedInterests,
+          newInterest: ''
+        });
+      }.bind(this),
+      error: function() {
+        console.log('failed to retrieve interests');
+      }
+    });
+  }
+
+  handleBuddyClick(friendUsername) {
+    let currUsername = this.props.user;
+    // on buddy click, go to chat log between user and the buddy clicked
+    let convo = this.props.conversations.find(convo => {
+      return convo.participants.includes(friendUsername, currUsername);
+    });
+    // if a convo between users already exists
+    convo ? this.props.handleConvoClick(convo) /*eslint-disable indent*/
+    // if convo does not yet exist (case: user adds friend before ever chatting) -- prevents an error from ocurring
+    : this.props.createEmptyConvo(friendUsername)
+    .then(convo => {
+      this.props.handleCreateEmptyConvo(convo);
+    });
+  } /*eslint-enable indent*/
+
+  showBuddyView() {
+    let friends = this.props.friends.reverse();
+    let friendList;
+    // for adding friends:
+    let newFriend;
+    var users = this.props.users;
+    var users = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: users
+    });
+
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+      hint: false,
+      highlight: true, /* Enable substring highlighting */
+      minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+      name: 'users',
+      source: users
+    });
+
+    let props = this.props;
+    let newFriendForm = (
+      <div>
+        <form method="post"
+          onSubmit={e => {
+            e.preventDefault();
+            props.addFriend(newFriend.value);
+            $('.typeahead').typeahead('val', '');
+          }}
+        >
+          <input type="text" className="typeahead tt-query form-control" autoComplete="off" spellCheck="false" placeholder="Add a buddy..." ref={node => newFriend = node}
+          />
+        </form>
+      </div>
+    );
+
+    if (friends.length) {
+      friendList = (() => friends.map((friend, i) => {
+        return (
+          <div key={i} className="row" name="buddy-row"
+            onClick={() => this.handleBuddyClick(friend)}
+          >
+            <div className="col-xs-3"><img className="friendListPic" src="#" />
+              Pic
+            </div>
+            <div className="col-xs-3 friend-name">{friend}</div>
+            <div className="col-xs-6"></div>
+          </div>
+        );
+      }))();
+    } else {
+      friendList = (() => <h6>Add a buddy to start chatting!</h6>)();
+    }
+
+    return (
+      <div className="panel panel-warning">
+        <div className="panel-heading"><h4>Chat with buddies:</h4></div>
+        <div className="panel-body">
+          {newFriendForm}
+          <hr></hr>
+          {friendList}
+        </div>
+      </div>
+    );
+  }
 
   render() {
     let profile;
@@ -280,6 +355,8 @@ class Profile extends React.Component {
     } else {
       profile = this.showProfileView();
     }
+
+    const buddyView = this.showBuddyView();
 
     return (
       <div>
@@ -294,6 +371,7 @@ class Profile extends React.Component {
               data-toggle="tab"
             >Activity History</a>
           </li>
+          <li role="presentation"><a href="#friends" aria-controls="friends" role="tab" data-toggle="tab">Buddies</a></li>
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="profile">
@@ -304,6 +382,9 @@ class Profile extends React.Component {
           </div>
           <div role="tabpanel" className="tab-pane" id="requests">
             {this.renderPreviousRequestsPane()}
+          </div>
+          <div role="tabpanel" className="tab-pane" id="friends">
+            {buddyView}
           </div>
         </div>
       </div>
