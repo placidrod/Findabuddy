@@ -201,23 +201,14 @@ class Profile extends React.Component {
   }
 
   renderInterestsPane() {
-    let interests = this.state.interests;
+    let buddyProfile = this.state.buddyProfile;
+    let interests = null;
+    let addInterestForm = null;
     let interestsList;
 
-    if (interests.length) {
-      interestsList = interests.map((interest) => {
-        return <li>{interest}</li>;
-      });
-
-    } else {
-      interestsList = <li>No interests added yet</li>;
-    }
-    return (
-      <div>
-        <ul>
-          {interestsList}
-        </ul>
-        <form
+    if(_.isEmpty(buddyProfile)) {
+      interests = this.state.interests;
+      addInterestForm = <form
           className="add-interest-form form-inline"
           onSubmit={(e) => {
             e.preventDefault();
@@ -239,16 +230,41 @@ class Profile extends React.Component {
             type="submit"
             className="btn btn-default"
           >Add</button>
-        </form>
+        </form>;
+    } else {
+      interests = buddyProfile.interests;
+    }
+
+    if(interests.length) {
+      interestsList = interests.map((interest) => {
+        return <li>{interest}</li>;
+      });
+    } else {
+      interestsList = <li>No interests added yet</li>
+    }
+
+    return (
+      <div>
+        <ul>
+          {interestsList}
+        </ul>
+          {addInterestForm}
       </div>
     );
   }
 
   renderPreviousRequestsPane() {
-    let requests = this.state.requests;
+    let buddyProfile = this.state.buddyProfile;
+    let requests = null;
     let requestsList;
 
-    if (requests.length) {
+    if(_.isEmpty(buddyProfile)) {
+      requests = this.state.requests;
+    } else {
+      requests = buddyProfile.requests;
+    }
+
+    if(requests && requests.length) {
       requestsList = requests.map((request) => {
         return (
           <tr>
