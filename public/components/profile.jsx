@@ -247,8 +247,8 @@ class Profile extends React.Component {
     }
 
     if(interests.length) {
-      interestsList = interests.map((interest) => {
-        return <li>{interest}</li>;
+      interestsList = interests.map((interest, i) => {
+        return <li key={i}>{interest}</li>;
       });
     } else {
       interestsList = <li>No interests added yet</li>
@@ -276,9 +276,9 @@ class Profile extends React.Component {
     }
 
     if(requests && requests.length) {
-      requestsList = requests.map((request) => {
+      requestsList = requests.map((request, i) => {
         return (
-          <tr>
+          <tr key={i}>
             <td>{request.postTitle}</td>
             <td>{request.postDateTime}</td>
             <td>{request.gender}</td>
