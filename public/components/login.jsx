@@ -55,16 +55,22 @@ class Login extends React.Component {
           onChange={(e) => this.usernameOnChangeHandler(e.target.value)}
           className="form-control col-md-2"
           type="text"
+          placeholder="username"
         />
         <input
           onChange={(e) => this.passwordOnChangeHandler(e.target.value)}
           type="password"
           className="form-control col-md-2"
+          placeholder="password"
         />
         <button className="button col-md-6"
-          onClick={() => this.submitRequest()}>Login</button>
-        <button className="button col-md-6"
-          onClick={() => this.goSignup()}>Signup</button>
+          onClick={() => this.submitRequest()}
+        >Login</button>
+        <div>
+          <a style={{float: 'left', clear: 'left'}} onClick={() => this.goSignup()}>
+            New to findabuddy?<br />Create an account
+          </a>
+        </div>
       </div>
     );
   }
