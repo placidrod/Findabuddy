@@ -349,7 +349,8 @@ class Profile extends React.Component {
   } /*eslint-enable indent*/
 
   showBuddyView() {
-    let friends = this.props.friends.reverse();
+    // let friends = this.props.friends.reverse();
+    let friends = [...this.props.friends].reverse();
     let friendList;
     // for adding friends:
     let newFriend;
@@ -391,10 +392,10 @@ class Profile extends React.Component {
       friendList = (() => friends.map((friend, i) => {
         return (
           <div key={i} className="row" name="buddy-row">
-            <div className="col-xs-3"><img className="friendListPic" src="#" />
+            {/*<div className="col-xs-3"><img className="friendListPic" src="#" />
               Pic
-            </div>
-            <div className="col-xs-3 friend-name">{friend}</div>
+            </div>*/}
+            <div className="col-xs-6 friend-name">{friend}</div>
             <div className="col-xs-3">
               <a onClick={() => this.handleBuddyClick(friend)}>Chat</a>
             </div>
