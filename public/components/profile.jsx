@@ -421,6 +421,17 @@ class Profile extends React.Component {
     );
   }
 
+  renderBackToOwnProfileButton() {
+    let buddyProfile = this.state.buddyProfile;
+    let backToOwnProfileButton = null;
+
+    if(!_.isEmpty(buddyProfile)) {
+      backToOwnProfileButton = <button className="btn btn-primary" onClick={() => this.clearBuddyProfile()}>Back to my Profile</button>
+    }
+
+    return backToOwnProfileButton;
+  }
+
   render() {
     let profile;
     if (!this.state.bioExist || this.state.editing) {
@@ -429,11 +440,16 @@ class Profile extends React.Component {
       profile = this.showProfileView();
     }
 
-    const buddyView = this.showBuddyView();
+    let buddyView;
+    if(_.isEmpty(this.state.buddyProfile)) {
+      buddyView = this.showBuddyView();
+    } else {
+      buddyView = 'Sorry. You cannot view buddies of your buddies.';
+    }
 
     return (
       <div id="profile-tab-panes">
-        <button className="btn btn-primary" onClick={() => this.clearBuddyProfile()}>Back to my Profile</button>
+        {this.renderBackToOwnProfileButton()}
         <ul className="nav nav-tabs" role="tablist">
           <li role="presentation" className="active">
             <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
