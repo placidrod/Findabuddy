@@ -493,5 +493,4 @@ window.Profile = Profile;
 
 /*
 <a href="kenneth" onClick={(e) => {e.preventDefault(); this.getBuddyProfileInfo(e);}}>View kenneth's profile</a>
-
 */
