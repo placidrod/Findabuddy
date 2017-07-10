@@ -69,12 +69,23 @@ class Profile extends React.Component {
         this.setState({
           buddyProfile: buddyProfile
         });
+
+        this.activateProfileTab();
         // }
       }.bind(this),
       error: function() {
         console.log('failed to show buddy profile');
       }
     });
+  }
+
+  activateProfileTab() {
+    let $profileTab = $('#profile-tab-panes .nav-tabs a[href="#profile"]').closest('li');
+    $profileTab.siblings('li').removeClass('active');
+    $profileTab.addClass('active');
+    let $profileTabPanel = $('#profile-tab-panes .tab-content div#profile');
+    $profileTabPanel.siblings('div').removeClass('active');
+    $profileTabPanel.addClass('active');
   }
 
   clearBuddyProfile() {
@@ -394,20 +405,6 @@ class Profile extends React.Component {
         );
       }))();
 
-
-      // friendList = (() => friends.map((friend, i) => {
-      //   return (
-      //     <div key={i} className="row" name="buddy-row"
-      //       onClick={() => this.handleBuddyClick(friend)}
-      //     >
-      //       <div className="col-xs-3"><img className="friendListPic" src="#" />
-      //         Pic
-      //       </div>
-      //       <div className="col-xs-3 friend-name">{friend}</div>
-      //       <div className="col-xs-6"></div>
-      //     </div>
-      //   );
-      // }))();
     } else {
       friendList = (() => <h6>Add a buddy to start chatting!</h6>)();
     }
@@ -435,20 +432,21 @@ class Profile extends React.Component {
     const buddyView = this.showBuddyView();
 
     return (
-      <div>
+      <div id="profile-tab-panes">
         <button className="btn btn-primary" onClick={() => this.clearBuddyProfile()}>Back to my Profile</button>
         <ul className="nav nav-tabs" role="tablist">
-          <li role="presentation" className="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+          <li role="presentation" className="active">
+            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+          </li>
           <li role="presentation">
             <a href="#interests" aria-controls="interests" role="tab" data-toggle="tab">Interests</a>
           </li>
           <li role="presentation">
-            <a href="#requests" aria-controls="requests"
-              role="tab"
-              data-toggle="tab"
-            >Activity History</a>
+            <a href="#requests" aria-controls="requests" role="tab" data-toggle="tab">Activity History</a>
           </li>
-          <li role="presentation"><a href="#friends" aria-controls="friends" role="tab" data-toggle="tab">Buddies</a></li>
+          <li role="presentation">
+            <a href="#friends" aria-controls="friends" role="tab" data-toggle="tab">Buddies</a>
+          </li>
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="profile">
