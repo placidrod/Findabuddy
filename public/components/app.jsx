@@ -31,6 +31,10 @@ class App extends React.Component {
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
     this.handleInfoClose = this.handleInfoClose.bind(this);
 
+    this.socket.on('new-request', () => {
+      this.getRequests();
+    });
+
 
   }
 

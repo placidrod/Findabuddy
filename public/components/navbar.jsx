@@ -73,7 +73,7 @@ class Nav extends React.Component {
           <li className="nav-link"><a href="#" name="selectProfile" onClick={(e) => { this.props.handleSelect(e, true); }}><span className="glyphicon glyphicon-user"></span>Profile</a></li>
           <li className="nav-link"><a href="#" name="selectMessages" onClick={(e) => { this.props.handleSelect(e, true); }}><span className="glyphicon glyphicon-envelope"></span>Messages</a></li>
           <li className="dropdown">
-             <a href="#" data-toggle="dropdown" className="dropdown-toggle">Friends <b className="caret"></b></a>
+             <a href="#" data-toggle="dropdown" className="dropdown-toggle">Buddies <b className="caret"></b></a>
              <ul className="dropdown-menu">
                  {this.friendList}
                  <li className="divider"></li>
