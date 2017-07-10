@@ -31,13 +31,15 @@
     "mocha": "^3.4.2",
     "mongoose": "^4.10.8",
     "node-where": "^1.1.0",
+    "nodemailer": "^4.0.1",
+    "nodemailer-smtp-transport": "^2.7.4",
     "nodemon": "^1.11.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-google-maps": "^7.1.0",
     "sinon": "^2.3.5",
     "socket.io": "^2.0.3",
-    "supertest": "^3.0.0",
-    "react-google-maps": "^7.1.0"
+    "supertest": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

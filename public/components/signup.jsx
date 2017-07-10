@@ -8,7 +8,8 @@ class Signup extends React.Component {
     super(props);
     this.state = {
       'username': '',
-      'password': ''
+      'password': '',
+      'email': ''
     };
   }
 
@@ -21,6 +22,9 @@ class Signup extends React.Component {
     //this.setState({'username': event.trigger.
     //console.log('change handler password', newVal);
     this.setState({'password': newVal});
+  }
+  emailOnChangeHandler(email) {
+    this.setState({email: email});
   }
   submitSignup() {
     $.ajax({
@@ -51,16 +55,28 @@ class Signup extends React.Component {
           onChange={(e) => this.usernameOnChangeHandler(e.target.value)}
           className="form-control col-md-2"
           type="text"
+          placeholder="username"
         />
         <input
           onChange={(e) => this.passwordOnChangeHandler(e.target.value)}
           type="password"
-          className="form-control col-md-2"
+          className="form-control col-md-1"
+          placeholder="password"
+        />
+        <input
+          onChange={(e) => this.emailOnChangeHandler(e.target.value)}
+          className="form-control col-md-1"
+          type="text"
+          placeholder="email"
         />
         <button className="button col-md-6"
-          onClick={() => this.submitSignup()}>Signup</button>
-        <button className="button col-md-6"
-          onClick={() => this.goLogin()}>Login</button>
+          onClick={() => this.submitSignup()}>Signup
+        </button>
+        <div>
+          <a style={{float: 'left', clear: 'left'}} onClick={() => this.goLogin()}>
+            Already have an account?<br />Log in
+          </a>
+        </div>
       </div>
     );
   }
