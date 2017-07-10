@@ -1,4 +1,4 @@
-/*
+ /*
  Main dynamic container for bulk of application content.  The state, and visibility of components, changes based on
  how the user interacts with the frontend UI
  */

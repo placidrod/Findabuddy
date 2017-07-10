@@ -43,14 +43,18 @@ li.dropdown {
   width: 25%;
   margin-bottom: 50px;
 }
+.notificationTitle {
+  text-align: center;
+  font-size: 22px;
+}
 
 .notificationMessage {
   border-radius: 5px;
-  border: 1.5px solid #FF9709;
+  /* border: 1.5px solid #FF9709; */
   margin-top: 20px;
   margin-right: 20px;
   padding: 5px;
-
+  text-align: center;
 }
 
 .notificationSender {
@@ -128,7 +132,7 @@ li.dropdown {
 
 .typeahead, .tt-query, .tt-hint {
   border: 2px solid #CCCCCC;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   font-size: 22px; /* Set input font size */
   height: 30px;
   line-height: 30px;
@@ -151,11 +155,11 @@ li.dropdown {
 .tt-menu {
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  /* border-radius: 8px; */
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   margin-top: 12px;
   padding: 8px 0;
-  width: 422px;
+  width: 396px;
 }
 .tt-suggestion {
   font-size: 22px;  /* Set suggestion dropdown font size */
@@ -174,6 +178,16 @@ li.dropdown {
   color: red;
 }
 
+
 a:hover {
   cursor: pointer;
+}
+
+.navbar-nav>li>.dropdown-menu {
+    margin-top: 7px;
+}
+
+option {
+  text-align: center;
+  font-size: 15px;
 }
