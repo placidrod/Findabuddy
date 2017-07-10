@@ -5,14 +5,27 @@ class Nav extends React.Component {
     this.newFriend
     //this.friendList
     //this.notificationBell
+
+    this.state = {
+      friends: []
+    }
   }
 
   friendList() {
-    return (<option value="browse">Why not browse Requests?</option>)
+    return (
+      this.state.friends.map((friend, i) => {
+        return <option value={friend} key={i}>{friend}</option>
+      })
+    )
   }
 
   notificationBell() {
     return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({friends: nextProps.friends})
+
   }
 
   componentDidUpdate() {
@@ -33,13 +46,7 @@ class Nav extends React.Component {
            name: 'users',
            source: users
        });
-    if (!this.props.friends) {
-      this.friendList = <option value="browse">Why not browse Requests?</option>
-    } else {
-      this.friendList = this.props.friends.map((friend, i) => {
-        return <option value={friend} key={i}>{friend}</option>
-      })
-    }
+
 
     if (this.props.messages[0]) {
       console.log(this.props.messages[0].messages)
@@ -75,13 +82,12 @@ class Nav extends React.Component {
           <li className="dropdown">
              <a href="#" data-toggle="dropdown" className="dropdown-toggle">Buddies <b className="caret"></b></a>
              <ul className="dropdown-menu">
-                 {this.friendList}
+                 {this.friendList()}
                  <li className="divider"></li>
                  <li>
                   <form method="post" onSubmit={(e) => {
                     e.preventDefault();
                     console.log(e)
-                    // console.log(newFriend.value)
                     this.props.addFriend(this.newFriend.value)
                   }}>
                   <input type="text" className="typeahead tt-query form-control" autoComplete="off" spellCheck="false"  ref={node => {
