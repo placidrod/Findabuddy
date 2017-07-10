@@ -1,6 +1,6 @@
 {
   "name": "findabuddy",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,7 @@
     "start-dev": "nodemon server.js",
     "test": "mocha --bail --reporter landing test/ServerSpec.js",
     "babel": "babel public/components/. --out-dir public/components/compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
-    "babel-watch": "babel public/components/. --out-dir public/components/compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch",
-    "postinstall": "bower install && npm run babel && webpack"
+    "babel-watch": "babel public/components/. --out-dir public/components/compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch"
   },
   "author": "",
   "license": "ISC",
