@@ -15,7 +15,8 @@ class Profile extends React.Component {
       requests: [],
       // friends: props.friends,
       // interactions: interactions,
-      editing: false
+      editing: false,
+      buddyProfile: {}
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.postProfileInfo = this.postProfileInfo.bind(this);
@@ -53,6 +54,44 @@ class Profile extends React.Component {
         console.log('failed to show profile');
       }
     }).then(() => this.getRequestHistory());
+  }
+
+  getBuddyProfileInfo(friend) {
+    // event.preventDefault();
+    // console.log('event target', event.target.getAttribute('href'));
+    // let buddyName = event.target.getAttribute('href');
+    $.ajax({
+      url: '/profile/' + friend,
+      type: 'GET',
+      success: function(buddyProfile) {
+        console.log('recieved buddy profile info', buddyProfile);
+        // if (buddyProfile.bio && buddyProfile.bioTitle) {
+        this.setState({
+          buddyProfile: buddyProfile
+        });
+
+        this.activateProfileTab();
+        // }
+      }.bind(this),
+      error: function() {
+        console.log('failed to show buddy profile');
+      }
+    });
+  }
+
+  activateProfileTab() {
+    let $profileTab = $('#profile-tab-panes .nav-tabs a[href="#profile"]').closest('li');
+    $profileTab.siblings('li').removeClass('active');
+    $profileTab.addClass('active');
+    let $profileTabPanel = $('#profile-tab-panes .tab-content div#profile');
+    $profileTabPanel.siblings('div').removeClass('active');
+    $profileTabPanel.addClass('active');
+  }
+
+  clearBuddyProfile() {
+    this.setState({
+      buddyProfile: {}
+    });
   }
 
   getRequestHistory() {
@@ -141,17 +180,31 @@ class Profile extends React.Component {
   }
 
   showProfileView() {
+    let buddyProfile = this.state.buddyProfile;
+    let profileEditButton = null;
+    let bioTitle = null;
+    let bio = null;
+
+    if(_.isEmpty(buddyProfile)) {
+      profileEditButton = <button
+                            id="profile-edit-btn"
+                            className="btn btn-default"
+                            onClick={() => this.toggleEdit()}
+                          >Edit</button>;
+      bioTitle = this.state.bioTitle;
+      bio = this.state.bio;
+    } else {
+      bioTitle = buddyProfile.bioTitle || 'No Bio Title';
+      bio = buddyProfile.bio || 'No Bio Added';
+    }
+
     return (
       <div className="profile">
-        <button
-          id="profile-edit-btn"
-          className="btn btn-default"
-          onClick={() => this.toggleEdit()}
-        >Edit</button>
+        {profileEditButton}
         <div className="panel panel-warning">
-          <div className="panel-heading"><h4>{this.state.bioTitle}</h4></div>
+          <div className="panel-heading"><h4>{bioTitle}</h4></div>
           <div className="panel-body">
-            <p>{this.state.bio}</p>
+            <p>{bio}</p>
           </div>
         </div>
       </div>
@@ -159,23 +212,14 @@ class Profile extends React.Component {
   }
 
   renderInterestsPane() {
-    let interests = this.state.interests;
+    let buddyProfile = this.state.buddyProfile;
+    let interests = null;
+    let addInterestForm = null;
     let interestsList;
 
-    if (interests.length) {
-      interestsList = interests.map((interest) => {
-        return <li>{interest}</li>;
-      });
-
-    } else {
-      interestsList = <li>No interests added yet</li>;
-    }
-    return (
-      <div>
-        <ul>
-          {interestsList}
-        </ul>
-        <form
+    if(_.isEmpty(buddyProfile)) {
+      interests = this.state.interests;
+      addInterestForm = <form
           className="add-interest-form form-inline"
           onSubmit={(e) => {
             e.preventDefault();
@@ -197,16 +241,41 @@ class Profile extends React.Component {
             type="submit"
             className="btn btn-default"
           >Add</button>
-        </form>
+        </form>;
+    } else {
+      interests = buddyProfile.interests;
+    }
+
+    if(interests.length) {
+      interestsList = interests.map((interest) => {
+        return <li>{interest}</li>;
+      });
+    } else {
+      interestsList = <li>No interests added yet</li>
+    }
+
+    return (
+      <div>
+        <ul>
+          {interestsList}
+        </ul>
+          {addInterestForm}
       </div>
     );
   }
 
   renderPreviousRequestsPane() {
-    let requests = this.state.requests;
+    let buddyProfile = this.state.buddyProfile;
+    let requests = null;
     let requestsList;
 
-    if (requests.length) {
+    if(_.isEmpty(buddyProfile)) {
+      requests = this.state.requests;
+    } else {
+      requests = buddyProfile.requests;
+    }
+
+    if(requests && requests.length) {
       requestsList = requests.map((request) => {
         return (
           <tr>
@@ -321,17 +390,21 @@ class Profile extends React.Component {
     if (friends.length) {
       friendList = (() => friends.map((friend, i) => {
         return (
-          <div key={i} className="row" name="buddy-row"
-            onClick={() => this.handleBuddyClick(friend)}
-          >
+          <div key={i} className="row" name="buddy-row">
             <div className="col-xs-3"><img className="friendListPic" src="#" />
               Pic
             </div>
             <div className="col-xs-3 friend-name">{friend}</div>
-            <div className="col-xs-6"></div>
+            <div className="col-xs-3">
+              <a onClick={() => this.handleBuddyClick(friend)}>Chat</a>
+            </div>
+            <div className="col-xs-3">
+              <a onClick={() => this.getBuddyProfileInfo(friend)}>View Profile</a>
+            </div>
           </div>
         );
       }))();
+
     } else {
       friendList = (() => <h6>Add a buddy to start chatting!</h6>)();
     }
@@ -348,6 +421,17 @@ class Profile extends React.Component {
     );
   }
 
+  renderBackToOwnProfileButton() {
+    let buddyProfile = this.state.buddyProfile;
+    let backToOwnProfileButton = null;
+
+    if(!_.isEmpty(buddyProfile)) {
+      backToOwnProfileButton = <button className="btn btn-primary" onClick={() => this.clearBuddyProfile()}>Back to my Profile</button>
+    }
+
+    return backToOwnProfileButton;
+  }
+
   render() {
     let profile;
     if (!this.state.bioExist || this.state.editing) {
@@ -356,22 +440,29 @@ class Profile extends React.Component {
       profile = this.showProfileView();
     }
 
-    const buddyView = this.showBuddyView();
+    let buddyView;
+    if(_.isEmpty(this.state.buddyProfile)) {
+      buddyView = this.showBuddyView();
+    } else {
+      buddyView = 'Sorry. You cannot view buddies of your buddies.';
+    }
 
     return (
-      <div>
+      <div id="profile-tab-panes">
+        {this.renderBackToOwnProfileButton()}
         <ul className="nav nav-tabs" role="tablist">
-          <li role="presentation" className="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+          <li role="presentation" className="active">
+            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+          </li>
           <li role="presentation">
             <a href="#interests" aria-controls="interests" role="tab" data-toggle="tab">Interests</a>
           </li>
           <li role="presentation">
-            <a href="#requests" aria-controls="requests"
-              role="tab"
-              data-toggle="tab"
-            >Activity History</a>
+            <a href="#requests" aria-controls="requests" role="tab" data-toggle="tab">Activity History</a>
           </li>
-          <li role="presentation"><a href="#friends" aria-controls="friends" role="tab" data-toggle="tab">Buddies</a></li>
+          <li role="presentation">
+            <a href="#friends" aria-controls="friends" role="tab" data-toggle="tab">Buddies</a>
+          </li>
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="profile">
@@ -399,3 +490,8 @@ const editInterests = ({}) => {
 
 
 window.Profile = Profile;
+
+/*
+<a href="kenneth" onClick={(e) => {e.preventDefault(); this.getBuddyProfileInfo(e);}}>View kenneth's profile</a>
+
+*/
