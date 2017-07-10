@@ -29,7 +29,7 @@ class Notifications extends React.Component {
     //console.log(this.props.messages)
     if (this.props.messages.length > 0) {
       this.notificationList = this.props.messages[0].messages.map(notification => {
-        console.log(notification)
+        //console.log(notification)
         if (notification.read === false) {
           return <NotificationMessage key={notification._id} notification={notification} handleClick={this.handleClick} />;
         }
@@ -41,7 +41,7 @@ class Notifications extends React.Component {
   render() {
     return (
       <div className="noitifications">
-        <div>Notifications</div>
+        <div className="notificationTitle">Notifications</div>
         <div className="divider"></div>
           {this.notificationList}
       </div>

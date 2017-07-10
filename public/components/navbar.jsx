@@ -14,7 +14,7 @@ class Nav extends React.Component {
   friendList() {
     return (
       this.state.friends.map((friend, i) => {
-        return <option value={friend} key={i}>{friend}</option>
+        return <option value={friend} key={i} onClick={() => console.log(friend)}>{friend}</option>
       })
     )
   }
@@ -89,6 +89,7 @@ class Nav extends React.Component {
                     e.preventDefault();
                     console.log(e)
                     this.props.addFriend(this.newFriend.value)
+                    $('.typeahead').typeahead('val', '');
                   }}>
                   <input type="text" className="typeahead tt-query form-control" autoComplete="off" spellCheck="false"  ref={node => {
                     this.newFriend = node;
