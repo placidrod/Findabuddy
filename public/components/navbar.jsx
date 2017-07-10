@@ -7,7 +7,9 @@ class Nav extends React.Component {
     //this.notificationBell
 
     this.state = {
-      friends: []
+      friends: [],
+      messages: [],
+      counter: 0
     }
   }
 
@@ -20,16 +22,29 @@ class Nav extends React.Component {
   }
 
   notificationBell() {
-    return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell"></span></a>)
+    if (this.state.counter === 0) {
+      return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell">{this.state.counter}</span></a>)
+    } else {
+      return (<a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell unread">{this.state.counter}</span></a>)
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({friends: nextProps.friends})
-
+    this.counter = 0
+    if (this.state.messages[0]) {
+      console.log(this.state.messages[0].messages)
+      for (var i = 0; i < this.state.messages[0].messages.length; i++) {
+        if (this.state.messages[0].messages[i].read === false) {
+          this.counter++
+          //console.log(this.counter)
+        }
+      }
+    }
+    this.setState({friends: nextProps.friends, messages: nextProps.messages, counter: this.counter})
   }
 
   componentDidUpdate() {
-      this.counter = 0
+      //this.counter = 0
       var users = this.props.users;
        var users = new Bloodhound({
            datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -48,10 +63,10 @@ class Nav extends React.Component {
        });
 
 
-    if (this.props.messages[0]) {
-      console.log(this.props.messages[0].messages)
-      for (var i = 0; i < this.props.messages[0].messages.length; i++) {
-        if (this.props.messages[0].messages[i].read === false) {
+    /*if (this.state.messages[0]) {
+      console.log(this.state.messages[0].messages)
+      for (var i = 0; i < this.state.messages[0].messages.length; i++) {
+        if (this.state.messages[0].messages[i].read === false) {
           this.counter++
           console.log(this.counter)
         }
@@ -61,7 +76,7 @@ class Nav extends React.Component {
       this.notificationBell = <a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell">{this.counter}</span></a>
     } else {
       this.notificationBell = <a href="#" data-toggle="dropdown" className="dropdown-toggle"><span className="glyphicon glyphicon-bell unread">{this.counter}</span></a>
-    }
+    }*/
   }
 
   render() {
@@ -99,13 +114,13 @@ class Nav extends React.Component {
              </ul>
           </li>
           <li className="dropdown">
-              {this.notificationBell}
+              {this.notificationBell()}
               <ul className="dropdown-menu">
                 <Notifications
                   handleNotificationSelect={this.props.handleNotificationSelect}
                   handleSelect={this.props.handleSelect}
                   user={this.props.userName}
-                  messages={this.props.messages}
+                  messages={this.state.messages}
                 />
               </ul>
           </li>
