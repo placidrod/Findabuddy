@@ -28,7 +28,7 @@ public/.DS_store
 .env
 
 # Dependency directorys
-# Commment the following lines before deploy #
+# Commment the following lines before deploy
 node_modules/
 bower_components/
 build/
