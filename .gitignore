@@ -18,21 +18,20 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
-# Compiled Dirs (http://nodejs.org/api/addons.html)
-#build/
-#dist/
 
-# Dependency directorys
-# Deployed apps should consider commenting these lines out:
-# see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
-node_modules/
-#bower_components/
 .idea
 .DS_Store
 .floo
 .flooignore
 public/.DS_store
-#compiled/
-#public/components/compiled/
 
 .env
+
+# Dependency directorys
+# Commment the following lines before deploy #
+node_modules/
+bower_components/
+build/
+dist/
+compiled/
+public/components/compiled/
